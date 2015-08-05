@@ -175,6 +175,15 @@
 						</span>
 					</a>
 					<?php
+						} else if ($value == 'twitter') {
+			         ?>
+					<a href="#" id="TwitterLoginButton" data-toggle="modal" data-target="#modalInternalPassword">
+						<span class="fa-stack">
+							<i class="fa fa-circle fa-stack-2x" style="color: #00acee;"></i>
+							<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+						</span>
+					</a>
+					<?php
 						} 
 					}
 					?>
