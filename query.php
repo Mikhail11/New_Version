@@ -9,7 +9,7 @@
 	$postContent = $post['POST_TEXT']['VALUE'];
 
 	//Ссылки на изображения для постов
-	$photoVK = "http://kazanwifi.ru/images/its.jpg"; //"http://kazanwifi.ru/getImage.php?id=".$database->getIDBDUser()."&t=".date('Y-m-d-G-i-s');
+	$photoVK = "http://kazanwifi.ru/getImage.php?id=".$database->getIDBDUser()."&t=".date('Y-m-d-G-i-s');
 
 	//Ссылки на страницы клиентов
 	$linkVK = $post['POST_LINK_VK']['VALUE'];
@@ -24,7 +24,6 @@
 		$logOpt =$_POST['logOpt'];
 		$bDate = $_POST['bdate'];
 		$friendsCount = $_POST['friends'];
-		echo $friendsCount;
 		
 		$database->addUser($firstName,$lastName,$ref,$logOpt,$bDate,$friendsCount); 
 	  
@@ -264,7 +263,34 @@
 			curl_close($curl);
 		echo $phone;
 		}
-	} 
+	} else if(isset($_GET['form-name'])&&$_GET['form-name']=='TwitterOAuth'){
+
+		  $config ='includes/core/hybridauth/config.php';
+		   require_once( "includes/core/hybridauth/Hybrid/Auth.php" );
+		 
+		   try{
+		       $hybridauth = new Hybrid_Auth( $config );
+		 
+		       $twitter = $hybridauth->authenticate( "Twitter" );
+		 
+		       $user_profile = $twitter->getUserProfile();
+		 		$logOpt = 'twitter';
+		 		$database->addUser($user_profile->firstName,$user_profile->lastName,$user_profile->profileURL,$logOpt,null,$user_profile->friendsCount);
+
+		 		$status = array('message'=> $postTitle,
+		 						'picture'=> $photoVK);
+		        
+		        $twitter->setUserStatus($status); 
+		 		
+		 		header("Location:$routerAdmin");
+
+
+		   }
+		   catch( Exception $e ){
+		       echo "Ooophs, we got an error: " . $e->getMessage();
+		   }
+
+	}
 
 
 ?>

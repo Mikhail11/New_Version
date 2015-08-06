@@ -3,7 +3,7 @@
  */
  
 function update_textarea_word_count(txt, word_count) {
-	var maxLen = 200;
+	var maxLen = 140;
 	
 	var len = txt.val().length;
 	if (len > maxLen) {

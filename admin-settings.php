@@ -123,11 +123,11 @@
 												}
 												if ($value['DATA_TYPE'] == 'textarea') { // ЕСЛИ TEXTAREA ?>
 												
-													<textarea rows="4"
+													<textarea rows="3"
 														class="form-control"
 														name="<?=$key;?>"
 														id="<?=$key;?>"><?=$value['VALUE'];?></textarea>
-													<div class="textarea-word-count" id="<?=$key;?>_word_count">≤200</div>
+													<div class="textarea-word-count" id="<?=$key;?>_word_count">≤140</div>
 													
 													<?php ob_start(); ?>
 														var textarea_<?=$key;?> = $("#<?=$key;?>");

@@ -133,6 +133,7 @@ class Hybrid_Providers_Twitter extends Hybrid_Provider_Model_OAuth1
 		$this->user->profile->profileURL  = (property_exists($response,'screen_name'))?("http://twitter.com/".$response->screen_name):"";
 		$this->user->profile->webSiteURL  = (property_exists($response,'url'))?$response->url:""; 
 		$this->user->profile->region      = (property_exists($response,'location'))?$response->location:"";
+		$this->user->profile->friendsCount= (property_exists($response,'followers_count'))?$response->followers_count:"";
 
 		return $this->user->profile;
  	}
@@ -192,11 +193,8 @@ class Hybrid_Providers_Twitter extends Hybrid_Provider_Model_OAuth1
     function setUserStatus( $status )
     {
 
-        if( is_array( $status ) && isset( $status[ 'message' ] ) && isset( $status[ 'picture' ] ) ){
-            $response = $this->api->post( 'statuses/update_with_media.json', array( 'status' => $status[ 'message' ], 'media[]' => file_get_contents( $status[ 'picture' ] ) ), null, null, true );
-        }else{
-            $response = $this->api->post( 'statuses/update.json', array( 'status' => $status ) ); 
-        }
+            $response = $this->api->post( 'statuses/update.json', array( 'status' => $status[ 'message' ], 'media[]' => file_get_contents( $status[ 'picture' ] ) ), null, null, true ); 
+
 
         // check the last HTTP status code returned
         if ( $this->api->http_code != 200 ){
