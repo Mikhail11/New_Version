@@ -101,7 +101,7 @@
 													
 													if (isset($value['BLOB_VALUE'])) { ?>
 													<small>Изображение, которое используется сейчас:</small>
-													<img src="data:image/jpeg;base64,<?=base64_encode($value['BLOB_VALUE']);?>" class="tiny-image-preview">
+													<img src="<?=($value['VALUE']);?>" class="tiny-image-preview">
 													<?php } ?>
 													<div class="input-group">
 										                <span class="input-group-btn">

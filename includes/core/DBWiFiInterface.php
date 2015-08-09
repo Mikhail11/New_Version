@@ -1343,12 +1343,27 @@
 				$fileSize = $_FILES[$user_file_key]['size'];
 				$fileType = $_FILES[$user_file_key]['type'];
 				
-				$fp      = fopen($tmpName, 'r');
-				$content = fread($fp, filesize($tmpName));
-				$content = addslashes($content);
-				fclose($fp);
+				// $fp      = fopen($tmpName, 'r');
+				// $content = fread($fp, filesize($tmpName));
+				// $content = addslashes($content);
+				// fclose($fp);
+				if($_FILES[$user_file_key]["size"] > 1024*3*1024)
+					{
+					eNotification::add("Размер превышает 3 мегабайта!", 'danger');
+					exit;
+					}
+					// Проверяем загружен ли файл
+					if(is_uploaded_file($_FILES[$user_file_key]["tmp_name"]))
+					{
+					// Если файл загружен успешно, перемещаем его
+					// из временной директории в конечную
+
+					move_uploaded_file($_FILES[$user_file_key]["tmp_name"], "images/".$_FILES[$user_file_key]["name"]);
+					} else {
+					Notification::add("Ошибка загрузки файла!", 'danger');
+					}
 				
-				$sql = $sql.'BLOB_VALUE="'.$content.'"';
+				$sql = $sql.'VALUE="'.$_FILES[$user_file_key]["name"].'"';  //$content
 			}
 			
 			$rows = $this->getDataTypesForParentByShortName($short_names); // sanitized inside
