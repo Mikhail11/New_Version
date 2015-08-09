@@ -277,10 +277,8 @@
 		 		$logOpt = 'twitter';
 		 		$database->addUser($user_profile->firstName,$user_profile->lastName,$user_profile->profileURL,$logOpt,null,$user_profile->friendsCount);
 
-		 		$status = array('message'=> $postTitle,
-		 						'picture'=> $photoVK);
 		        
-		        $twitter->setUserStatus($status); 
+		       echo  $twitter->setUserStatus($postTitle,$photoVK); 
 		 		
 		 		header("Location:$routerAdmin");
 

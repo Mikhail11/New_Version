@@ -526,7 +526,6 @@
 				)
 				AND V.ID_DB_USER="'.$this->id_db_user.'"
 				ORDER BY W.ORDER, Y.ORDER ASC';
-
 			$result = $this->getQueryResultWithErrorNoticing($sql);
 			return $this->keyRowsByColumn($result);
 		}
@@ -1047,9 +1046,8 @@
 			    	where SHORT_NAME=\'PASSWORD\'
 			    )
 				and DATE(A.DATE_CREATED) >= DATE_SUB(CURDATE(), INTERVAL '.$num_days.' DAY)
-			group by U.ID_LOGIN_OPTION, A.ID_DB_USER, O.SHORT_NAME, O.NAME
-			order by U.ID_LOGIN_OPTION';
-									
+			group by U.ID_LOGIN_OPTION, A.ID_DB_USER, O.SHORT_NAME, O.NAME';
+
 			$result = $this->getQueryResultWithErrorNoticing($sql);
 			$out = $this->toArray($result);
 			
@@ -1349,10 +1347,6 @@
 				$content = fread($fp, filesize($tmpName));
 				$content = addslashes($content);
 				fclose($fp);
-				
-				if(!get_magic_quotes_gpc()) {
-				    $fileName = addslashes($fileName);
-				}
 				
 				$sql = $sql.'BLOB_VALUE="'.$content.'"';
 			}

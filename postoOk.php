@@ -6,14 +6,9 @@
        $hybridauth = new Hybrid_Auth( $config );
  
        $twitter = $hybridauth->authenticate( "Twitter" );
+       $twitter->setUserStatus( "Hello world!","http://kazanwifi.ru/images/its.jpg" );
  
-       $user_profile = $twitter->getUserProfile();
- 
-       echo "Hi there! " . $user_profile->displayName;
- 
-       $twitter->setUserStatus( "Hello world!" );
- 
-       $user_contacts = $twitter->getUserContacts(); 
+
    }
    catch( Exception $e ){
        echo "Ooophs, we got an error: " . $e->getMessage();
