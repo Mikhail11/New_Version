@@ -99,7 +99,7 @@
 												if ($value['DATA_TYPE'] == 'text&file' || $value['DATA_TYPE'] == 'file') { // ЕСЛИ ФАЙЛ
 													$addFileScript = true;
 													
-													if (isset($value['BLOB_VALUE'])) { ?>
+													if (isset($value['VALUE'])) { ?>
 													<small>Изображение, которое используется сейчас:</small>
 													<img src="<?=($value['VALUE']);?>" class="tiny-image-preview">
 													<?php } ?>

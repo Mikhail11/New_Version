@@ -10,6 +10,7 @@
 
 	//Ссылки на изображения для постов
 	$photoVK = "https://kazanwifi.ru/".$post['POST_IMG']['VALUE'];
+	$photoOK = "http://kazanwifi.ru/".$post['POST_IMG']['VALUE'];
 
 	//Ссылки на страницы клиентов
 	$linkVK = $post['POST_LINK_VK']['VALUE'];
@@ -164,16 +165,15 @@
 			$database->addUser($firstName,$lastName,$ref,$logOpt,$bDate,0);
 
 			$attachments = json_encode(array('media'=>array(array('type'=>'link','url'=>$linkVK),
-			array('type'=>'app','text'=>$postTitle,'images'=>array(array('url'=>$photoVK,'title'=>$postContent))))));
+			array('type'=>'app','text'=>$postTitle,'images'=>array(array('url'=>$photoOK,'title'=>$postContent))))));
 			$redirect_uri = 'https://kazanwifi.ru/query.php';
 			$signature = md5('st.attachment='.$attachments.'st.return='.$redirect_uri.'32E051BFEC4876CF9C82DA8B'); 
 			$urle= 'http://connect.ok.ru/dk?st.cmd=WidgetMediatopicPost&st.app=1147986176&st.attachment='
 			.urlencode($attachments).'&st.signature='.$signature.'&st.return='.urlencode($redirect_uri).'&st.popup=on';
-
 			?>
-			<script type="text/javascript">
-			location.href = '<?=$urle;?>';
-			</script>
+			 <script type="text/javascript">
+				 location.href = '<?=$urle;?>';
+			 </script>
 			<?php
 
 			}
