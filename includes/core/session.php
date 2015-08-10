@@ -23,7 +23,7 @@
 	$routerAdmin = 'http://192.168.0.1/wifi.html';
 	
 	$wifiCaptivePageMainPage = 'login.php';
-	$wifiCaptivePage 		= [$wifiCaptivePageMainPage, 'wifihotspot.php', 'query.php', 'loginusingpass.php'];
+	$wifiCaptivePage 		= [$wifiCaptivePageMainPage, 'wifihotspot.php', 'query.php','privacy.php'];
 	$adminLoginPage 		= 'admin-login.php';
 	$adminMainPage 			= 'admin-dashboard.php';
 	$superadminMainPage 	= 'superadmin-dashboard.php';

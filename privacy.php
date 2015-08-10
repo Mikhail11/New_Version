@@ -1,4 +1,6 @@
-<?php include 'includes/base/admin.php'; ?><!DOCTYPE html>
+<?php 	
+include 'includes/core/session.php';
+$drawFullContent = true; ?><!DOCTYPE html>
 <html lang="ru">
 	<head>
 		<?php include 'includes/base/headBootstrapAndBasics.php'; ?>
