@@ -1335,7 +1335,7 @@
 		 */
 		public function processPostRequestUpdateVars($short_names) {
 			
-			function processFileToSQL($key, &$sql) {
+			function processFileToSQL($key, &$sql, $id_user) {
 				$user_file_key = $key.'_file';
 					
 				$fileName = $_FILES[$user_file_key]['name'];
@@ -1357,13 +1357,14 @@
 					{
 					// Если файл загружен успешно, перемещаем его
 					// из временной директории в конечную
-
-					move_uploaded_file($_FILES[$user_file_key]["tmp_name"], "images/".$_FILES[$user_file_key]["name"]);
+					$extension = strstr($_FILES[$user_file_key]['name'],".");	
+					$newFileName = date('YmdHm').'_'.$id_user.$extension;
+					move_uploaded_file($_FILES[$user_file_key]["tmp_name"], "images/".$newFileName);
 					} else {
 					Notification::add("Ошибка загрузки файла!", 'danger');
 					}
 				
-				$sql = $sql.'VALUE="'.$_FILES[$user_file_key]["name"].'"';  //$content
+				$sql = $sql.'VALUE="images/'.$newFileName.'"';  //$content
 			}
 			
 			$rows = $this->getDataTypesForParentByShortName($short_names); // sanitized inside
@@ -1400,10 +1401,10 @@
 				
 				$sql = 'update SP$VAR set ';
 				if ($value['DATA_TYPE'] == 'file') {
-					processFileToSQL($key, $sql);
+					processFileToSQL($key, $sql,$this->id_db_user);
 				} else {
 					if ($value['DATA_TYPE'] == 'text&file') {
-						processFileToSQL($key, $sql);
+						processFileToSQL($key, $sql,$this->id_db_user);
 						$sql = $sql.', ';
 					}
 					$sql = $sql.'VALUE="'.htmlspecialchars($_POST[$key]).'"';
