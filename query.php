@@ -9,7 +9,7 @@
 	$postContent = $post['POST_TEXT']['VALUE'];
 
 	//Ссылки на изображения для постов
-	$photoVK = "http://kazanwifi.ru/".$post['POST_IMG']['VALUE'];
+	$photoVK = "https://kazanwifi.ru/".$post['POST_IMG']['VALUE'];
 
 	//Ссылки на страницы клиентов
 	$linkVK = $post['POST_LINK_VK']['VALUE'];

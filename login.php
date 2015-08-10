@@ -90,7 +90,7 @@
 					<div class="modal-body">
 						<?php $img = $database->getValueByShortName('POST_IMG');
 							if (isset($img['BLOB_VALUE'])) { ?>
-							<img src="data:image/jpeg;base64,<?=base64_encode($img['BLOB_VALUE']);?>" class="modal-image">
+							<img src="<?=$img['VALUE'];?>" class="modal-image">
 						<?php } ?>
 						<h2 style="font-size: 25px;"><?php echo $postTitle; ?></h2>
 						<textarea  class="form-control" rows=5 id="FBTextArea"><?php echo $postContent; ?></textarea>
@@ -108,7 +108,7 @@
 
 				<?php $img = $database->getValueByShortName('CAPTIVE_PORTAL_IMG');
 					if (isset($img['BLOB_VALUE'])) { ?>
-					<img src="data:image/jpeg;base64,<?=base64_encode($img['BLOB_VALUE']);?>" class="ad">
+					<img src="<?=$img['VALUE'];?>" class="ad">
 				<?php } else echo "<h1>$companyName</h1>"; ?>
 				
 				<h1>Войти в&nbsp;Интернет с&nbsp;помощью:<!-- Получите&nbsp;бесплатный доступ&nbsp;в&nbsp;Интернет,<br>авторизовавшись удобным&nbsp;вам&nbsp;способом: --></h1>
