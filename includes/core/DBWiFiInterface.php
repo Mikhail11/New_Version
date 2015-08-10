@@ -459,7 +459,7 @@
 		 */
 		public function getValueByShortName($short_name) {
 			$this->sanitize($short_name);
-			$sql = 'SELECT V.VALUE, CONVERT(V.VALUE, SIGNED) AS NUMBER_VALUE, V.BLOB_VALUE, V.ID_VAR FROM SP$VAR V WHERE V.ID_DICTIONARY IN (SELECT D.ID_DICTIONARY FROM CM$DICTIONARY D WHERE SHORT_NAME="'.$short_name.'") AND V.ID_DB_USER='.$this->getMixedDBUserID();
+			$sql = 'SELECT V.VALUE, CONVERT(V.VALUE, SIGNED) AS NUMBER_VALUE, V.BLOB_VALUE, V.ID_VAR,V.ID_DICTIONARY FROM SP$VAR V WHERE V.ID_DICTIONARY IN (SELECT D.ID_DICTIONARY FROM CM$DICTIONARY D WHERE SHORT_NAME="'.$short_name.'") AND V.ID_DB_USER='.$this->getMixedDBUserID();
 			$result = $this->getQueryFirstRowResultWithErrorNoticing($sql, $short_name);
 			if ($result['VALUE'] == 'T' || $result['VALUE'] == 't') {
 				$result['VALUE'] = true;

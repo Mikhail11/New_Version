@@ -89,7 +89,7 @@
 					</div>
 					<div class="modal-body">
 						<?php $img = $database->getValueByShortName('POST_IMG');
-							if (isset($img['BLOB_VALUE'])) { ?>
+							if (isset($img['VALUE'])) { ?>
 							<img src="<?=$img['VALUE'];?>" class="modal-image">
 						<?php } ?>
 						<h2 style="font-size: 25px;"><?php echo $postTitle; ?></h2>
@@ -107,7 +107,7 @@
 			<div class="glass-panel">
 
 				<?php $img = $database->getValueByShortName('CAPTIVE_PORTAL_IMG');
-					if (isset($img['BLOB_VALUE'])) { ?>
+					if (isset($img['VALUE'])) { ?>
 					<img src="<?=$img['VALUE'];?>" class="ad">
 				<?php } else echo "<h1>$companyName</h1>"; ?>
 				
@@ -140,7 +140,7 @@
 					<?php
 			         	} else if ($value == 'odnoklassniki') {
 			         ?>
-					<a href="#" id="odnoklassiniLoginButton" data-toggle="modal" data-target="#modalOdnoklassniki">
+					<a href="#" id="odnoklassiniLoginButton">
 						<span class="fa-stack">
 							<i class="fa fa-circle fa-stack-2x" style="color: #f2720d;"></i>
 							<i class="fa fa-odnoklassniki fa-stack-1x fa-inverse"></i>
