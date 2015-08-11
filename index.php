@@ -31,7 +31,7 @@
 			</nav>
 
 			<div class="glass-panel">
-				<center><img src="images/logo+++.png" width = '40%' height='40%'></center>
+				<img src="images/logo+++.png">
 			<h2>
 				Скоро здесь будет сайт
 			</h2>
