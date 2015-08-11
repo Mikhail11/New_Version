@@ -31,9 +31,7 @@
 			</nav>
 
 			<div class="glass-panel">
-			<h1>
-				<i class="fa fa-wifi"></i> Re[Spot]
-			</h1>
+				<center><img src="images/logo+++.png" width = '40%' height='40%'></center>
 			<h2>
 				Скоро здесь будет сайт
 			</h2>
