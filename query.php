@@ -261,7 +261,6 @@
 			$out = curl_exec($curl);
 			echo $out;
 			curl_close($curl);
-		echo $phone;
 		}
 	} else if(isset($_GET['form-name'])&&$_GET['form-name']=='TwitterOAuth'){
 

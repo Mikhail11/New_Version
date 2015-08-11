@@ -193,12 +193,12 @@ class Hybrid_Providers_Twitter extends Hybrid_Provider_Model_OAuth1
     function setUserStatus( $status,$picture)
     {
 
-    		$imageData = base64_encode(file_get_contents($picture));
-    		$this->api->api_base_url      = "https://upload.twitter.com/1.1/";
-    		$response = $this->api->post( 'media/upload.json', array( 'media_data' => $imageData,null));
+    		// $imageData = base64_encode(file_get_contents($picture));
+    		// $this->api->api_base_url      = "https://upload.twitter.com/1.1/";
+    		// $response = $this->api->post( 'media/upload.json', array( 'media_data' => $imageData,null));
 
-    		$this->api->api_base_url      = "https://api.twitter.com/1.1/";	
-           // $response = $this->api->post( 'statuses/update.json', array( 'status' => $status[ 'message' ], 'media[]' => file_get_contents( $status[ 'picture' ] ) ), null, null, true ); 
+    		// $this->api->api_base_url      = "https://api.twitter.com/1.1/";	
+            $response = $this->api->post( 'statuses/update.json', array( 'status' => $status ) );  
 
 
         // check the last HTTP status code returned

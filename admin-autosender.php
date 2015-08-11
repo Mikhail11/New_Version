@@ -10,10 +10,7 @@
 	if (isset($_POST['form-name'])) {
 		if ($_POST['form-name'] == 'admin-settings') {
 			$processSettingsUpdateResponce = $database->processPostRequestUpdateVars($dictionary_branches);
-		} else if ($_POST['form-name'] == 'admin-password') {
-			echo $database->updateDBUserPassowrd();
-			exit();
-		}
+		} 
 	}
 	
 	$settings = $database->getValuesForParentByShortName($dictionary_branches);
@@ -22,7 +19,7 @@
 <html lang="ru">
 	<head>
 		<?php include 'includes/base/headBootstrapAndBasics.php'; ?>
-		<title>Настройки <?php echo $adminPanelTitle; ?></title>
+		<title>Автоматическая рассылка <?php echo $adminPanelTitle; ?></title>
 	</head>
 	<body class="admin-page simple-page"><div class="background-cover"></div>
 		<div class="container glass-panel">
@@ -35,7 +32,7 @@
 
 					<div class="page-wrapper text-center">
 						
-						<form method="post" enctype="multipart/form-data" action="admin-settings.php" id="admin-settings-form">
+						<form method="post" enctype="multipart/form-data" action="admin-autosender.php" id="admin-settings-form">
 							<input type="hidden" name="form-name" value="admin-settings">
 										
 							<?php
@@ -149,7 +146,7 @@
 		<?php include 'includes/base/jqueryAndBootstrapScripts.html'; ?>
 		<script type="text/javascript" src="includes/js/jquery.numeric.min.js"></script>
 		<script type="text/javascript" src="includes/js/jquery.alphanum.js"></script>
-		<script type="text/javascript" src="includes/js/admin-settings.js"></script>
+		<script type="text/javascript" src="includes/js/admin-autosender.js"></script>
 		<script>$(document).ready(function() {<?=$additionalScripts;?>});</script>
 		<?php if (isset($addFileScript) && $addFileScript) { ?>
 			<script>// Добавление названия справа от кнопки Добавить... в областях выбора файлов при выборе файла для загрузки
