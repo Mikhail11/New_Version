@@ -1488,7 +1488,15 @@
 			FROM
 				CM$DB_USER D, SP$VAR B, SP$VAR C, CM$DB_USER P
 			WHERE
-				D.IS_SUPERADMIN=\'F\' 
+				D.IS_SUPERADMIN=\'F\'';
+
+				if(!$this->meetsAccessLevel('ROOT')){
+
+				$sql = $sql.'AND D.ID_DB_USER_MODIFIED ='.$this->id_db_user_editor;
+
+				}
+
+				$sql = $sql.'
 				AND D.ID_DB_USER = B.ID_DB_USER
 	            AND D.ID_DB_USER = C.ID_DB_USER
 	            AND D.ID_DB_USER_MODIFIED = P.ID_DB_USER
