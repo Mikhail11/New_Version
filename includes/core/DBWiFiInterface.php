@@ -1523,7 +1523,13 @@
 		 */
 		public function getDBUsersCount($count_deactivated = false) {
 			$sql =
-			'select count(ID_DB_USER) as COUNT from CM$DB_USER where IS_SUPERADMIN=\'F\' '.
+			'select count(ID_DB_USER) as COUNT from CM$DB_USER where IS_SUPERADMIN=\'F\' ';
+
+			if(!$this->meetsAccessLevel('ROOT')){
+
+				$sql = $sql.'AND ID_DB_USER_MODIFIED = '.$this->id_db_user_editor.' ';
+			}
+			$sql = $sql.
 			'union select count(ID_DB_USER) as COUNT from CM$DB_USER where IS_SUPERADMIN=\'T\'';
 			if ($count_deactivated == false) {
 				$sql = $sql.' and IS_ACTIVE=\'T\'';
