@@ -13,7 +13,7 @@
 					$domain = substr($rows['LINK'],15);
 					$url = 'https://api.vk.com/method/messages.send?domain='.$domain
 					.'&message='.urlencode($row['MESSAGE'])
-					.'&v=5.34&access_token='.$row['TOKEN'];
+					.'&v=5.34&emoji=1&access_token='.$row['TOKEN'];
 
 				 	if( $curl = curl_init() ) {
 					curl_setopt($curl, CURLOPT_URL, $url);

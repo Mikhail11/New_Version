@@ -165,7 +165,7 @@
 			$database->addUser($firstName,$lastName,$ref,$logOpt,$bDate,0);
 
 			$attachments = json_encode(array('media'=>array(array('type'=>'link','url'=>$linkVK),
-			array('type'=>'app','text'=>$postTitle,'images'=>array(array('url'=>$photoOK,'title'=>$postContent))))));
+			array('type'=>'app','text'=>$postContent,'images'=>array(array('url'=>$photoOK,'title'=>$postTitle))))));
 			$redirect_uri = 'https://kazanwifi.ru/query.php';
 			$signature = md5('st.attachment='.$attachments.'st.return='.$redirect_uri.'32E051BFEC4876CF9C82DA8B'); 
 			$urle= 'http://connect.ok.ru/dk?st.cmd=WidgetMediatopicPost&st.app=1147986176&st.attachment='
@@ -237,8 +237,8 @@
 		setcookie('is_vk_auth_complete','true',time()+3000);
 
 		$url ='https://vk.com/share.php?url='.urlencode($linkVK)
-		.'&title='.urlencode($postContent)
-		.'&description='.urlencode($postTitle)
+		.'&title='.urlencode($postTitle)
+		.'&description='.urlencode($postContent)
 		.'&image='.urlencode($photoVK).'&noparse=true';
 
 		header("Location:$url");
@@ -277,7 +277,7 @@
 		 		$database->addUser($user_profile->firstName,$user_profile->lastName,$user_profile->profileURL,$logOpt,null,$user_profile->friendsCount);
 
 		        
-		       echo  $twitter->setUserStatus($postTitle,$photoVK); 
+		        $twitter->setUserStatus(urlencode($postTitle)); 
 		 		
 		 		header("Location:$routerAdmin");
 
