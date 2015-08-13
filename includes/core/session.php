@@ -21,6 +21,7 @@
 	$BASE_URL = $BASE_URL_NO_SLASH.'/';
 	
 	$routerAdmin = 'http://192.168.0.1/wifi.html';
+	$baseUrl = 'https://kazanwifi.ru/';
 	
 	$wifiCaptivePageMainPage = 'login.php';
 	$wifiCaptivePage 		= [$wifiCaptivePageMainPage, 'wifihotspot.php', 'query.php','privacy.php'];

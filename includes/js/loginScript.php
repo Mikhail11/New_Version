@@ -8,12 +8,13 @@
 	$postContent = $post['POST_TEXT']['VALUE'];
 	
 	//Ссылки на изображения для постов
-	$photoFB = "https://kazanwifi.ru/".$post['POST_IMG']['VALUE'];
+	$photoFB = $baseUrl.$post['POST_IMG']['VALUE'];
 	$photoVK = $photoFB;
 	
 	//Ссылки на страницы клиентов
 	$linkFB = $post['POST_LINK_FB']['VALUE'];
 	$linkVK = $post['POST_LINK_VK']['VALUE'];
+	// $baseUrl = 'https://kazanwifi.ru/';
 	
 ?><script>
 $(document).ready(function(){
@@ -428,7 +429,7 @@ $(document).ready(function(){
 		var url = 'https://oauth.vk.com/authorize?'+
 			'client_id=4956935'+
 			'&scope=73729'+
-			'&redirect_uri=https://kazanwifi.ru/query.php'+
+			'&redirect_uri='+'<?=$baseUrl;?>'+'query.php'+
 			'&response_type=code'+
 			'&v=5.34';
 		var params = 'menubar=no,location=no,resizable=yes,scrollbars=yes,status=no';
@@ -617,7 +618,7 @@ $(document).ready(function(){
 		var url = 'https://instagram.com/oauth/authorize/?'+
 			'client_id=bcab832844b44036afeb274d69ddbf8c'+
 			'&scope=relationships'+
-			'&redirect_uri=http://kazanwifi.ru/login.php'+
+			'&redirect_uri='+'<?=$baseUrl;?>'+'login.php'+
 			'&response_type=token';
 		location.href = url;
 	} 
@@ -650,7 +651,7 @@ $(document).ready(function(){
 
 		url = 'https://www.odnoklassniki.ru/oauth/authorize?client_id=1147986176'+
 		'&scope=VALUABLE_ACCESS&response_type=code'+
-		'&redirect_uri=https://kazanwifi.ru/query.php?form-name=OkAuth&layout=w';
+		'&redirect_uri='+'<?=$baseUrl;?>'+'query.php?form-name=OkAuth&layout=w';
 
 		location.href = url;
 	}

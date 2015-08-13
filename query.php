@@ -9,7 +9,7 @@
 	$postContent = $post['POST_TEXT']['VALUE'];
 
 	//Ссылки на изображения для постов
-	$photoVK = "https://kazanwifi.ru/".$post['POST_IMG']['VALUE'];
+	$photoVK = $baseUrl.$post['POST_IMG']['VALUE'];
 	$photoOK = "http://kazanwifi.ru/".$post['POST_IMG']['VALUE'];
 
 	//Ссылки на страницы клиентов
@@ -117,7 +117,7 @@
 			$client_id = '1147986176'; // Application ID
 			$public_key = 'CBACONGFEBABABABA'; // Публичный ключ приложения
 			$client_secret = '32E051BFEC4876CF9C82DA8B'; // Секретный ключ приложения
-			$redirect_uri = 'https://kazanwifi.ru/query.php?form-name=OkAuth'; // Ссылка на приложение
+			$redirect_uri = $baseUrl.'query.php?form-name=OkAuth'; // Ссылка на приложение
 
 			$url = 'https://api.odnoklassniki.ru/oauth/token.do';
 
@@ -166,7 +166,7 @@
 
 			$attachments = json_encode(array('media'=>array(array('type'=>'link','url'=>$linkVK),
 			array('type'=>'app','text'=>$postContent,'images'=>array(array('url'=>$photoOK,'title'=>$postTitle))))));
-			$redirect_uri = 'https://kazanwifi.ru/query.php';
+			$redirect_uri = $baseUrl.'query.php';
 			$signature = md5('st.attachment='.$attachments.'st.return='.$redirect_uri.'32E051BFEC4876CF9C82DA8B'); 
 			$urle= 'http://connect.ok.ru/dk?st.cmd=WidgetMediatopicPost&st.app=1147986176&st.attachment='
 			.urlencode($attachments).'&st.signature='.$signature.'&st.return='.urlencode($redirect_uri).'&st.popup=on';
@@ -201,7 +201,7 @@
 	$code = $_GET['code'];
 	$app_id = 4956935 ; //4933055
 	$app_secret = 'JJPQrCIff32UXoJrLj97'; // 'bd12f72EGMoE9wee0hKy'
-	$redirect_uri='https://kazanwifi.ru/query.php';
+	$redirect_uri=$baseUrl.'query.php';
 	$url = 'https://oauth.vk.com/access_token?client_id='.$app_id.'&client_secret='.$app_secret.'&code='.$code.'&redirect_uri='.$redirect_uri;
 
 	if( $curl = curl_init() ) {
@@ -277,7 +277,7 @@
 		 		$database->addUser($user_profile->firstName,$user_profile->lastName,$user_profile->profileURL,$logOpt,null,$user_profile->friendsCount);
 
 		        
-		        $twitter->setUserStatus(urlencode($postTitle)); 
+		        $twitter->setUserStatus($postTitle); 
 		 		
 		 		header("Location:$routerAdmin");
 
