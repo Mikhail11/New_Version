@@ -1822,6 +1822,8 @@
 
 	public function getMobileUsers($idDBUser){
 
+		$this->sanitize($idDBUser);
+
 		$sql = 'select DISTINCT V.NAME from VW_SP$LOGIN_ACT V 
 		where V.LOGIN_OPTION_SHORT_NAME = \'mobile\'
 		and V.ID_DB_USER_MODIFIED ='.$idDBUser;
@@ -1829,6 +1831,44 @@
 		return $this->getQueryResultWithErrorNoticing($sql);
 	}
 # ==== КОНЕЦ Функция автопоста ==== #
+# =================================================================== #	
+
+# =================================================== #
+// !ПЛАНИРОВЩИК ПОСТОВ
+# =================================================== #	
+
+	public function getPostForChange(){
+
+		$sql = 'SELECT * FROM VW_SP$POST_TIME where 
+				DAYOFMONTH(DATE) = DAYOFMONTH(curdate())
+                and MONTH(DATE) = MONTH(curdate())
+                and year(DATE) = year(curdate())
+                and hour(DATE) = hour(curtime())';
+
+		$result = $this->getQueryResultWithErrorNoticing($sql);
+			if ($result->num_rows >0) {
+				while($row = $result->fetch_assoc()) {
+
+			$sql = 'UPDATE SP$VAR SET VALUE ="'.$row['TEXT'].'" where ID_DICTIONARY IN (SELECT ID_DICTIONARY 
+			 FROM CM$DICTIONARY where SHORT_NAME = "POST_TEXT") AND ID_DB_USER ='.$row['ID_DB_USER'];
+			 $this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'UPDATE SP$VAR SET VALUE = "'.$row['IMAGE'].'" where ID_DICTIONARY IN (SELECT ID_DICTIONARY 
+			 FROM CM$DICTIONARY where SHORT_NAME = "POST_IMG") AND ID_DB_USER ='.$row['ID_DB_USER'];
+			 $this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'UPDATE SP$VAR SET VALUE = "'.$row['TITLE'].'" where ID_DICTIONARY IN (SELECT ID_DICTIONARY 
+			 FROM CM$DICTIONARY where SHORT_NAME = "POST_TITLE") AND ID_DB_USER ='.$row['ID_DB_USER'];
+			 $this->getQueryResultWithErrorNoticing($sql);
+				}
+			}
+
+
+
+	}
+
+ 
+# ==== КОНЕЦ Функций Планировщика постов ==== #
 # =================================================================== #		
 
 # =================================================== #
