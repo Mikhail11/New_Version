@@ -190,23 +190,78 @@ class Hybrid_Providers_Twitter extends Hybrid_Provider_Model_OAuth1
     /**
     * update user status
     */ 
-    function setUserStatus( $status,$picture)
+    function setUserStatus($status)
     {
+	if(is_array($status))
+    {
+        $message = $status["message"];
+        $image_path = $status["image_path"];
+    }
+    else
+    {
+        $message = $status;
+        $image_path = null;
+    }
 
-    		// $imageData = base64_encode(file_get_contents($picture));
-    		// $this->api->api_base_url      = "https://upload.twitter.com/1.1/";
-    		// $response = $this->api->post( 'media/upload.json', array( 'media_data' => $imageData,null));
+    $media_id = null;
 
-    		// $this->api->api_base_url      = "https://api.twitter.com/1.1/";	
-            $response = $this->api->post( 'statuses/update.json', array( 'status' => $status ) );  
+    # https://dev.twitter.com/rest/reference/get/help/configuration
+    $twitter_photo_size_limit = 3145728;
 
+    if($image_path!==null)
+    {
+        if(file_exists($image_path))
+        {
+            if(filesize($image_path) < $twitter_photo_size_limit)
+            {
+                # Backup base_url
+                $original_base_url = $this->api->api_base_url;
 
-        // check the last HTTP status code returned
-        if ( $this->api->http_code != 200 ){
-            throw new Exception( "Update user status failed! {$this->providerId} returned an error. " . $this->errorMessageByStatus( $this->api->http_code ) );
+                # Need to change base_url for uploading media
+                $this->api->api_base_url = "https://upload.twitter.com/1.1/";
+
+                # Call Twitter API media/upload.json
+                $parameters = array('media' => base64_encode(file_get_contents($image_path)) );
+                $response  = $this->api->post( 'media/upload.json', $parameters ); 
+                error_log("Twitter upload response : ".print_r($response, true));
+
+                # Restore base_url
+                $this->api->api_base_url = $original_base_url;
+
+                # Retrieve media_id from response
+                if(isset($response->media_id))
+                {
+                    $media_id = $response->media_id;
+                    error_log("Twitter media_id : ".$media_id);
+                }
+
+            }
+            else
+            {
+                error_log("Twitter does not accept files larger than ".$twitter_photo_size_limit.". Check ".$image_path);
+            }
         }
+        else
+        {
+            error_log("Can't send file ".$image_path." to Twitter cause does not exist ... ");
+        }
+    }
 
-        return $response;
+    if($media_id!==null)
+    {
+        $parameters = array( 'status' => $message, 'media_ids' => $media_id );
+
+    }
+    else
+    {
+        $parameters = array( 'status' => $message); 
+    }
+    $response  = $this->api->post( 'statuses/update.json', $parameters );
+
+    // check the last HTTP status code returned
+    if ( $this->api->http_code != 200 ){
+        throw new Exception( "Update user status failed! {$this->providerId} returned an error. " . $this->errorMessageByStatus( $this->api->http_code ) );
+    }
     }
 
 

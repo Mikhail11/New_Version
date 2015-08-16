@@ -3,7 +3,27 @@
  */
  
 function update_textarea_word_count(txt, word_count) {
+
 	var maxLen = 140;
+
+
+	
+	var len = txt.val().length;
+	if (len > maxLen) {
+		$(word_count).addClass("bg-danger");
+		$(submitButtons).attr('disabled', 'disabled');
+	} else {
+		$(word_count).removeClass("bg-danger");
+		$("#admin-settings-form button[type=\"submit\"]").removeAttr('disabled');
+	}
+	$(word_count).html(maxLen - len);
+}
+
+function update_text_word_count(txt, word_count) {
+
+	var maxLen = 70;
+
+	
 	
 	var len = txt.val().length;
 	if (len > maxLen) {

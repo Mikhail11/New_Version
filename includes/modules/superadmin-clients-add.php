@@ -19,6 +19,39 @@
 					<input type="text" class="form-control" name="email" id="email" autocomplete="off" maxlength="255">
 				</div>
 			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="adress">Адрес заведения</label>							
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="adress" id="adress" autocomplete="off" maxlength="255">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="phone">Контактный телефон компании</label>							
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="phone" id="phone" autocomplete="off" maxlength="255">
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="page-wrapper close-follow">
+		
+		<h2>Менеджер</h2>
+		<div class="form-horizontal">
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="fio">ФИО</label>
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="fio" id="fio" autocomplete="off" maxlength="255">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label" for="mphone">Телефон</label>							
+				<div class="col-sm-9">
+					<input type="text" class="form-control" name="mphone" id="mphone" autocomplete="off" maxlength="255">
+				</div>
+			</div>
 		</div>
 		
 	</div>

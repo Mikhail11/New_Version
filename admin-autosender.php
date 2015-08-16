@@ -2,7 +2,7 @@
 	include 'includes/base/admin.php';
 	$protector->protectPageForbidSuperadmin();
 	
-	$dictionary_branches = ['AUTO_POST'];
+	$dictionary_branches = ['AUTO_POST','AUTO_SMS'];
 
 	$processSettingsUpdateResponce = null;
 	$additionalScripts = "";
@@ -70,17 +70,40 @@
 									<? } ?>
 									
 										<div class="form-group">
-											<label class="col-sm-4 control-label<?php if ($value['DATA_TYPE'] == 'checkbox') { echo ' col-xs-10'; } ?>" for="<?=$key;?>"><?=$value['NAME'];?></label>
+											<label class="col-sm-4 control-label" for="<?=$key;?>"><?=$value['NAME'];?></label>
 											<div class="col-sm-8">
 												<?php
-												if ($value['DATA_TYPE'] == 'textarea') { // ЕСЛИ TEXTAREA ?>
+												if ($value['DATA_TYPE'] == 'textarea') { // ЕСЛИ TEXTAREA 
 												
+													if($value['SHORT_NAME']=='AUTO_MESSAGE_SMS'){ ?>
+													<textarea rows="2"
+														class="form-control"
+														name="<?=$key;?>"
+														id="<?=$key;?>"><?=$value['VALUE'];?></textarea>
+													<div class="textarea-word-count" id="<?=$key;?>_word_count">≤70</div> 
+
+													<?php ob_start(); ?>
+														var textarea_<?=$key;?> = $("#<?=$key;?>");
+														var word_count_<?=$key;?> = $("#<?=$key;?>_word_count");
+														$(textarea_<?=$key;?>).keyup( function() {
+																update_text_word_count(
+																	$(textarea_<?=$key;?>),
+																	$(word_count_<?=$key;?>)
+																);
+															}
+														);
+														update_text_word_count(textarea_<?=$key;?>, word_count_<?=$key;?>);
+													<?php $additionalScripts = $additionalScripts.ob_get_clean(); ?>
+
+
+													<?php } else { ?>
+													 
 													<textarea rows="3"
 														class="form-control"
 														name="<?=$key;?>"
 														id="<?=$key;?>"><?=$value['VALUE'];?></textarea>
-													<div class="textarea-word-count" id="<?=$key;?>_word_count">≤140</div>
-													
+													<div class="textarea-word-count" id="<?=$key;?>_word_count">≤140</div> 
+
 													<?php ob_start(); ?>
 														var textarea_<?=$key;?> = $("#<?=$key;?>");
 														var word_count_<?=$key;?> = $("#<?=$key;?>_word_count");
@@ -92,10 +115,10 @@
 															}
 														);
 														update_textarea_word_count(textarea_<?=$key;?>, word_count_<?=$key;?>);
-													<?php $additionalScripts = $additionalScripts.ob_get_clean(); 
-														
-														
-														
+													<?php $additionalScripts = $additionalScripts.ob_get_clean(); ?>
+
+													<?php } ?>	
+												<?php		
 												} else if ($value['DATA_TYPE'] != 'file') { // ЕСЛИ СТАНДАРТНОЕ
 													
 												?>
