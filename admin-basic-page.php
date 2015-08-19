@@ -4,13 +4,13 @@
 <html lang="ru">
 	<head>
 		<?php include 'includes/base/headBootstrapAndBasics.php'; ?>
-		<title>Название страницы <?php echo $adminPanelTitle; ?></title>
+		<title>Планирование постов <?php echo $adminPanelTitle; ?></title>
 	</head>
 	<body class="admin-page simple-page"><div class="background-cover"></div>
 		<div class="container glass-panel">
 			<?php include 'includes/base/navbar.php'; ?>
 
-			<h1>Заголовок страницы</h1>
+			<h1>Планирование постов</h1>
 			<div class="page-wrapper">
 				
 				Текст

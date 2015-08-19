@@ -9,7 +9,7 @@
 			
 	require 'db_config.php';
 	require 'DBWiFiInterface.php';
-	
+
 	$router_login = null;
 	$router_pasword = null;
 	$cli_login = null;

@@ -47,8 +47,8 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-						<p>Оставляя&nbsp;нам&nbsp;номер&nbsp;телефона,&nbsp;Вы&nbsp;соглашаетесь&nbsp;c</p>
-						<p align='center'><b><a href="privacy.php">Политикой конфиденциальности</a></b></p>
+						<p align='center'>Оставляя&nbsp;номер&nbsp;телефона,&nbsp;Вы соглашаетесь&nbsp;c
+						<b><a href="privacy.php">Политикой конфиденциальности</a></b></p>
 							<!-- Оставить modal-footer. Он просто пустой. -->
 						</div>
 					</div>

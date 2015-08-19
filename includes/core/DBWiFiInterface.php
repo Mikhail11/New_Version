@@ -1786,8 +1786,8 @@
 	public function getAccessTokenForVKMessage(){
 		
 		$sql = 'select V.VALUE as TOKEN, B.VALUE as MESSAGE, B.ID_DB_USER as ID_USER from SP$VAR V , SP$VAR B 
-		where V.ID_DICTIONARY = 68
-		AND B.ID_DICTIONARY = 67
+		where V.ID_DICTIONARY = (SELECT ID_DICTIONARY FROM CM$DICTIONARY WHERE SHORT_NAME = "AUTO_MESSAGE_VK_TOKEN")
+		AND B.ID_DICTIONARY = (SELECT ID_DICTIONARY FROM CM$DICTIONARY WHERE SHORT_NAME = "AUTO_MESSAGE_VK")
 		AND V.ID_DB_USER = B.ID_DB_USER
 		AND V.VALUE<>\'\'';
 		return $this->getQueryResultWithErrorNoticing($sql);
@@ -1801,7 +1801,7 @@
 		$sql = 'select DISTINCT V.LINK from VW_SP$LOGIN_ACT V where
 		DAYOFMONTH(V.BIRTHDAY) = DAYOFMONTH(curdate())
 		and MONTH(V.BIRTHDAY) = MONTH(curdate())
-		and V.ID_DB_USER_MODIFIED ='.$idDBUser.'
+		and V.ID_DB_USER ='.$idDBUser.'
 		and V.ID_LOGIN_OPTION = (select ID_DICTIONARY from CM$DICTIONARY 
 			where SHORT_NAME = \'vk\')';
 		return $this->getQueryResultWithErrorNoticing($sql);
@@ -1811,8 +1811,8 @@
 
 		$sql = 'select V.VALUE as MESSAGE,B.ID_DB_USER as ID_USER
 		from SP$VAR V, SP$VAR B 
-		where V.ID_DICTIONARY = 69
-		and B.ID_DICTIONARY = 70
+		where V.ID_DICTIONARY = (SELECT ID_DICTIONARY FROM CM$DICTIONARY WHERE SHORT_NAME = "AUTO_MESSAGE_SMS")
+		and B.ID_DICTIONARY = (SELECT ID_DICTIONARY FROM CM$DICTIONARY WHERE SHORT_NAME = "AUTO_MESSAGE_SMS_DATE") 
 		and B.VALUE = curdate()
 		and B.ID_DB_USER  = V.ID_DB_USER';
 
@@ -1826,7 +1826,7 @@
 
 		$sql = 'select DISTINCT V.NAME from VW_SP$LOGIN_ACT V 
 		where V.LOGIN_OPTION_SHORT_NAME = \'mobile\'
-		and V.ID_DB_USER_MODIFIED ='.$idDBUser;
+		and V.ID_DB_USER ='.$idDBUser;
 
 		return $this->getQueryResultWithErrorNoticing($sql);
 	}

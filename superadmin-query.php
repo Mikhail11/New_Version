@@ -5,16 +5,22 @@
 
  		if ($_POST['form-name'] == 'add-user') {
 
+ 
  			 	$email = $_POST['email'];
 			 	$name = $_POST['company-name'];
 			 	$routerLogin = $_POST['router-login'];
 			 	$login = $_POST['login'];
 			 	$password = $_POST['password'];
 			 	$routerPassword = $_POST['router-token'];
-			   
+			   if($email!=''&&$name!=''&&$routerLogin!=''&&$login!=''&&$password!=''&&$routerPassword!=''){
 			 	$database->addDBUser($name,$email,$routerLogin,$routerPassword,$login,$password);
 				Notification::addNextPage('Пользователь добавлен!','success');
 				CommonFunctions::redirect('superadmin-clients.php');
+			} else {
+
+				Notification::addNextPage('Не все поля заполнены!','danger');
+				CommonFunctions::redirect('superadmin-clients.php');
+			}
 
  		} else if ($_POST['form-name'] == 'enable-disable-user') {
                    

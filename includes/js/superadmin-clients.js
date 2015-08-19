@@ -230,6 +230,7 @@ function makeAddClientDOMConnections() {
 	enablePasswordGenerationCapabilities();
 	enableAddClientFieldsRectictions();
 	makeInfoPanelCloseButtonConnection();
+	printDocumentInformation();
 }
 
 function makeInfoPanelCloseButtonConnection() {
@@ -317,6 +318,7 @@ $(document).ready(function() {
 	makeTableDOMConnections();	
 	prepareForVerticalPositioning();
 	enableSortingCapabilities();
+
 	
 	$("#add-user-button").click(function(e) {
 		e.preventDefault();
@@ -353,4 +355,37 @@ leftHandSideIsCompressed = false;
 
 function makeInfoDOMConnections() {
 	makeInfoPanelCloseButtonConnection();
+}
+
+function printDocumentInformation(){
+$("#btnPrint").click(function () {
+    var companyName = $("#company-name").val();
+    var email = $("#email").val();
+    var adress = $("#adress").val();
+    var manager = $("#fio").val();
+    var mphone = $("#mphone").val();
+    var phone = $("#phone").val();
+    var loginClient = $("#login").val();
+    var passwordClient =$("#password").val();
+    var printWindow = window.open('', '');
+    printWindow.document.write('<html><head><title>ReSpot</title>');
+    printWindow.document.write('</head><body >');
+    printWindow.document.write('<p align="center">Информация для клиента</p>');
+    printWindow.document.write('<table align="center" border="1px" cellpadding="7" width="80%">');
+    printWindow.document.write('<tr><td>Название заведения</td><td>'+companyName+'</td></tr>');
+    printWindow.document.write('<tr><td>E-mail</td><td>'+email+'</td></tr>');
+    printWindow.document.write('<tr><td>Адрес заведения</td><td>'+adress+'</td></tr>');
+    printWindow.document.write('<tr><td>Контактный телефон</td><td>'+phone+'</td></tr>');
+    printWindow.document.write('<tr><td>Менеджер</td><td>'+fio+'</td></tr>');
+    printWindow.document.write('<tr><td>Контактный телефон менеджера</td><td>'+mphone+'</td></tr>');
+    printWindow.document.write('<tr><td>Логин</td><td>'+loginClient+'</td></tr>');
+    printWindow.document.write('<tr><td>Пароль</td><td>'+passwordClient+'</td></tr>');
+    printWindow.document.write('</table></body></html>');
+
+
+
+
+    printWindow.document.close();
+    printWindow.print();
+});
 }

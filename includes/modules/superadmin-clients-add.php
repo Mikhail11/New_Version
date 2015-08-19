@@ -121,7 +121,7 @@
 	</div>
 	<div class="page-wrapper">
 		<div class="action-buttons-mid-way-panel only-child">
-			<button type="submit" class="btn btn btn-black gradient">Добавить <i class="fa fa-plus"></i></button>
+			<button type="submit" class="btn btn btn-black gradient" id="btnPrint">Добавить <i class="fa fa-plus"></i></button>
 			<button class="btn btn btn-black gradient" id="close-right-hand-side">Отменить <i class="fa fa-times"></i></button>
 		</div>
 	</div>
