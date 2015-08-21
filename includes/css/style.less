@@ -992,7 +992,120 @@ body.admin-page-login {
 		padding-top: 0;
 		padding-bottom: 60px;
 	}
+
 }
+
+.modal-dialog.modal-post{
+
+	padding-left: 20px;
+	padding-right: 20px;
+	color: white;
+	
+}
+
+.modal-post .modal-content {
+	background: rgba(0,0,0,0.6);
+	padding-left: 40px;
+	padding-right: 40px;
+	
+	
+	&.narrow-content {
+		padding-left: 100px;
+		padding-right: 100px;
+	}
+	
+	& .modal-header {
+		border-bottom: none;
+		padding-bottom: 0;
+		padding-top: 10px;
+		
+		& button.close {
+			color: white;
+			margin-top: -10px;
+			margin-right: -102px;
+		}
+	}
+	
+	& .modal-body {
+		padding-bottom: 0;
+		padding-top: 30px;
+		.form-control{
+
+			margin-top:10px;
+		}
+
+		button.btn-white{
+
+			border:1px solid black;
+			border-radius:5px;
+			width:47%;
+			height: 30px;
+			margin-top:7px;
+			background-color:black;
+			box-shadow: none;
+			color:white;
+			float:left;
+		} 
+
+		button.btn-white.button-right{
+
+			float:right;
+		} 
+	}
+	
+	& .modal-footer {
+		border-top: none;
+		padding-top: 0;
+		padding-bottom: 10px;
+		font-size: 200%;
+		text-align: center;
+		button.quarter-white{
+
+			border:1px solid black;
+			border-radius:5px;
+			width:40px;
+			height: 40px;
+			margin-top:5px;
+			margin-right:5px;
+			background-color:black;
+			box-shadow: none;
+			color:white;
+
+		}
+	}
+
+	& .post-content{
+
+		margin-top: 10px;
+		text-align: justify;
+		color:black;
+	}
+
+	&.img-block {
+    height: 120px;
+    overflow: hidden;
+    text-align:center;
+   
+	}
+
+	img {
+
+
+		width: 100%;
+	}
+
+	.planner-times{
+
+		margin: 2px;
+
+		.form-control{
+
+			width:40%;
+		}
+	}
+
+  }
+
 
 .popover {
 	padding: 0;
@@ -1167,33 +1280,18 @@ body.admin-page.simple-page table.table-planner-row {
    td {
     padding: 5px; 
     background-color: rgba(0,0,0,0.3);
-    weight:33%;
+   
     text-align: center;
 
     img{
 
-    	padding-top:20px;
-    	width:40%;
+    	padding-top:5%;
+    	width: 240px;
+
     	
     }
-	span.icon {
 
-		align:center;
-		font-size: 600%;
-	}
 
-	p.post-content {
-
-		padding-top: 2px;
-		font-size: 100%;
-
-	}
-	p.post-title {
-
-		padding-top: 10px;
-		font-size: 100%;
-
-	}
    }
 
    tr{
@@ -1208,6 +1306,36 @@ body.admin-page.simple-page table.table-planner-row {
    }
 
 }
+
+body.admin-page.simple-page div.img-block {
+    height: 120px;
+    overflow: hidden;
+    text-align:center;
+ 
+}
+
+body.admin-page.simple-page img.img-reponsive {
+	
+	display:block;
+	width:100%;
+	max-width:100%;
+	height:auto;
+	padding-left: 50%;
+	padding-top: 50%;
+}
+
+body.admin-page.simple-page span.icon {
+
+		align:center;
+		font-size: 600%;
+	}
+
+body.admin-page.simple-page span.clock {
+
+
+		margin: 2px;
+		font-size: 400%;
+	}
 
 body.admin-page.simple-page table.month-stats-table tr>td:last-child {
 	width: 25%;

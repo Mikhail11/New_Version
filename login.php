@@ -92,7 +92,7 @@
 					<div class="modal-body">
 						<?php $img = $database->getValueByShortName('POST_IMG');
 							if (isset($img['VALUE'])) { ?>
-							<img src="<?=$img['VALUE'];?>" class="modal-image">
+							<img src="<?=$img['VALUE'];?>" class="modal-image" width='80%'>
 						<?php } ?>
 						<h2 style="font-size: 25px;"><?php echo $postTitle; ?></h2>
 						<textarea  class="form-control" rows=5 id="FBTextArea"><?php echo $postContent; ?></textarea>
