@@ -14,7 +14,7 @@
 		<div class="container glass-panel">
 			<?php include 'includes/base/navbar.php'; ?>
 
-			<div class="modal fade" id="modalInternalPassword" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+			<div class="modal fade" id="modalPostCreate" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-post">
 					<!-- <form> -->
 						<div class="modal-content narrow-content">
@@ -24,23 +24,23 @@
 							<div class="modal-body">
 								<div class="form-group">
 									<div class="img-block">
-										<img src="images/2121.jpg" >
+										<img src="images/2121.jpg" id='imageData' >
 									</div>
 										<button type="submit" class="btn-white"><i class="fa fa-picture-o"></i> Галерея</button>
 										<button type="submit" class="btn-white button-right"><i class="fa fa-upload"></i> Загрузить</button>
 										<div class="row">
 
 											<div class="col-md-12">
-												<textarea rows="2" class="form-control" id='textarea_title' readonly> Для связи с нами: +7 927 4749183, info@respot.ru #it`s-digital</textarea>
+												<textarea rows="2" class="form-control textarea_title" readonly></textarea>
 											</div>
 											<div class="col-md-12">
-												<textarea rows="5" class="form-control" id='textarea_content' readonly> Мы считаем, что нет невозможных в исполнении или сложных проектов! Для нас каждая разработка — интересный процесс реализации новых идей!</textarea>
+												<textarea rows="5" class="form-control textarea_content" readonly></textarea>
 											</div>
 											<div class="col-md-5">
-												<input type="time" class="form-control" id='input_time' value="10:58" readonly>
+												<input type="time" class="form-control input_time" readonly>
 											</div>
 											<div class="col-md-7">
-												<input type="date" class="form-control" id='input_date' value="2015-08-07" readonly>
+												<input type="date" class="form-control input_date" readonly>
 											</div>	
 										</div>
 								</div>
@@ -60,23 +60,39 @@
 			<h1><i class="fa fa-clock-o"></i>Планирование постов</h1>
 			<div class="page-wrapper">
 			<table class="table-planner-row">
-				<tr><td><span class="icon"><i class="fa fa-plus"></i></span></td>
+				<tr><td>
+					<a  data-toggle="modal" data-target="#modalPostCreate" 
+						data-post-title = ""
+						data-post-content = ""
+						data-post-time = ""
+						data-post-date = ""
+						data-post-image = "">
+						<span class="icon"><i class="fa fa-plus"></i></span>
+					</a>
+				</td>
 
 				<?php foreach ($posts as $key => $value) {
 					$i++;
-					
+
 				if($i%3==0) {?>
 				</tr>
-				<?php }?>
-				<td class="on-top">
-				<div class="img-block">
-				    <img  src="<?=$value['IMAGE']?>">
-				</div>
-				<span class="clock"><?php echo $value['TIME']?></span>
-				<p><?php echo $value['DATA']?></p>
-				</td>
-				<?php
-				}?>
+					<?php }?>
+						<td class="on-top">
+							<a  data-toggle="modal" data-target="#modalPostCreate" 
+								data-post-title = "<?=$value['TITLE']?>"
+								data-post-content = "<?=$value['TEXT']?>"
+								data-post-time = "<?=$value['TIME']?>"
+								data-post-date = "<?=$value['DATA']?>"
+								data-post-image = "<?=$value['IMAGE']?>">
+								<div class="img-block">
+								    <img  src="<?=$value['IMAGE']?>">
+								</div>
+								<span class="clock"><?php echo $value['TIME']?></span>
+								<p><?php echo $value['DATA']?></p>
+							</a>
+						</td>
+					<?php
+					}?>
 				<?php
 				if($i%3==2 || $i == count) {?>
 				</tr>
@@ -86,5 +102,6 @@
 			<?php	include 'includes/base/footer.php'; ?>
 		</div>
 		<?php include 'includes/base/jqueryAndBootstrapScripts.html'; ?>
+		<script type="text/javascript" src="includes/js/admin-planner.js"></script>
 	</body>
 </html>
