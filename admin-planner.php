@@ -26,29 +26,29 @@
 									<div class="img-block">
 										<img src="images/2121.jpg" id='imageData' >
 									</div>
-										<button type="submit" class="btn-white"><i class="fa fa-picture-o"></i> Галерея</button>
-										<button type="submit" class="btn-white button-right"><i class="fa fa-upload"></i> Загрузить</button>
+										<button type="submit" class="btn-white" id = "buttonGallery"><i class="fa fa-picture-o"></i> Галерея</button>
+										<button type="submit" class="btn-white button-right" id = "buttonUpload"><i class="fa fa-upload"></i> Загрузить</button>
 										<div class="row">
 
 											<div class="col-md-12">
-												<textarea rows="2" class="form-control textarea_title" readonly></textarea>
+												<textarea rows="2" class="form-control textarea_title" id="textarea_title"></textarea>
 											</div>
 											<div class="col-md-12">
-												<textarea rows="5" class="form-control textarea_content" readonly></textarea>
+												<textarea rows="5" class="form-control textarea_content" id="textarea_content"></textarea>
 											</div>
 											<div class="col-md-5">
-												<input type="time" class="form-control input_time" readonly>
+												<input type="time" class="form-control input_time" id="input_time">
 											</div>
 											<div class="col-md-7">
-												<input type="date" class="form-control input_date" readonly>
+												<input type="date" class="form-control input_date " id="input_date">
 											</div>	
 										</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="submit" class="quarter-white"><i class="fa fa-pencil"></i></i></button>
-								<button type="submit" class="quarter-white"><i class="fa fa-trash-o"></i></i></i></button>
-								<button type="submit" class="quarter-white"><i class="fa fa-floppy-o"></i></i></button>
+								<button type="submit" class="quarter-white" id='editButton'><i class="fa fa-pencil"></i></i></button>
+								<button type="submit" class="quarter-white" id='trashButton'><i class="fa fa-trash-o"></i></i></i></button>
+								<button type="submit" class="quarter-white" id='saveButton'><i class="fa fa-floppy-o"></i></i></button>
 								
 								<!-- Оставить modal-footer. Он просто пустой. -->
 							</div>
@@ -66,7 +66,8 @@
 						data-post-content = ""
 						data-post-time = ""
 						data-post-date = ""
-						data-post-image = "">
+						data-post-image = ""
+						data-info = "new">
 						<span class="icon"><i class="fa fa-plus"></i></span>
 					</a>
 				</td>
@@ -83,7 +84,8 @@
 								data-post-content = "<?=$value['TEXT']?>"
 								data-post-time = "<?=$value['TIME']?>"
 								data-post-date = "<?=$value['DATA']?>"
-								data-post-image = "<?=$value['IMAGE']?>">
+								data-post-image = "<?=$value['IMAGE']?>"
+								data-info = "edit">
 								<div class="img-block">
 								    <img  src="<?=$value['IMAGE']?>">
 								</div>
