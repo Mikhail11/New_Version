@@ -1,5 +1,9 @@
 <?php
 	include 'includes/base/admin.php';
+
+	$posts = $database->getInformationForPosts();
+	$i = 0;
+	$count = $posts ->num_rows;
 ?><!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -57,49 +61,27 @@
 			<div class="page-wrapper">
 			<table class="table-planner-row">
 				<tr><td><span class="icon"><i class="fa fa-plus"></i></span></td>
-				<td class="on-top">
-				<div class="img-block">
-				    <img  src="images/201508100708_2.jpg">
-				</div>
-				<span class="clock">10:58</span>
-				<p>07.06.2015</p>
-				</td>
-				<td class="on-top">
-				<a data-toggle="modal" data-target="#modalInternalPassword">
-				<div class="img-block">
-				    <img  src="images/2121.jpg">
-				</div>
-				<span class="clock">10:58</span>
-				<p>07.06.2015</p>
-				</a>
-				</td>
-				</tr>
-				<tr>
-				<td class="on-top">
-				<div class="img-block">
-				    <img  src="images/201508100708_2.jpg">
-				</div>
-				<span class="clock">10:58</span>
-				<p>07.06.2015</p>
-				</td>
 
-				<td class="on-top">
-				<div class="img-block">
-				    <img  src="images/2121.jpg">
-				</div>
-				<span class="clock">10:58</span>
-				<p>07.06.2015</p>
-				</td>
-				<td class="on-top">
-				<div class="img-block">
-				    <img  src="images/1122.jpg">
-				</div>
-				<span class="clock">10:58</span>
-				<p>07.06.2015</p>
-				</td>
-
+				<?php foreach ($posts as $key => $value) {
+					$i++;
+					
+				if($i%3==0) {?>
 				</tr>
-			</table>
+				<?php }?>
+				<td class="on-top">
+				<div class="img-block">
+				    <img  src="<?=$value['IMAGE']?>">
+				</div>
+				<span class="clock"><?php echo $value['TIME']?></span>
+				<p><?php echo $value['DATA']?></p>
+				</td>
+				<?php
+				}?>
+				<?php
+				if($i%3==2 || $i == count) {?>
+				</tr>
+				<?php }?>
+				</table>
 			</div>
 			<?php	include 'includes/base/footer.php'; ?>
 		</div>

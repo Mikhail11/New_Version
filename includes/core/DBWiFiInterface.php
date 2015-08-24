@@ -1867,6 +1867,16 @@
 
 	}
 
+	public function getInformationForPosts(){
+
+		$sql = 'SELECT TEXT, TITLE, IMAGE, DATE_FORMAT(DATE,\'%H:%i\') AS TIME, DATE_FORMAT(DATE,\'%d.%m.%Y\') AS DATA
+		FROM VW_SP$POST_TIME WHERE ID_DB_USER ='.$this->id_db_user
+		.' AND IS_ACTIVE = \'T\'';
+
+		return $this->getQueryResultWithErrorNoticing($sql);
+
+	}
+
  
 # ==== КОНЕЦ Функций Планировщика постов ==== #
 # =================================================================== #		
