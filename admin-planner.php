@@ -66,7 +66,7 @@
 						data-post-content = ""
 						data-post-time = ""
 						data-post-date = ""
-						data-post-image = ""
+						data-post-image = "images/imageCap.png"
 						data-info = "new">
 						<span class="icon"><i class="fa fa-plus"></i></span>
 					</a>
