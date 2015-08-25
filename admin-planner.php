@@ -26,8 +26,12 @@
 									<div class="img-block">
 										<img src="images/2121.jpg" id='imageData' >
 									</div>
-										<button type="submit" class="btn-white" id = "buttonGallery"><i class="fa fa-picture-o"></i> Галерея</button>
-										<button type="submit" class="btn-white button-right" id = "buttonUpload"><i class="fa fa-upload"></i> Загрузить</button>
+											<form name="uploadimages" method="post" enctype="multipart/form-data">
+											
+										<!-- <button type="submit" class="btn-white" id = "buttonGallery"><i class="fa fa-picture-o"></i> Галерея</button> -->
+										<button type="submit" class="btn-white button-right" id = "buttonUpload">
+										       <i class="fa fa-upload"></i> Загрузить</button>
+										</form>
 										<div class="row">
 
 											<div class="col-md-12">
@@ -40,15 +44,18 @@
 												<input type="time" class="form-control input_time" id="input_time">
 											</div>
 											<div class="col-md-7">
-												<input type="date" class="form-control input_date " id="input_date">
+												<input type="date" class="form-control input_date" id="input_date">
+											</div>
+											<div class="col-md-7">
+												<input type="hidden" class="form-control input_hidden" id="input_hidden">
 											</div>	
 										</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="submit" class="quarter-white" id='editButton'><i class="fa fa-pencil"></i></i></button>
-								<button type="submit" class="quarter-white" id='trashButton'><i class="fa fa-trash-o"></i></i></i></button>
-								<button type="submit" class="quarter-white" id='saveButton'><i class="fa fa-floppy-o"></i></i></button>
+								<button  class="quarter-white" id='editButton'><i class="fa fa-pencil"></i></i></button>
+								<button  class="quarter-white" id='trashButton'><i class="fa fa-trash-o"></i></i></i></button>
+								<button  class="quarter-white" id='saveButton'><i class="fa fa-floppy-o"></i></i></button>
 								
 								<!-- Оставить modal-footer. Он просто пустой. -->
 							</div>
@@ -85,6 +92,7 @@
 								data-post-time = "<?=$value['TIME']?>"
 								data-post-date = "<?=$value['DATA']?>"
 								data-post-image = "<?=$value['IMAGE']?>"
+								data-post-id = "<?=$value['ID_POSTS']?>"
 								data-info = "edit">
 								<div class="img-block">
 								    <img  src="<?=$value['IMAGE']?>">

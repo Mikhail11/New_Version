@@ -8,13 +8,16 @@ $('#modalPostCreate').on('show.bs.modal', function (event) {
   var time = button.data('postTime');
   var date = button.data('postDate');
   var image = button.data('postImage');
+  var postId = button.data('postId');
   date=date.substr(6,4)+'-'+date.substr(3,2)+'-'+date.substr(0,2); 
   var modal = $(this);
   modal.find('.textarea_title').val(title);
   modal.find('.textarea_content').val(content);
   modal.find('.input_time').val(time);
   modal.find('.input_date').val(date);
-  modal.find('img').attr( 'src', image )
+  modal.find('.input_hidden').val(postId);
+  modal.find('img').attr('src',image);
+
 
 
   	 	if(button.data('info')=='new'){
@@ -25,6 +28,8 @@ $('#modalPostCreate').on('show.bs.modal', function (event) {
 			  modal.find('.input_date').removeAttr('readonly');
 			  $('#editButton').hide();
 			  $('#trashButton').hide();
+			  $('#buttonGallery').show();
+		 	  $('#buttonUpload').show();
 
   	 	} else if(button.data('info')=='edit') {
 
@@ -38,7 +43,7 @@ $('#modalPostCreate').on('show.bs.modal', function (event) {
 		 	$('#buttonUpload').hide();
   	 	}
 
-  	 	})
+  	 	});
 
 $('#editButton').click(function(){
 
@@ -49,4 +54,52 @@ $('#editButton').click(function(){
 	  $('#editButton').hide();
 	  $('#buttonGallery').show();
 	  $('#buttonUpload').show();
-})
+});
+
+$('#saveButton').click(function(){
+
+  var title = $('#textarea_title').val();
+  var content = $('#textarea_content').val();
+  var time = $('#input_time').val();
+  var date = $('#input_date').val();
+  //var image = button.data('postImage');
+  var postId = $('#input_hidden').val();
+		$.ajax({
+				type: "POST",
+				url: "admin-query.php",
+				data: {
+					'form-name': 'postPlannerForm',
+					'title': title,
+					'content':content,
+					'time': time,
+					'date':date,
+					'post':postId
+					},
+			success: function(msg){
+				location.href = 'admin-planner.php';
+
+			},
+			error: function (request, status, error) { failNotification(); }
+			});
+ 
+
+});
+
+$('#trashButton').click(function(){
+
+	  var postId = $('#input_hidden').val();
+		$.ajax({
+				type: "POST",
+				url: "admin-query.php",
+				data: {
+					'form-name': 'postPlannerDelete',
+					'postId':postId
+					},
+			success: function(msg){
+				location.href = 'admin-planner.php';
+
+			},
+			error: function (request, status, error) { failNotification(); }
+			});
+
+});

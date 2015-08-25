@@ -1349,7 +1349,7 @@
 				// fclose($fp);
 				if($_FILES[$user_file_key]["size"] > 1024*3*1024)
 					{
-					eNotification::add("Размер превышает 3 мегабайта!", 'danger');
+					Notification::add("Размер превышает 3 мегабайта!", 'danger');
 					exit;
 					}
 					// Проверяем загружен ли файл
@@ -1869,11 +1869,73 @@
 
 	public function getInformationForPosts(){
 
-		$sql = 'SELECT TEXT, TITLE, IMAGE, DATE_FORMAT(DATE,\'%H:%i\') AS TIME, DATE_FORMAT(DATE,\'%d.%m.%Y\') AS DATA
+		$sql = 'SELECT ID_POSTS, TEXT, TITLE, IMAGE, DATE_FORMAT(DATE,\'%H:%i\') AS TIME, DATE_FORMAT(DATE,\'%d.%m.%Y\') AS DATA
 		FROM VW_SP$POST_TIME WHERE ID_DB_USER ='.$this->id_db_user
 		.' AND IS_ACTIVE = \'T\'';
 
 		return $this->getQueryResultWithErrorNoticing($sql);
+
+	}
+
+	public function updatePostVars($title,$content,$time,$date,$images,$postId){
+
+		$this->sanitize($title);
+		$this->sanitize($content);
+		$this->sanitize($time);
+		$this->sanitize($date);
+		$this->sanitize($postId);
+
+		if($postId==''){
+			mysqli_autocommit($this->conn,FALSE);
+
+			$sql = 'INSERT INTO SP$POST_TEXT (VALUE,ID_DB_USER,TITLE) VALUES ("'.$content.'","'.$this->id_db_user.'","'.$title.'")';
+			$this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'INSERT INTO SP$POST_IMAGES (VALUE,ID_DB_USER) VALUES ("'.$images.'","'.$this->id_db_user.'")';
+			$this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'SELECT ID_TEXT FROM SP$POST_TEXT where ID_DB_USER ='.$this->id_db_user.' order by ID_TEXT desc limit 0, 1';
+			$textId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_TEXT'];
+
+			$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' order by ID_IMAGES desc limit 0, 1';
+			$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
+
+			$sql = 'INSERT INTO SP$POSTS (ID_IMG,ID_TEXT,POST_DATE,ID_DB_USER) VALUES ('.$imageId.','.$textId.', STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\'),'.$this->id_db_user.')';
+			$this->getQueryResultWithErrorNoticing($sql); 
+			echo $sql;
+			mysqli_commit($this->conn);
+
+			mysqli_close($this->conn);
+		} else {
+
+			$sql = 'SELECT ID_IMAGES , ID_TEXT FROM SP$POSTS WHERE ID_POSTS = '.$postId;
+			$result = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true);
+			$imageId = $result['ID_IMAGES'];
+			$textId = $result['ID_TEXT'];
+
+			$sql = 'UPDATE SP$POST_TEXT SET VALUE ='.$content.' WHERE ID_TEXT ='.$textId;
+			$this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'UPDATE SP$POST_IMAGES SET VALUE ='.$images.' WHERE ID_IMAGES ='.$imageId;
+			$this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'UPDATE SP$POST_TEXT SET TITLE ='.$title.' WHERE ID_TEXT ='.$textId;
+			$this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'UPDATE SP$POSTS SET POST_DATE = STR_TO_DATE('.$time.' '.$date.',\'%H:%i %Y-%m%d\') WHERE ID_POSTS ='.$textId;
+			$this->getQueryResultWithErrorNoticing($sql);
+		}
+
+
+	}
+
+	public function postPlannerDelete($postId){
+
+		$this ->sanitize($postId);
+
+		$sql = 'UPDATE SP$POSTS SET IS_ACTIVE = \'F\' WHERE ID_POSTS ='.$postId;
+		$this->getQueryResultWithErrorNoticing($sql);
+
 
 	}
 
