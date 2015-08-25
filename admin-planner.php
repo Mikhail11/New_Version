@@ -64,7 +64,7 @@
 				</div>
 			</div>
 
-			<h1><i class="fa fa-clock-o"></i>Планирование постов</h1>
+			<h1 class="huge-cover"><i class="fa fa-clock-o"></i>Планирование постов</h1>
 			<div class="page-wrapper">
 			<table class="table-planner-row">
 				<tr><td>
@@ -112,6 +112,8 @@
 			<?php	include 'includes/base/footer.php'; ?>
 		</div>
 		<?php include 'includes/base/jqueryAndBootstrapScripts.html'; ?>
+		<script type="text/javascript" src="includes/js/ajaxupload.3.5.js"></script>
 		<script type="text/javascript" src="includes/js/admin-planner.js"></script>
+
 	</body>
 </html>
