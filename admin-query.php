@@ -15,14 +15,13 @@
 			$content = $_POST['content'];
 			$time = $_POST['time'];
 			$date = $_POST['date'];
-			$images = 'images/2121.jpg';
+			$images = $_POST['image'];
 			$postId = $_POST['post'];
 
 			$database->updatePostVars($title,$content,$time,$date,$images,$postId);
 		} else if($_POST['form-name'] == 'postPlannerDelete'){
 
 			$postId = $_POST['postId'];
-			echo $postId;
 			$database->postPlannerDelete($postId);
 		}
 	

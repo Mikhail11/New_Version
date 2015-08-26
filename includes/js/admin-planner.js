@@ -62,7 +62,7 @@ $('#saveButton').click(function(){
   var content = $('#textarea_content').val();
   var time = $('#input_time').val();
   var date = $('#input_date').val();
-  //var image = button.data('postImage');
+  var image = $('#imageData').attr('src');
   var postId = $('#input_hidden').val();
 		$.ajax({
 				type: "POST",
@@ -73,7 +73,8 @@ $('#saveButton').click(function(){
 					'content':content,
 					'time': time,
 					'date':date,
-					'post':postId
+					'post':postId,
+					'image':image 
 					},
 			success: function(msg){
 				location.href = 'admin-planner.php';
@@ -96,7 +97,7 @@ $('#trashButton').click(function(){
 					'postId':postId
 					},
 			success: function(msg){
-				location.href = 'admin-planner.php';
+					location.href = 'admin-planner.php';
 
 			},
 			error: function (request, status, error) { failNotification(); }
@@ -105,27 +106,24 @@ $('#trashButton').click(function(){
 });
 
 	$(function(){
-		var btnUpload=$('#upload');
-		var status=$('#status');
+		var btnUpload=$('#buttonUpload');
 		new AjaxUpload(btnUpload, {
 			action: 'upload-file.php',
 			name: 'uploadfile',
 			onSubmit: function(file, ext){
 				 if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){ 
                     // extension is not allowed 
-					status.text('Поддерживаемые форматы JPG, PNG или GIF');
+					addNotification('Поддерживаемые форматы JPG, PNG или GIF','info');
 					return false;
 				}
-				status.text('Загрузка...');
 			},
 			onComplete: function(file, response){
-				//On completion clear the status
-				status.text('');
 				//Add uploaded file to list
-				if(response==="success"){
-					$('<li></li>').appendTo('#files').html('<img src="./uploads/'+file+'" alt="" /><br />'+file).addClass('success');
+				response = $.parseJSON(response);
+				if(response.response==="success"){
+					$('#imageData').attr('src',response.file);
 				} else{
-					$('<li></li>').appendTo('#files').text('Файл не загружен' + file).addClass('error');
+					addNotification('Файл не загружен ' + file,'danger');
 				}
 			}
 		});

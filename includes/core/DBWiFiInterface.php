@@ -1358,7 +1358,7 @@
 					// Если файл загружен успешно, перемещаем его
 					// из временной директории в конечную
 					$extension = strstr($_FILES[$user_file_key]['name'],".");	
-					$newFileName = date('YmdHm').'_'.$id_user.$extension;
+					$newFileName = md5(time().rand()).'_'.$id_user.$extension;
 					move_uploaded_file($_FILES[$user_file_key]["tmp_name"], "images/".$newFileName);
 					} else {
 					Notification::add("Ошибка загрузки файла!", 'danger');
@@ -1843,7 +1843,8 @@
 				DAYOFMONTH(DATE) = DAYOFMONTH(curdate())
                 and MONTH(DATE) = MONTH(curdate())
                 and year(DATE) = year(curdate())
-                and hour(DATE) = hour(curtime())';
+                and hour(DATE) = hour(curtime())
+                and IS_ACTIVE = \'T\'';
 
 		$result = $this->getQueryResultWithErrorNoticing($sql);
 			if ($result->num_rows >0) {
@@ -1885,7 +1886,26 @@
 		$this->sanitize($date);
 		$this->sanitize($postId);
 
-		if($postId==''){
+
+		if($postId>0) {
+
+			$sql = 'SELECT ID_IMG , ID_TEXT FROM SP$POSTS WHERE ID_POSTS = '.$postId;
+			$result = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true);
+			$imageId = $result['ID_IMAGES'];
+			$textId = $result['ID_TEXT'];
+
+			$sql = 'UPDATE SP$POST_TEXT SET VALUE ="'.$content.'" WHERE ID_TEXT ='.$textId;
+			$this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'UPDATE SP$POST_IMAGES SET VALUE ="'.$images.'" WHERE ID_IMAGES ='.$imageId;
+			$this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'UPDATE SP$POST_TEXT SET TITLE ="'.$title.'" WHERE ID_TEXT ='.$textId;
+			$this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'UPDATE SP$POSTS SET POST_DATE = STR_TO_DATE('.$time.' '.$date.',\'%H:%i %Y-%m%d\') WHERE ID_POSTS ='.$textId;
+			$this->getQueryResultWithErrorNoticing($sql);
+		} else {
 			mysqli_autocommit($this->conn,FALSE);
 
 			$sql = 'INSERT INTO SP$POST_TEXT (VALUE,ID_DB_USER,TITLE) VALUES ("'.$content.'","'.$this->id_db_user.'","'.$title.'")';
@@ -1902,28 +1922,9 @@
 
 			$sql = 'INSERT INTO SP$POSTS (ID_IMG,ID_TEXT,POST_DATE,ID_DB_USER) VALUES ('.$imageId.','.$textId.', STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\'),'.$this->id_db_user.')';
 			$this->getQueryResultWithErrorNoticing($sql); 
-			echo $sql;
 			mysqli_commit($this->conn);
 
 			mysqli_close($this->conn);
-		} else {
-
-			$sql = 'SELECT ID_IMAGES , ID_TEXT FROM SP$POSTS WHERE ID_POSTS = '.$postId;
-			$result = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true);
-			$imageId = $result['ID_IMAGES'];
-			$textId = $result['ID_TEXT'];
-
-			$sql = 'UPDATE SP$POST_TEXT SET VALUE ='.$content.' WHERE ID_TEXT ='.$textId;
-			$this->getQueryResultWithErrorNoticing($sql);
-
-			$sql = 'UPDATE SP$POST_IMAGES SET VALUE ='.$images.' WHERE ID_IMAGES ='.$imageId;
-			$this->getQueryResultWithErrorNoticing($sql);
-
-			$sql = 'UPDATE SP$POST_TEXT SET TITLE ='.$title.' WHERE ID_TEXT ='.$textId;
-			$this->getQueryResultWithErrorNoticing($sql);
-
-			$sql = 'UPDATE SP$POSTS SET POST_DATE = STR_TO_DATE('.$time.' '.$date.',\'%H:%i %Y-%m%d\') WHERE ID_POSTS ='.$textId;
-			$this->getQueryResultWithErrorNoticing($sql);
 		}
 
 

@@ -24,7 +24,7 @@
 							<div class="modal-body">
 								<div class="form-group">
 									<div class="img-block">
-										<img src="images/2121.jpg" id='imageData' >
+										<img src="" id='imageData' >
 									</div>
 											<form name="uploadimages" method="post" enctype="multipart/form-data">
 											
@@ -74,7 +74,8 @@
 						data-post-time = ""
 						data-post-date = ""
 						data-post-image = "images/imageCap.png"
-						data-info = "new">
+						data-info = "new"
+						id = "addButton">
 						<span class="icon"><i class="fa fa-plus"></i></span>
 					</a>
 				</td>
