@@ -18,7 +18,14 @@
 			$images = $_POST['image'];
 			$postId = $_POST['post'];
 
+			if($images == 'images/imageCap.png'){
+
+				$images = '';
+			}
+			if($title != ''&& $content !=''&&$time !=''&&$date !=''&&$images !=''){
 			$database->updatePostVars($title,$content,$time,$date,$images,$postId);
+			}
+			
 		} else if($_POST['form-name'] == 'postPlannerDelete'){
 
 			$postId = $_POST['postId'];

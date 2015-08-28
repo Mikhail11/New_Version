@@ -129,3 +129,30 @@ $('#trashButton').click(function(){
 		});
 		
 	});
+
+function update_textarea_word_count(txt, word_count) {
+	var maxLen = 140;
+	var len = txt.val().length;
+	if (len > maxLen) {
+		$(word_count).addClass("bg-danger");
+		$('#saveButton').attr('disabled', 'disabled');;
+	} else {
+		$(word_count).removeClass("bg-danger");
+		$('#saveButton').removeAttr('disabled');
+	}
+	$(word_count).html(maxLen - len);
+}
+
+function update_title_word_count(txt, word_count) {
+	var maxLen = 65;
+	var len = txt.val().length;
+	if (len > maxLen) {
+		$(word_count).addClass("bg-danger");
+		$('#saveButton').attr('disabled', 'disabled');
+	} else {
+		$(word_count).removeClass("bg-danger");
+		$('#saveButton').removeAttr('disabled');
+
+	}
+	$(word_count).html(maxLen - len);
+}

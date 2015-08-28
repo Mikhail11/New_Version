@@ -4,6 +4,7 @@
 	$posts = $database->getInformationForPosts();
 	$i = 0;
 	$count = $posts ->num_rows;
+	$additionalScripts = "";
 ?><!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -36,9 +37,35 @@
 
 											<div class="col-md-12">
 												<textarea rows="2" class="form-control textarea_title" id="textarea_title"></textarea>
+														<div class="textarea-word-count" id="title_word_count">≤70</div>
+													<?php ob_start(); ?>
+														var textarea_title = $("#textarea_title");
+														var word_count_title = $("#title_word_count");
+														$(textarea_title).keyup( function() {
+																update_title_word_count(
+																	$(textarea_title),
+																	$(word_count_title)
+																);
+															}
+														);
+														update_title_word_count(textarea_title, word_count_title);
+													<?php $additionalScripts = $additionalScripts.ob_get_clean(); ?>
 											</div>
 											<div class="col-md-12">
 												<textarea rows="5" class="form-control textarea_content" id="textarea_content"></textarea>
+												<div class="textarea-word-count" id="content_word_count">≤140</div>
+													<?php ob_start(); ?>
+														var textarea_content = $("#textarea_content");
+														var word_count_content = $("#content_word_count");
+														$(textarea_content).keyup( function() {
+																update_textarea_word_count(
+																	$(textarea_content),
+																	$(word_count_content)
+																);
+															}
+														);
+														update_textarea_word_count(textarea_content, word_count_content);
+													<?php $additionalScripts = $additionalScripts.ob_get_clean(); ?>
 											</div>
 											<div class="col-md-5">
 												<input type="time" class="form-control input_time" id="input_time">
@@ -115,6 +142,6 @@
 		<?php include 'includes/base/jqueryAndBootstrapScripts.html'; ?>
 		<script type="text/javascript" src="includes/js/ajaxupload.3.5.js"></script>
 		<script type="text/javascript" src="includes/js/admin-planner.js"></script>
-
+		<script>$(document).ready(function() {<?=$additionalScripts;?>});</script>
 	</body>
 </html>
