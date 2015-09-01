@@ -68,13 +68,13 @@
 													<?php $additionalScripts = $additionalScripts.ob_get_clean(); ?>
 											</div>
 											<div class="col-md-5">
-												<input type="time" class="form-control input_time" id="input_time">
+												<input type="time" class="form-control input_time" id="input_time" data-toggle="tooltip" data-placement="left" title="Время по МСК">
 											</div>
 											<div class="col-md-7">
 												<input type="date" class="form-control input_date" id="input_date">
 											</div>
 											<div class="col-md-7">
-												<input type="hidden" class="form-control input_hidden" id="input_hidden">
+												<input type="hidden" class="form-control input_hidden" id="input_hidden" >
 											</div>	
 										</div>
 								</div>
