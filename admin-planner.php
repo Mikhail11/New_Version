@@ -142,6 +142,6 @@
 		<?php include 'includes/base/jqueryAndBootstrapScripts.html'; ?>
 		<script type="text/javascript" src="includes/js/ajaxupload.3.5.js"></script>
 		<script type="text/javascript" src="includes/js/admin-planner.js"></script>
-		<script>$(document).ready(function() {<?=$additionalScripts;?>});</script>
+		<script><?=$additionalScripts;?></script>
 	</body>
 </html>

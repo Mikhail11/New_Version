@@ -78,7 +78,6 @@ $('#saveButton').click(function(){
 					},
 			success: function(msg){
 				location.href = 'admin-planner.php';
-
 			},
 			error: function (request, status, error) { failNotification(); }
 			});

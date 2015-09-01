@@ -1894,7 +1894,7 @@
 
 			$sql = 'SELECT ID_IMG , ID_TEXT FROM SP$POSTS WHERE ID_POSTS = '.$postId;
 			$result = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true);
-			$imageId = $result['ID_IMAGES'];
+			$imageId = $result['ID_IMG'];
 			$textId = $result['ID_TEXT'];
 
 			$sql = 'UPDATE SP$POST_TEXT SET VALUE ="'.$content.'" WHERE ID_TEXT ='.$textId;
@@ -1909,25 +1909,14 @@
 			$sql = 'UPDATE SP$POSTS SET POST_DATE = STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\') WHERE ID_POSTS ='.$postId;
 			$this->getQueryResultWithErrorNoticing($sql);
 
-			$sql = 'DELIMITER ;;
-					DROP EVENT IF EXISTS `post_planner_'.$postId.'_'.$this->id_db_user.'`;;
-					CREATE EVENT `post_planner_'.$postId.'_'.$this->id_db_user.'` 
-					ON SCHEDULE AT STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\')
-					DO BEGIN
-					UPDATE SP$VAR SET VALUE = (SELECT V.TEXT  FROM VW_SP$POST_TIME V WHERE ID_POSTS = '.$postId.')
-					where ID_DICTIONARY IN (SELECT ID_DICTIONARY 
-					FROM CM$DICTIONARY where SHORT_NAME = "POST_TEXT") AND ID_DB_USER = '.$this->id_db_user.';
-					UPDATE SP$VAR SET VALUE = (SELECT IMAGE  FROM VW_SP$POST_TIME WHERE ID_POSTS = '.$postId.') 
-					where ID_DICTIONARY IN (SELECT ID_DICTIONARY 
-					FROM CM$DICTIONARY where SHORT_NAME = "POST_IMG") AND ID_DB_USER = '.$this->id_db_user.';
-					UPDATE SP$VAR SET VALUE = (SELECT TITLE  FROM VW_SP$POST_TIME WHERE ID_POSTS = '.$postId.') 
-					where ID_DICTIONARY IN (SELECT ID_DICTIONARY 
-					FROM CM$DICTIONARY where SHORT_NAME = "POST_TITLE") AND ID_DB_USER = '.$this->id_db_user.';
-					END;;
-					DELIMITER ;';
+			$sql = 'DROP EVENT IF EXISTS `post_planner_'.$postId.'_'.$this->id_db_user.'`;';
 			$this->getQueryResultWithErrorNoticing($sql);
-			echo $sql;
 
+			$sql = 'CREATE EVENT `post_planner_'.$postId.'_'.$this->id_db_user.'` 
+					ON SCHEDULE AT STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\')
+					DO
+					call planer_creatorr('.$this->id_db_user.','.$postId.');';
+			$this->getQueryResultWithErrorNoticing($sql);
 		} else {
 			mysqli_autocommit($this->conn,FALSE);
 
@@ -1949,22 +1938,10 @@
 			$sql = 'SELECT ID_POSTS , DATE FROM SP$POSTS where ID_DB_USER ='.$this->id_db_user.' order by ID_IMAGES desc limit 0, 1';
 			$postId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_POSTS'];
 
-			$sql = 'DELIMITER ;;
-					DROP EVENT IF EXISTS `post_planner_'.$postId.'_'.$this->id_db_user.'`;;
-					CREATE EVENT `post_planner_'.$postId.'_'.$this->id_db_user.'` 
+			$sql = 'CREATE EVENT `post_planner_'.$postId.'_'.$this->id_db_user.'` 
 					ON SCHEDULE AT STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\')
-					DO BEGIN
-					UPDATE SP$VAR SET VALUE = (SELECT V.TEXT  FROM VW_SP$POST_TIME V WHERE ID_POSTS = '.$postId.')
-					where ID_DICTIONARY IN (SELECT ID_DICTIONARY 
-					FROM CM$DICTIONARY where SHORT_NAME = "POST_TEXT") AND ID_DB_USER = '.$this->id_db_user.';
-					UPDATE SP$VAR SET VALUE = (SELECT IMAGE  FROM VW_SP$POST_TIME WHERE ID_POSTS = '.$postId.') 
-					where ID_DICTIONARY IN (SELECT ID_DICTIONARY 
-					FROM CM$DICTIONARY where SHORT_NAME = "POST_IMG") AND ID_DB_USER = '.$this->id_db_user.';
-					UPDATE SP$VAR SET VALUE = (SELECT TITLE  FROM VW_SP$POST_TIME WHERE ID_POSTS = '.$postId.') 
-					where ID_DICTIONARY IN (SELECT ID_DICTIONARY 
-					FROM CM$DICTIONARY where SHORT_NAME = "POST_TITLE") AND ID_DB_USER = '.$this->id_db_user.';
-					END;;
-					DELIMITER ;';
+					DO
+					call planer_creatorr('.$this->id_db_user.','.$postId.');';
 			$this->getQueryResultWithErrorNoticing($sql);
 			mysqli_commit($this->conn);
 
