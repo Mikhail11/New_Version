@@ -54,8 +54,16 @@
 							</div>    	
 					    </div>
 					    <div role="tabpanel" class="tab-pane" id="profile">
-					    	<input id="ex1" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
-
+					    		<p><i class="fa fa-sun-o"></i> Яркость</p>
+						    	<input id="ex1" class = "slider-input" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="10"/>
+						    	<p><i class="fa fa-adjust"></i> Контраст</p>
+						    	<input id="ex2" class = "slider-input" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="20"/>
+						    	<p><i class="fa fa-tint" style="font-size:15px; padding-left:2px;"></i> Размытие</p>
+						    	<input id="ex3" class = "slider-input" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="30"/>
+						    	<p><i class="fa fa-th"></i> Прозрачность</p>
+						    	<input id="ex4" class = "slider-input" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="40"/>
+						    	<p><i class="fa fa-camera-retro"></i> Cепия</p>
+						    	<input id="ex5" class = "slider-input" data-slider-id='ex1Slider' type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/>
 					    </div>
 					  </div>
 
@@ -63,8 +71,12 @@
 					<div class = "img-editor-block">
 						<img src="images/201508100708_2.jpg">
 					</div>
-				<div>
-				<!-- <button type="submit" class="btn btn btn-black gradient">Сохранить <i class="fa fa-floppy-o"></i></button> -->
+					<div class ="button-block">
+						<div class="action-buttons-mid-way-panel">
+							<button type="submit" class="btn btn btn-black gradient">Сохранить <i class="fa fa-floppy-o"></i></button>
+							<button type="submit" class="btn btn btn-black gradient">Отменить <i class="fa fa-ban"></i></button>
+						</div>
+					</div>
 				</div>
 			</div>
 			<?php	include 'includes/base/footer.php'; ?>
