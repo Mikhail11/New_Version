@@ -35,7 +35,7 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="admin-planner.php"><i class="fa fa-clock-o" style="font-size:110%; margin-left:2px; margin-right:2px;"></i>  Планирование постов</a></li>
 						<li><a href="admin-autosender.php"><i class="fa fa-fw fa-calendar"></i> Автоматическая рассылка</a></li>
-						<li><a href="admin-autosender.php"><i class="fa fa-paint-brush"></i> Редактор изображений</a></li>
+						<li><a href="admin-image-editor.php"><i class="fa fa-paint-brush"></i> Редактор изображений</a></li>
 						<li><a href="admin-settings.php"><i class="fa fa-fw fa-cogs"></i> Настройки</a></li>
 						<li><a href="admin-help.php"><i class="fa fa-fw fa-support"></i> Помощь</a></li>
 						<li><a href="admin-logout.php"><i class="fa fa-fw fa-sign-out"></i> Выйти</a></li>
