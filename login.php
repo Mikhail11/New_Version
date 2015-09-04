@@ -179,7 +179,7 @@
 					<?php
 						} else if ($value == 'twitter') {
 			         ?>
-					<a href="query.php?form-name=TwitterOAuth">
+					<a href="twitterAuth.php">
 						<span class="fa-stack">
 							<i class="fa fa-circle fa-stack-2x" style="color: #00acee;"></i>
 							<i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
