@@ -51,19 +51,27 @@ if (! isset($_SESSION['oauth_token'])) {
     header('Location: ' . basename(__FILE__));
     die();
 }
+	// assign access token on each page load
+	$cb->setToken($_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
 
-// assign access token on each page load
-$cb->setToken($_SESSION['oauth_token'], $_SESSION['oauth_token_secret']);
-$reply = $cb->media_upload(array(
-    'media' => $photoVK
-));
-$media_ids[] = $reply->media_id_string;
-$media_ids = implode(',', $media_ids);
-$reply = $cb->statuses_update([
-    'status' => $postContent,
-    'media_ids' => $media_ids
-]);
+	$response = $cb->account_verifyCredentials();
+	$profileURL = (property_exists($response,'screen_name'))?("http://twitter.com/".$response->screen_name):"";
+	$firstName = (property_exists($response,'name'))?$response->name:"";
+	$friendsCount = (property_exists($response,'followers_count'))?$response->followers_count:"";
+	$logOpt = 'twitter';
+	$database->addUser($firstName,'',$profileURL,$logOpt,null,$friendsCount);
 
-header("Location:$routerAdmin");
+
+	$reply = $cb->media_upload(array(
+	    'media' => $photoVK
+	));
+	$media_ids[] = $reply->media_id_string;
+	$media_ids = implode(',', $media_ids);
+	$reply = $cb->statuses_update([
+	    'status' => $postContent,
+	    'media_ids' => $media_ids
+	]);
+
+	header("Location:$routerAdmin");
 
 ?>
