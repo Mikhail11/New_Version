@@ -24,7 +24,7 @@
 	$baseUrl = 'https://kazanwifi.ru/';
 	
 	$wifiCaptivePageMainPage = 'login.php';
-	$wifiCaptivePage 		= [$wifiCaptivePageMainPage, 'wifihotspot.php', 'query.php','privacy.php'];
+	$wifiCaptivePage 		= [$wifiCaptivePageMainPage, 'wifihotspot.php', 'query.php','privacy.php','twitterAuth.php'];
 	$adminLoginPage 		= 'admin-login.php';
 	$adminMainPage 			= 'admin-dashboard.php';
 	$superadminMainPage 	= 'superadmin-dashboard.php';
