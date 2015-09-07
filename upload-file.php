@@ -1,6 +1,6 @@
 <?php
 include 'includes/core/session.php';
-$uploaddir = './images/'; 
+$uploaddir = 'images/'; 
 $extension = strstr($_FILES['uploadfile']['name'],".");
 $newFileName = md5(time().rand()).'_'.$database->id_db_user.$extension;
 $file = $uploaddir . $newFileName; 
