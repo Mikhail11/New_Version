@@ -73,6 +73,34 @@
 											<label class="col-sm-4 control-label" for="<?=$key;?>"><?=$value['NAME'];?></label>
 											<div class="col-sm-8">
 												<?php
+													
+													
+												if ($value['DATA_TYPE'] == 'text&file' || $value['DATA_TYPE'] == 'file') { // ЕСЛИ ФАЙЛ
+													$addFileScript = true;
+													
+													if (isset($value['VALUE'])) { ?>
+													<small>Изображение, которое используется сейчас:</small>
+													<img src="<?=($value['VALUE']);?>" class="tiny-image-preview">
+													<?php } ?>
+													<div class="input-group">
+										                <span class="input-group-btn">
+															<span class="btn btn-black btn-file">
+																Выбрать&hellip; <i class="fa fa-folder-open-o"></i>
+																<input type="hidden" name="MAX_FILE_SIZE" value="2000000">
+																<input
+																	type="file"
+																	accept="image/png, image/jpeg, image/gif"
+																	class="form-control"
+																	name="<?=$key;?>_file"
+																	id="<?=$key;?>_file"
+																	value="<?=$value['VALUE'];?>">
+															</span>
+										                </span>
+														<input type="text" class="form-control" readonly data-type="file-name">
+													</div>
+													<?php
+												}
+
 												if ($value['DATA_TYPE'] == 'textarea') { // ЕСЛИ TEXTAREA 
 												
 													if($value['SHORT_NAME']=='AUTO_MESSAGE_SMS'){ ?>

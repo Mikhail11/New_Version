@@ -1046,7 +1046,8 @@
 			    	where SHORT_NAME=\'PASSWORD\'
 			    )
 				and DATE(A.DATE_CREATED) >= DATE_SUB(CURDATE(), INTERVAL '.$num_days.' DAY)
-			group by U.ID_LOGIN_OPTION, A.ID_DB_USER, O.SHORT_NAME, O.NAME';
+			group by U.ID_LOGIN_OPTION, A.ID_DB_USER, O.SHORT_NAME, O.NAME
+			';
 
 			$result = $this->getQueryResultWithErrorNoticing($sql);
 			$out = $this->toArray($result);
@@ -1785,10 +1786,12 @@
 
 	public function getAccessTokenForVKMessage(){
 		
-		$sql = 'select V.VALUE as TOKEN, B.VALUE as MESSAGE, B.ID_DB_USER as ID_USER from SP$VAR V , SP$VAR B 
+		$sql = 'select V.VALUE as TOKEN, B.VALUE as MESSAGE, B.ID_DB_USER as ID_USER , C.VALUE as VK_IMAGE from SP$VAR V , SP$VAR B, SP$VAR C  
 		where V.ID_DICTIONARY = (SELECT ID_DICTIONARY FROM CM$DICTIONARY WHERE SHORT_NAME = "AUTO_MESSAGE_VK_TOKEN")
 		AND B.ID_DICTIONARY = (SELECT ID_DICTIONARY FROM CM$DICTIONARY WHERE SHORT_NAME = "AUTO_MESSAGE_VK")
+		AND C.ID_DICTIONARY = (SELECT ID_DICTIONARY FROM CM$DICTIONARY WHERE SHORT_NAME = "AUTO_MESSAGE_VK_IMG")
 		AND V.ID_DB_USER = B.ID_DB_USER
+		AND V.ID_DB_USER = C.ID_DB_USER
 		AND V.VALUE<>\'\'';
 		return $this->getQueryResultWithErrorNoticing($sql);
 
