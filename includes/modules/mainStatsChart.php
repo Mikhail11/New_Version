@@ -10,7 +10,15 @@
 		// Соц. сети и их названия
 		$loginOptions = $database->getLoginOptions();
 		$socialNetworksNames = CommonFunctions::extractSingleValueFromMultiValueArray($loginOptions, 'NAME');
-		
+		//Цвета легенды
+		$chartColorsLegend = $database->getColorsLegend();
+		$colorArray = array();
+
+		for($j = 0;$j<sizeof($chartColorsLegend);$j++){
+
+			$colorArray[$chartColorsLegend[$j]['ID_COLOR']] = $chartColorsLegend[$j]['COLOR'];
+		}
+
 ?>
 <div class="complex-h1">
 	<i class="fa fa-line-chart hidden-xs"></i>
@@ -52,9 +60,9 @@
 	for ($i = 0; $i < sizeof($chartLegendValues); $i++) {
 	?>
 	<li style="width:<?=(100/sizeof($chartLegendValues));?>%">
-		<div class="legend-circle animated zoomIn" style="border-color: <?=$chartColors[$i];?>;"></div>
-		<div class="legend-title"><? echo $socialNetworksNames[$i];?></div>
-		<div class="legend-last-value" style="color: <?=$chartColors[$i]; ?>;">
+		<div class="legend-circle animated zoomIn" style="border-color: <?=$colorArray[$chartLegendValues[$i]['ID_LOGIN_OPTION']];?>;"></div>
+		<div class="legend-title"><? echo $chartLegendValues[$i]['NAME'];?></div>
+		<div class="legend-last-value" style="color: <?=$colorArray[$chartLegendValues[$i]['ID_LOGIN_OPTION']]; ?>;">
 			<?=CommonFunctions::NVL($chartLegendValues[$i]['LOGIN_COUNT'], 0);?>
 			(<?=CommonFunctions::NVL($chartLegendValues[$i]['PERCENTAGE'], 0);?>%)
 		</div>

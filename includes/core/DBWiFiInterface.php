@@ -875,7 +875,7 @@
 				    	from CM$DICTIONARY
 				    	where SHORT_NAME=\'PASSWORD\'
 				    )
-				)';
+				) order by LO.ID_LOGIN_OPTION';
 			}
 			$this->loginOptions = $this->toArray($this->getQueryResultWithErrorNoticing($sql));
 			return $this->loginOptions;
@@ -897,6 +897,25 @@
 			) ORDER BY D.ORDER ASC';
 			$result = $this->toArray($this->getQueryResultWithErrorNoticing($sql));
 			return CommonFunctions::extractSingleValueFromMultiValueArray($result, 'COLOR');
+		}
+
+		///	Получить цвета (цветовую схему)
+		/**
+		 *	@author Anthony Boutinov
+		 *	@retval array			Простой массив с CSS цветами (значения по колонке 'COLOR')
+		 */
+		public function getColorsLegend() {
+			$sql = 
+			'select 
+			D.NAME as COLOR,
+			D.ORDER as ID_COLOR
+			from CM$DICTIONARY D where D.ID_PARENT in (
+				SELECT N.ID_DICTIONARY
+				from CM$DICTIONARY N
+				WHERE N.SHORT_NAME=\'CHART_COLORS_DEFAULT\'
+			) ORDER BY D.ORDER ASC';
+			$result = $this->toArray($this->getQueryResultWithErrorNoticing($sql));
+			return $result;
 		}
 		
 		/// Получить главную таблицу статистики
@@ -1047,7 +1066,7 @@
 			    )
 				and DATE(A.DATE_CREATED) >= DATE_SUB(CURDATE(), INTERVAL '.$num_days.' DAY)
 			group by U.ID_LOGIN_OPTION, A.ID_DB_USER, O.SHORT_NAME, O.NAME
-			';
+			order by U.ID_LOGIN_OPTION';
 
 			$result = $this->getQueryResultWithErrorNoticing($sql);
 			$out = $this->toArray($result);
