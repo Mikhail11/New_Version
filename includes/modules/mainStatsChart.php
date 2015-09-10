@@ -10,14 +10,7 @@
 		// Соц. сети и их названия
 		$loginOptions = $database->getLoginOptions();
 		$socialNetworksNames = CommonFunctions::extractSingleValueFromMultiValueArray($loginOptions, 'NAME');
-		//Цвета легенды
-		$chartColorsLegend = $database->getColorsLegend();
-		$colorArray = array();
 
-		for($j = 0;$j<sizeof($chartColorsLegend);$j++){
-
-			$colorArray[$chartColorsLegend[$j]['ID_COLOR']] = $chartColorsLegend[$j]['COLOR'];
-		}
 
 ?>
 <div class="complex-h1">

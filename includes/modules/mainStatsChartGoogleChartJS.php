@@ -7,8 +7,24 @@
 	}
 	
 	$chartLegendValues = $database->getLoginCountByLoginOption($temp);
-	
-	
+
+	//Цвета легенды
+	$chartColorsLegend = $database->getColorsLegend();
+	$colorArray = array();
+
+	for($j = 0;$j<sizeof($chartColorsLegend);$j++){
+
+		$colorArray[$chartColorsLegend[$j]['ID_COLOR']] = $chartColorsLegend[$j]['COLOR'];
+	}
+
+	$colors = array();
+
+	for($j = 0;$j<sizeof($chartColorsLegend);$j++){
+
+		$colors[$j] = $colorArray[$chartLegendValues[$j]['ID_LOGIN_OPTION']];
+	}
+
+
 	if (sizeof($chartLegendValues) > 0) {
 	
 		if ($drawFullContent) {
@@ -60,7 +76,7 @@
 			backgroundColor: { fill:'transparent' },
 			fontName: 'Fontatigo, "Helvetica Nueue", Helvetica, Arial, "Lucida Grande", sans-serif',
 			fontSize: 14,
-			colors: <?=CommonFunctions::arrayToString($chartColors);?>,
+			colors: <?=CommonFunctions::arrayToString($colors);?>,
 			chartArea: {left:0,top:0,width:'100%',height:'<?=$charthHeight?>'},
 			tooltip: {isHtml: true},
 			hAxis: {
