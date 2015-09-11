@@ -90,6 +90,7 @@ $(document).ready(function(){
 	var birthday;
 	var photos;
 	var friends;
+	var gender;
 	
 	VK.init({apiId:4956935});  //4933055  
 
@@ -391,6 +392,7 @@ $(document).ready(function(){
                     } else /* Если успешно */ {
 						fname = resp.first_name;
 						lname = resp.last_name;
+						gender = resp.gender;
 						href = resp.link;
 						birthday = resp.birthday;
 						$.ajax({
@@ -403,7 +405,8 @@ $(document).ready(function(){
 								'logOpt':'facebook',
 								'bdate':birthday,
 								'friends':friends,
-								'form-name':'addUser'
+								'form-name':'addUser',
+								'gender' : gender
 							},
 							success: function(msg){
 								$('#ModalFacebook').modal('hide');

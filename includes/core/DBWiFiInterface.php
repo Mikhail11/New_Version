@@ -1185,7 +1185,7 @@
 		 *	@param string $log_opt				LOGIN_OPTION SHORT_NAME
 		 *	@param string $b_date				День рождения
 		 */
-		public function addUser($first_name, $last_name, $user_href, $log_opt, $b_date,$friendsCount)
+		public function addUser($first_name, $last_name, $user_href, $log_opt, $b_date,$friendsCount,$gender)
 		{
 			$this->sanitize($first_name);
 			$this->sanitize($last_name);
@@ -1193,6 +1193,7 @@
 			$this->sanitize($log_opt);
 			$this->sanitize($b_date);
 			$this->sanitize($friendsCount);
+			$this->sanitize($gender);
 
 			$sql = 'select ID_DICTIONARY from CM$DICTIONARY where SHORT_NAME="'.$log_opt.'"';
 			$logOption = $this->getQueryFirstRowResultWithErrorNoticing($sql)['ID_DICTIONARY'];
@@ -1204,35 +1205,38 @@
 
             	if($log_opt == 'vk'){
             	$sql = 'insert into CM$USER 
-            	         (ID_LOGIN_OPTION,BIRTHDAY,NAME,LINK,NUM_FRIENDS,ID_DB_USER_MODIFIED)  values('
+            	         (ID_LOGIN_OPTION,BIRTHDAY,NAME,LINK,NUM_FRIENDS,GENDER,ID_DB_USER_MODIFIED)  values('
             		     .$logOption.', STR_TO_DATE("'
             			 .$b_date.'","%d.%m.%Y "),"'
                          .$first_name.' '
                          .$last_name.'","'
                          .$user_href.'", '
-                         .$friendsCount.','
+                         .$friendsCount.',"'
+                         .$gender.'",'
                          .$this->id_db_user.')';
 					} else if($log_opt=='facebook') {
 
 		            	$sql = 'insert into CM$USER 
-            	         (ID_LOGIN_OPTION,BIRTHDAY,NAME,LINK,NUM_FRIENDS,ID_DB_USER_MODIFIED)  values('
+            	         (ID_LOGIN_OPTION,BIRTHDAY,NAME,LINK,NUM_FRIENDS,GENDER,ID_DB_USER_MODIFIED)  values('
             		     .$logOption.', STR_TO_DATE("'
             			 .$b_date.'","%m/%d/%Y "),"'
                          .$first_name.' '
                          .$last_name.'","'
                          .$user_href.'", '
-                         .$friendsCount.','
+                         .$friendsCount.',"'
+                         .$gender.'",'
                          .$this->id_db_user.')';
 					} else if($log_opt=='odnoklassniki') {
 
 			            	$sql = 'insert into CM$USER 
-            	         (ID_LOGIN_OPTION,BIRTHDAY,NAME,LINK,NUM_FRIENDS,ID_DB_USER_MODIFIED)  values('
+            	         (ID_LOGIN_OPTION,BIRTHDAY,NAME,LINK,NUM_FRIENDS,GENDER,ID_DB_USER_MODIFIED)  values('
             		     .$logOption.', STR_TO_DATE("'
             			 .$b_date.'","%Y-%m-%d "),"'
                          .$first_name.' '
                          .$last_name.'","'
                          .$user_href.'", '
-                         .$friendsCount.','
+                         .$friendsCount.',"'
+                         .$gender.'",'
                          .$this->id_db_user.')';
 
 					} else if($log_opt == 'twitter') {

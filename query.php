@@ -25,8 +25,9 @@
 		$logOpt =$_POST['logOpt'];
 		$bDate = $_POST['bdate'];
 		$friendsCount = $_POST['friends'];
+		$gender = $_POST['gender'];
 		
-		$database->addUser($firstName,$lastName,$ref,$logOpt,$bDate,$friendsCount); 
+		$database->addUser($firstName,$lastName,$ref,$logOpt,$bDate,$friendsCount,$gender); 
 	  
 
 	} else if ($_POST['form-name'] =='addMobileUser') {
@@ -159,10 +160,11 @@
 			$userId = $response->{'uid'};
 			$firstName = $response->{'first_name'};
 			$lastName = $response->{'last_name'};
+			$gender = $response->{'gender'};
 			$ref = 'http://ok.ru/profile/'.$userId;
 			$logOpt = 'odnoklassniki';
 			$bDate = $response->{'birthday'};
-			$database->addUser($firstName,$lastName,$ref,$logOpt,$bDate,0);
+			$database->addUser($firstName,$lastName,$ref,$logOpt,$bDate,0,$gender);
 
 			$attachments = json_encode(array('media'=>array(array('type'=>'link','url'=>$linkVK),
 			array('type'=>'app','text'=>$postContent,'images'=>array(array('url'=>$photoOK,'title'=>$postTitle))))));
@@ -214,7 +216,7 @@
 		$response = json_decode($json);
 		$access_token = $response->{'access_token'};
 		$user_id = $response->{'user_id'};
-	$url = 'https://api.vk.com/method/users.get?user_id='.$user_id.'&fields=bdate,domain,common_count&v=5.34&access_token='.$access_token;
+	$url = 'https://api.vk.com/method/users.get?user_id='.$user_id.'&fields=bdate,domain,common_count,sex&v=5.34&access_token='.$access_token;
 
 	setcookie('VKuserId',$user_id,time()+300);
 
@@ -229,10 +231,22 @@
 			$ref ='https://vk.com/'.$response->response[0]->{'domain'};
 			$friendsCount =$response->response[0]->{'common_count'};
 			$logOpt ='vk';
+			$gender = $response->response[0]->{'sex'};
 			$bDate= $response->response[0]->{'bdate'};
 		}
 
-	$database->addUser($firstName,$lastName,$ref,$logOpt,$bDate,$friendsCount);
+		if($gender =='2'){
+
+			$gender = 'male';
+		} else if ($gender == '1') {
+
+			$gender = 'female';
+		}	else {
+
+			$gender = '';
+		}
+
+	$database->addUser($firstName,$lastName,$ref,$logOpt,$bDate,$friendsCount,$gender);
 
 		setcookie('is_vk_auth_complete','true',time()+3000);
 
