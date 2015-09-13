@@ -994,13 +994,15 @@ body.admin-page-login {
 	}
 
 }
-
+@media(min-width: 768px){
 .modal-dialog.modal-post{
 
 	padding-left: 20px;
 	padding-right: 20px;
 	color: white;
+	width: 500px;
 	
+}
 }
 
 .modal-post .modal-content {
@@ -1010,8 +1012,8 @@ body.admin-page-login {
 	
 	
 	&.narrow-content {
-		padding-left: 100px;
-		padding-right: 100px;
+		padding-left: 10%;
+		padding-right: 10%;
 	}
 	
 	& .modal-header {
@@ -1022,7 +1024,7 @@ body.admin-page-login {
 		& button.close {
 			color: white;
 			margin-top: -10px;
-			margin-right: -102px;
+			margin-right: -45px;
 		}
 	}
 	
@@ -1098,7 +1100,7 @@ body.admin-page-login {
 	}
 
 	&.img-block {
-    height: 120px;
+	height: 120px;
     overflow: hidden;
     text-align:center;
    
@@ -1303,6 +1305,7 @@ body.admin-page.simple-page table.table-planner-row {
 
     	padding-top:5%;
     	width: 240px;
+    	height: 120px;
 
     	
     }
@@ -1324,7 +1327,7 @@ body.admin-page.simple-page table.table-planner-row {
 }
 
 body.admin-page.simple-page div.img-block {
-    height: 120px;
+    max-height: 120px;
     overflow: hidden;
     text-align:center;
  

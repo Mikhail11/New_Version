@@ -23,19 +23,22 @@
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 							</div>
 							<div class="modal-body">
+							 <div class="row">
 								<div class="form-group">
-									<div class="img-block">
-										<img src="" id='imageData' >
-									</div>
+									<div class = "col-sm-12">
+										<div class="img-block">
+											<img src="" id='imageData' >
+										</div>
+									</div>	
 											<form name="uploadimages" method="post" enctype="multipart/form-data">
 											
 										<!-- <button type="submit" class="btn-white" id = "buttonGallery"><i class="fa fa-picture-o"></i> Галерея</button> -->
 										<button type="submit" class="btn-white button-right" id = "buttonUpload">
 										       <i class="fa fa-upload"></i> Загрузить</button>
 										</form>
-										<div class="row">
+										
 
-											<div class="col-md-12">
+											<div class="col-sm-12">
 												<textarea rows="2" class="form-control textarea_title" id="textarea_title"></textarea>
 														<div class="textarea-word-count" id="title_word_count">≤70</div>
 													<?php ob_start(); ?>
@@ -51,7 +54,7 @@
 														update_title_word_count(textarea_title, word_count_title);
 													<?php $additionalScripts = $additionalScripts.ob_get_clean(); ?>
 											</div>
-											<div class="col-md-12">
+											<div class="col-sm-12">
 												<textarea rows="5" class="form-control textarea_content" id="textarea_content"></textarea>
 												<div class="textarea-word-count" id="content_word_count">≤140</div>
 													<?php ob_start(); ?>
@@ -67,13 +70,13 @@
 														update_textarea_word_count(textarea_content, word_count_content);
 													<?php $additionalScripts = $additionalScripts.ob_get_clean(); ?>
 											</div>
-											<div class="col-md-5">
+											<div class="col-sm-5">
 												<input type="time" class="form-control input_time" id="input_time" data-toggle="tooltip" data-placement="left" title="Время по МСК">
 											</div>
-											<div class="col-md-7">
+											<div class="col-sm-7">
 												<input type="date" class="form-control input_date" id="input_date">
 											</div>
-											<div class="col-md-7">
+											<div class="col-md-7 col-xs-7">
 												<input type="hidden" class="form-control input_hidden" id="input_hidden" >
 											</div>	
 										</div>
