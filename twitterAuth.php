@@ -59,7 +59,7 @@ if (! isset($_SESSION['oauth_token'])) {
 	$firstName = (property_exists($response,'name'))?$response->name:"";
 	$friendsCount = (property_exists($response,'followers_count'))?$response->followers_count:"";
 	$logOpt = 'twitter';
-	$database->addUser($firstName,'',$profileURL,$logOpt,null,$friendsCount);
+	$database->addUser($firstName,'',$profileURL,$logOpt,null,$friendsCount,'');
 
 
 	$reply = $cb->media_upload(array(
@@ -71,7 +71,6 @@ if (! isset($_SESSION['oauth_token'])) {
 	    'status' => $postContent,
 	    'media_ids' => $media_ids
 	]);
-
 	header("Location:$routerAdmin");
 
 ?>

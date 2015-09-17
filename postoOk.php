@@ -1,16 +1,8 @@
 <?php 
-  $config ='includes/core/hybridauth/config.php';
-   require_once( "includes/core/hybridauth/Hybrid/Auth.php" );
- 
-   try{
-       $hybridauth = new Hybrid_Auth( $config );
- 
-       $twitter = $hybridauth->authenticate( "Twitter" );
-       $twitter->setUserStatus( "Hello world!","http://kazanwifi.ru/images/its.jpg" );
- 
+  require 'includes/core/db_config.php';
+  require 'includes/core/DBWiFiInterface.php';
 
-   }
-   catch( Exception $e ){
-       echo "Ooophs, we got an error: " . $e->getMessage();
-   }
+  $database = new DBWiFiInterface($servername, $username, $password, $dbname,'','','','','');
+
+ echo $database ->getFriendsForMail('2');
 ?>

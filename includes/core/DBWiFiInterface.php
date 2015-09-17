@@ -737,7 +737,7 @@
 				AND LOGIN_OPTION_SHORT_NAME<>"PASSWORD"
 				AND LOGIN_OPTION_SHORT_NAME<>"mobile"
 				AND LOGIN_OPTION_SHORT_NAME<>"instagram"
-				AND DATEDIFF(curdate(),LOGIN_DATE)<30';
+				AND DATE(LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)';
 
 			$result = $this->getQueryResultWithErrorNoticing($sql);
 			$friendsCount = 0;
@@ -827,8 +827,19 @@
 			return $this->getQueryResultWithErrorNoticing($sql);
 		}
 
-
+		/// Получить список опций входа кроме тех, которые отключены
+		/**
+		 *	@author Anthony Boutinov
+		 *	@retval array	Простой массив со значениями (только список значений по колонке SHORT_NAME)
+		 */
 		
+		public function getMaxDbUserId() {
+
+			$sql = 'select ID_DB_USER from 
+			CM$DB_USER order by ID_DB_USER desc limit 0, 1';
+			return $this->getQueryFirstRowResultWithErrorNoticing($sql);
+		}
+
 		/// Получить список опций входа кроме тех, которые отключены
 		/**
 		 *	@author Anthony Boutinov
@@ -2127,6 +2138,55 @@
 
 # ==== КОНЕЦ ВОССТАНОВЛЕНИЕ ПАРОЛЯ ==== #
 # =================================================== #
-		
+
+
+# ========================================================= #
+// !ФОРМИРОВАНИЕ ОТЧЕТА ДЛЯ ОТПРАВКИ ПО ПОЧТЕ
+# ========================================================= #	
+	public function getShortMonthReportForMail($idDBUser) {
+
+		$sql = 'select count(A.ID_LOGIN_ACT) as COUNT 
+				from SP$LOGIN_ACT A where DATE(A.DATE_CREATED) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH) 
+				and A.ID_DB_USER='.$idDBUser;
+		return $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];		
+	}
+
+	public function getUniqueShortMonthReportForMail($idDBUser) {
+
+		$sql = 'select COUNT(*) as COUNT from (SELECT COUNT(ID_USER) FROM VW_SP$LOGIN_ACT A where DATE(A.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH) 
+				and A.ID_DB_USER='.$idDBUser.' GROUP BY ID_USER) AS TAB';
+		return $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];	
+	}
+
+	public function getFriendsForMail($idDBUser) {
+
+		$sql ='SELECT DISTINCT NUM_FRIENDS 
+			FROM VW_SP$LOGIN_ACT
+			WHERE
+				ID_DB_USER='.$idDBUser.'
+				AND LOGIN_OPTION_SHORT_NAME<>"PASSWORD"
+				AND LOGIN_OPTION_SHORT_NAME<>"mobile"
+				AND LOGIN_OPTION_SHORT_NAME<>"instagram"
+				AND DATE(LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)';
+			$result = $this->getQueryResultWithErrorNoticing($sql);
+			$friendsCount = 0;
+			// Итерировать по ним
+			if ($result->num_rows > 0) {
+				while($row = $result->fetch_assoc()) {
+
+					$friendsCount = $friendsCount + $row['NUM_FRIENDS'];
+
+				}
+			}
+
+			return $friendsCount;
+	}
+
+
+
+
+
+# ==== КОНЕЦ ФОРМИРОВАНИЕ ОТЧЕТА ДЛЯ ОТПРАВКИ ПО ПОЧТЕ ==== #
+# ========================================================= #	
 	}
 ?>
