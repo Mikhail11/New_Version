@@ -139,7 +139,7 @@ function makeOpenClientInfo() {
 		e.preventDefault(); 
 		
 		$.ajax({
-			type: "GET",
+			type: "POST",
 			url: "includes/modules/superadmin-clients-info.php",
 			data: {
 				'id_client': $(this).attr("data-id-db-user")

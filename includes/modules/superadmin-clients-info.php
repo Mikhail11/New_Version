@@ -2,11 +2,11 @@
 	require '../core/session.php';
 	$protector->protectPageSetMinAccessLevel('MANAGER');
 	
-	if (!isset($_GET['id_client'])) {
+	if (!isset($_POST['id_client'])) {
 		fatalError("DEBUG Error in includes/modules/superadmin-clients-info.php: id_client not set");
 	}
 	
-	$userInfo = $database->getClient($_GET['id_client']);
+	$userInfo = $database->getClient($_POST['id_client']);
 ?>
 <input type="hidden" name="form-name" value="edit-user-info">
 <h1><i class="fa fa-user"></i> <?=$userInfo['COMPANY_NAME'];?></h1>
