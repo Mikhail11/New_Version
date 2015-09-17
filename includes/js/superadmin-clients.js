@@ -192,6 +192,16 @@ function enablePasswordGenerationCapabilities() {
 	}
 	$(generatePasswordButton).click(genPassword);
 	genPassword();
+
+	function genLogin() {
+		
+		var maxVal = $('#maxDbUser').data('idUserMax');
+		maxVal = maxVal+1;
+		var idSuperadmin = $('#maxDbUser').data('superadminId');
+		var str ="respot"+idSuperadmin+maxVal+"-"+$.password(2,false);
+		$("#login").val(str);
+	}
+	genLogin();
 }
 
 /// Сделать соединения по ограничению вводимых данных с элементами DOM superadmin-clients-add-client

@@ -1,6 +1,7 @@
 <?php
 	include 'includes/core/session.php';
 	$protector->protectPageSetMinAccessLevel('MANAGER');
+	$superadmin = $database->getIDBDUser();
 ?>
 <html lang="ru">
 	<head>
@@ -117,6 +118,8 @@
 						</div>
 						
 						<table class="table table-hover table-condensed" id="table">
+							<input type="hidden" id='maxDbUser' data-id-user-max="<?=$database->getMaxDbUserId()['ID_DB_USER'];?>" 
+							data-superadmin-id="<?=$superadmin;?>">
 							<?php include 'includes/modules/superadmin-clients-table.php'; ?>
 						</table>
 

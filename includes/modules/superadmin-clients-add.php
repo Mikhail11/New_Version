@@ -98,7 +98,7 @@
 			<div class="form-group">
 			  <label class="col-sm-3 control-label" for="login">Логин</label>							
 				<div class="col-sm-9">
-					<input type="text" class="form-control" name="login" id="login" autocomplete="off" maxlength="255">
+					<input type="text" class="form-control" name="login" id="login" autocomplete="off" maxlength="255" readonly="">
 				</div>
 			</div>
 			
