@@ -2182,8 +2182,39 @@
 			return $friendsCount;
 	}
 
+	// public function getBirthdayForMail($idDBUser) {
 
+	// $sql='select DISTINCT V.LINK from VW_SP$LOGIN_ACT V where
+	// 		DATE(BIRTHDAY,'%m-%d') > DATE_SUB(CURDATE(), INTERVAL 1 MONTH) ';
 
+	// }
+
+	public function getBirthdayWhichAuth($idDBUser) {
+
+		$sql = 'select count(*) AS COUNT from (select count(A.ID_USER) 
+			from VW_SP$LOGIN_ACT A where DATE(A.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+			AND DATE_FORMAT(A.LOGIN_DATE,\'%m-%d\') = DATE_FORMAT(A.BIRTHDAY,\'%m-%d\') 
+			and ID_DB_USER = '.$idDBUser.' 
+			group by A.ID_USER) as tbl';
+
+		return $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+	}
+
+	public function getRegularCustomersForMail($idDBUser) {
+
+		$sql = 'select A.NAME AS NAME, A.LOGIN_COUNT AS COUNT, A.LOGIN_OPTION_SHORT_NAME AS OPTIONS 
+				from vw_sp$user_login_count A
+				where A.ID_DB_USER = '.$idDBUser.' AND 
+				A.LINK IN (select B.LINK from VW_SP$LOGIN_ACT B 
+							WHERE B.ID_DB_USER = A.ID_DB_USER 
+							AND DATE(B.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH) 
+				            AND B.ID_LOGIN_OPTION <> (select ID_DICTIONARY from cm$dictionary where SHORT_NAME = \'mobile\')
+				            AND B.ID_LOGIN_OPTION <> (select ID_DICTIONARY from cm$dictionary where SHORT_NAME = \'PASSWORD\') 
+				            group by B.ID_USER) 
+				order by A.LOGIN_COUNT DESC LIMIT 10';
+
+		return $this -> getQueryResultWithErrorNoticing($sql);
+	}
 
 
 # ==== КОНЕЦ ФОРМИРОВАНИЕ ОТЧЕТА ДЛЯ ОТПРАВКИ ПО ПОЧТЕ ==== #
