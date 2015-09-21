@@ -11,6 +11,8 @@
   $unique = $database ->getUniqueShortMonthReportForMail('2');
  echo '<br>Количество уникальных поситителей за месяц: '.$unique;
  echo '<br>';
+ echo '<br> Количество именинников за месяц: '.$database ->BirthdaysInMonthForMail('2');
+ echo '<br>';
  echo '<br> Пользователи подключившиеся в свой ДР: '.$database ->getBirthdayWhichAuth('2');
  echo '<br>';
  echo '<br> Подключения по дням недели: ';
@@ -30,5 +32,6 @@
   foreach ($database ->getLoginCountByLoginOption(30) as $key => $val) {
    echo '<br>'.$val['SHORT_NAME'].' - '.$val['LOGIN_COUNT'].' ('.$val['PERCENTAGE'].' %)';
  }
- ;
+ 
+
 ?>

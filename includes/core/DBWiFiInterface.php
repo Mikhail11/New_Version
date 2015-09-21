@@ -2351,6 +2351,17 @@
 		
 	}
 
+	public function BirthdaysInMonthForMail($idDBUser){
+
+		$this->sanitize($idDBUser);
+
+		$sql = 'select count( DISTINCT v.NAME) AS COUNT from vw_sp$login_act v 
+				where  date_format(v.BIRTHDAY,\'%m-%d\') <= date_format(curdate(),\'%m-%d\')
+				and date_format(v.BIRTHDAY,\'%m-%d\') >= date_format(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),\'%m-%d\')
+				and v.ID_DB_USER = '.$idDBUser;
+
+		return $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+	}
 
 # ==== КОНЕЦ ФОРМИРОВАНИЕ ОТЧЕТА ДЛЯ ОТПРАВКИ ПО ПОЧТЕ ==== #
 # ========================================================= #	
