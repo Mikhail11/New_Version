@@ -2216,6 +2216,141 @@
 		return $this -> getQueryResultWithErrorNoticing($sql);
 	}
 
+	public function getCustomersEveryDayForMail($idDBUser){
+
+		$this->sanitize($idDBUser);
+
+		$out = array();
+		$days = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
+
+		for($i = 0;$i<7;$i++){
+
+			$out[$days[$i]] = 0;
+		}
+
+		$sql = 'select COUNT(A.ID_USER) AS COUNT FROM vw_sp$login_act A 
+				where DATE(A.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH) 
+				AND A.ID_DB_USER = '.$idDBUser.'
+				group by weekday(A.LOGIN_DATE) 
+				order by weekday(A.LOGIN_DATE) ';
+
+		$result = $this -> getQueryResultWithErrorNoticing($sql);		
+		$i = 0;
+		if ($result->num_rows > 0) {
+				while($row = $result->fetch_assoc()) {
+
+					$out[$days[$i++]] = $row['COUNT'];
+				}
+			}
+
+		return $out;	
+	}
+
+	public function getCustomersSexAndAgeForMail($idDBUser) {
+
+		$this->sanitize($idDBUser);
+		$periods = ['до 18 девушки','до 18 юноши','18-27 девушки','18-27 мужчины','28-35 женщины','28-35 мужчины','35-55 женщины','35-55 мужчины',' от 55 женщины',' от 55 мужчины','до 18','18-27','28-35','36-55','от 55'];
+		$out = array();
+		for($i = 0; $i<10;$i++){
+
+			$out[$periods[$i]] = 0;
+
+		}
+		
+		$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  < 18
+				 AND v.ID_DB_USER = '.$idDBUser.'
+				 AND v.GENDER = \'female\'';
+
+		$out[$periods[0]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+
+		$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  < 18
+				 AND v.ID_DB_USER = '.$idDBUser.'
+				 AND v.GENDER = \'male\'';
+
+		$out[$periods[1]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+
+		$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 18
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 27
+				 AND v.ID_DB_USER = '.$idDBUser.'
+				 AND v.GENDER = \'female\'';
+
+		$out[$periods[2]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+
+		$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 18
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 27
+				 AND v.ID_DB_USER = '.$idDBUser.'
+				 AND v.GENDER = \'male\'';
+
+		$out[$periods[3]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 28
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 35
+				 AND v.ID_DB_USER = '.$idDBUser.'
+				 AND v.GENDER = \'female\'';
+
+		$out[$periods[4]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 28
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 35
+				 AND v.ID_DB_USER = '.$idDBUser.'
+				 AND v.GENDER = \'male\'';
+
+		$out[$periods[5]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 36
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 55
+				 AND v.ID_DB_USER = '.$idDBUser.'
+				 AND v.GENDER = \'female\'';
+
+		$out[$periods[6]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 36
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 55
+				 AND v.ID_DB_USER = '.$idDBUser.'
+				 AND v.GENDER = \'male\'';
+
+		$out[$periods[7]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  > 55
+				 AND v.ID_DB_USER = '.$idDBUser.'
+				 AND v.GENDER = \'female\'';
+
+		$out[$periods[8]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  > 55
+				 AND v.ID_DB_USER = '.$idDBUser.'
+				 AND v.GENDER = \'male\'';
+
+		$out[$periods[9]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
+		$j = 0;
+		for($i = 10; $i<15;$i++){
+
+			$out[$periods[$i]] = $out[$periods[$j++]] + $out[$periods[$j++]];
+		}
+		return $out;
+		
+	}
+
 
 # ==== КОНЕЦ ФОРМИРОВАНИЕ ОТЧЕТА ДЛЯ ОТПРАВКИ ПО ПОЧТЕ ==== #
 # ========================================================= #	
