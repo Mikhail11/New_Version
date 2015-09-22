@@ -229,9 +229,9 @@ class Hybrid_Providers_Twitter extends Hybrid_Provider_Model_OAuth1
                 $this->api->api_base_url = $original_base_url;
 
                 # Retrieve media_id from response
-                if(isset($response->media_id))
+                if(isset($response->media_id_string))
                 {
-                    $media_id = $response->media_id;
+                    $media_id = $response->media_id_string;
                     error_log("Twitter media_id : ".$media_id);
                 }
 

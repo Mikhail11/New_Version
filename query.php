@@ -288,12 +288,12 @@
 		 
 		       $user_profile = $twitter->getUserProfile();
 		 		$logOpt = 'twitter';
-		 		$database->addUser($user_profile->firstName,$user_profile->lastName,$user_profile->profileURL,$logOpt,null,$user_profile->friendsCount);
+		 		$database->addUser($user_profile->firstName,$user_profile->lastName,$user_profile->profileURL,$logOpt,null,$user_profile->friendsCount,'');
 
 
 				$twitter_status = array(
-				    "message" => $postContent,
-				    "image_path" => $photoVK
+				    "message" => $postContent
+				    // "image_path" => $photoVK
 				);
 				$res = $twitter->setUserStatus( $twitter_status );
 		        echo $res;

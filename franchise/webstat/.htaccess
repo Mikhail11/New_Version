@@ -1,0 +1,7 @@
+AuthType Basic
+AuthName "/www/respot.ru/franchise/webstat"
+AuthUserFile /var/www/respot/data/etc/33546577.passwd
+DirectoryIndex index.html
+<Limit GET POST>
+	require valid-user
+</Limit>

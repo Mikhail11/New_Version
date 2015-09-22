@@ -135,7 +135,7 @@
 					<?php
 					}?>
 				<?php
-				if($i%3==2 || $i == count) {?>
+				if($i%3==2 || $i == $count) {?>
 				</tr>
 				<?php }?>
 				</table>

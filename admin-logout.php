@@ -15,6 +15,6 @@ setcookie("acceccLevelAcceptedArray", '', time()-10); // make the cookie expire
 
 // Redirect
 
-header('Location: http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . "{$_SERVER['HTTP_HOST']}/admin-login.php"); /* Redirect browser */
+header('Location: https://' . "{$_SERVER['HTTP_HOST']}/admin-login.php"); /* Redirect browser */
 exit();
 ?>

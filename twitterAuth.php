@@ -14,7 +14,7 @@ require_once ('includes/core/codebird.php');
 
 $cb = \Codebird\Codebird::getInstance();
 
-session_start();
+// session_start();
 
 if (! isset($_SESSION['oauth_token'])) {
     // get the request token
@@ -71,6 +71,8 @@ if (! isset($_SESSION['oauth_token'])) {
 	    'status' => $postContent,
 	    'media_ids' => $media_ids
 	]);
-	header("Location:$routerAdmin");
+
+    echo $media_ids;
+	// header("Location:$routerAdmin");
 
 ?>
