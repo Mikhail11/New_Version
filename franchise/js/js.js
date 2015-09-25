@@ -1,6 +1,15 @@
 $(document).ready(function(){
-  $(".map, .choose, .profit, .technology, header").css({backgroundSize: "cover"});	
+	$('#scroll').bind('scroll', function()
+                              {
+                                if($(this).scrollTop() + $(this).innerHeight()>=$(this)[0].scrollHeight)
+                                {
+                                  alert('end reached');
+                                }
+                              })
 	
+  $(".map, .choose, .profit, .technology, header").css({backgroundSize: "cover"});	
+
+  
   $( "#slider" ).slider({
   value : 12,
   min : 5,
@@ -8,10 +17,10 @@ $(document).ready(function(){
   step : 1,
   create: function( event, ui ) {
    val = $( "#slider" ).slider("value");
-  $( "#contentSlider" ).html( val );
- },
- slide: function( event, ui ) {
-  $( "#contentSlider" ).html( ui.value );
+   $( "#contentSlider" ).html( val );
+  },
+  slide: function( event, ui ) {
+   $( "#contentSlider" ).html( ui.value );
      var payment = $('#contentSlider2').text();
 	 var routers = ui.value;
 	 var expenses = routers * 5800 + ((routers * payment)/10);
@@ -55,12 +64,17 @@ $(document).ready(function(){
          }
    });
    function showPop(){
+	   var scroll = $(window).scrollTop();
+	   scroll = scroll + 330;
+	   $('.popup').css('top', scroll+'px');
 	   $('.overlay').fadeIn('fast');
 	   $('.popup').fadeIn('fast');
+	   $('.wrap').addClass('blur');
    }
    function hidePop(){
 	   $('.overlay').fadeOut('fast');
 	   $('.popup').fadeOut('fast');
+	   $('.wrap').removeClass('blur');
    }
    $('.pop-up').on('click', function(){
 	   showPop();

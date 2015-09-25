@@ -35,6 +35,16 @@ q:before, q:after {
   content: '';
   content: none; }
 
+strong {
+  font-family: 'noto_sansbold'; }
+
+.blur {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px); }
+
 :focus {
   outline: 0; }
 
@@ -62,6 +72,12 @@ q:before, q:after {
   src: url("../fonts/notosans-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/notosans-regular-webfont.woff2") format("woff2"), url("../fonts/notosans-regular-webfont.woff") format("woff"), url("../fonts/notosans-regular-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal; }
+.blue-text {
+  color: #47BEFC; }
+
+.scroll-menu-fix {
+  height: 70px; }
+
 .content {
   width: 1210px;
   margin: 0 auto;
@@ -112,10 +128,10 @@ strong {
   background-color: #207EB0; }
 
 .grey {
-  background-color: #2E2E2E; }
+  background-color: #E23F12; }
 
 .grey:hover {
-  background-color: #474747; }
+  background-color: #FC542D; }
 
 .blue-click {
   background-color: #47BEFC; }
@@ -137,17 +153,17 @@ strong {
 .popup {
   top: 50%;
   margin-top: -315px;
-  margin-left: -290px;
+  margin-left: -250px;
   left: 50%;
   z-index: 200;
-  width: 580px;
+  width: 500px;
   height: 600px;
   display: none;
-  position: fixed;
+  position: absolute;
   padding: 15px;
   background: #fff;
   text-align: center;
-  box-shadow: 1px 1px 1px #888; }
+  box-shadow: 1px 1px 15px #000; }
   .popup .close {
     width: 22px;
     height: 22px;
@@ -157,13 +173,13 @@ strong {
     right: -8px;
     top: -8px; }
   .popup h4 {
-    font: 20px 'noto_sansbold';
-    margin: 50px 0 25px 0; }
+    font: 25px 'noto_sansbold';
+    margin: 20px 0 25px 0; }
   .popup span {
     margin: 0 auto 20px auto;
     display: block;
     width: 315px;
-    font-size: 12px; }
+    font-size: 16px; }
   .popup .err-mess {
     height: 20px;
     margin: 0 0 20px 0;
@@ -176,6 +192,8 @@ strong {
     border-radius: 5px;
     padding: 5px;
     margin: 15px 0 25px 0; }
+  .popup input:focus {
+    border: 1px solid #000; }
   .popup input[type="button"] {
     background-color: #E23F12;
     color: #fff;
@@ -250,14 +268,14 @@ header {
       header .text #head-text span {
         font: 50px 'noto_sansbold'; }
     header .text .button {
-      margin: 95px 0 90px 0; }
+      margin: 95px 0 0px 0; }
     header .text .button span {
       text-transform: uppercase; }
 
 .about {
   background-color: #fff; }
   .about h4 {
-    margin: 90px 0 90px 0; }
+    margin: 35px 0 35px 0; }
   .about .content > span {
     width: 720px;
     display: inline-block;
@@ -291,7 +309,7 @@ header {
         line-height: 14px;
         color: #000; }
   .about .button {
-    margin: 0 auto 90px  auto;
+    margin: 0 auto 45px  auto;
     color: #fff; }
 
 .technology {
@@ -301,10 +319,10 @@ header {
   background-size: cover; }
   .technology h4 {
     color: #fff;
-    margin: 90px 0 140px 0; }
+    margin: 35px 0 50px 0; }
   .technology .tech-blocks {
     overflow: hidden;
-    margin: 0 0 150px 0; }
+    margin: 0 0 50px 0; }
     .technology .tech-blocks .tech-block {
       width: 220px;
       height: 270px;
@@ -336,12 +354,12 @@ header {
       width: 165px;
       height: 50px;
       padding: 15px;
-      background-color: #1E1E1E;
+      background-color: #47BEFC;
       text-align: left;
       margin: 150px 10px 0 auto; }
       .technology .tech-blocks .text p {
         color: #fff;
-        font: 14px 'noto_sansbold';
+        text-transform: uppercase;
         line-height: 16px; }
     .technology .tech-blocks .line {
       position: absolute;
@@ -350,10 +368,10 @@ header {
       left: 210px;
       top: 190px;
       z-index: 10;
-      background-color: #1E1E1E; }
+      background-color: #47BEFC; }
 
 .interest h4 {
-  margin: 90px 0px 140px 0px; }
+  margin: 35px 0px 50px 0px; }
 .interest .interest-blocks {
   width: 954px;
   overflow: hidden;
@@ -381,13 +399,14 @@ header {
 .profit {
   background-image: url("../images/prof-bg.png");
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  background-position: center; }
   .profit h4 {
     color: #fff;
-    margin: 90px 0 130px 0; }
+    margin: 35px 0 50px 0; }
   .profit .calc {
     overflow: hidden;
-    margin: 0 0 140px 0; }
+    margin: 0 0 0px 0; }
     .profit .calc .left-calc, .profit .calc .center-calc, .profit .calc .right-calc {
       float: left; }
     .profit .calc .left-calc {
@@ -442,6 +461,7 @@ header {
   background-color: #fff; }
   .why .reasons {
     width: 1185px;
+    height: 550px;
     margin: 0 auto;
     overflow: hidden; }
     .why .reasons .reason {
@@ -459,7 +479,9 @@ header {
         text-align: left;
         margin-left: 40px; }
         .why .reasons .reason .text span {
-          display: inline-block;
+          display: block;
+          width: 380px;
+          text-align: center;
           float: left;
           background-color: #47BEFC;
           color: #fff;
@@ -471,13 +493,13 @@ header {
           clear: both;
           font-size: 16px; }
   .why h4 {
-    margin: 95px 0 110px 0; }
+    margin: 35px 0 40px 0; }
 
 .include h4 {
-  margin: 90px 0 100px 0; }
+  margin: 35px 0 50px 0; }
 .include .content .includes {
   width: 810px;
-  margin: 0 auto 85px auto;
+  margin: 0 auto 45px auto;
   overflow: hidden; }
   .include .content .includes .include {
     width: 250px;
@@ -495,7 +517,7 @@ header {
     content: url("../images/ar.png");
     float: left; }
 .include .content .button {
-  margin: 0 auto 110px auto; }
+  margin: 0 auto 0px auto; }
   .include .content .button span {
     color: #fff; }
 
@@ -503,7 +525,7 @@ header {
   background-color: #2E2E2E; }
   .reviews h4 {
     color: #fff;
-    margin: 90px 0 95px 0; }
+    margin: 35px 0 40px 0; }
   .reviews .content .two-reviews {
     width: 1025px;
     margin: 0 auto 85px auto;
@@ -531,7 +553,7 @@ header {
         content: url("../images/quot.png");
         float: left; }
   .reviews .button {
-    margin: 0 auto 110px auto;
+    margin: 0 auto 50px auto;
     color: #fff; }
 
 .map {
@@ -554,12 +576,13 @@ header {
 .choose {
   background-image: url("../images/choose-bg.png");
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  background-position: Center; }
   .choose .content span {
     font: 30px 'noto_sansbold';
     color: #fff;
     display: block;
-    margin: 115px auto 50px auto; }
+    margin: 50px auto 50px auto; }
   .choose .content p {
     font-size: 30px;
     color: #fff; }

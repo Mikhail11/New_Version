@@ -19,6 +19,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 body {
     line-height: 1;
     background-color: #eaeaea;
+	
 }
 body, html{
     width: 100%;
@@ -35,7 +36,16 @@ q:before, q:after {
     content: '';
     content: none;
 }
-
+strong{
+	font-family: 'noto_sansbold';
+}
+.blur{
+	-webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
 :focus {
     outline: 0;
 }
@@ -99,13 +109,16 @@ q:before, q:after {
 
 $blue: #47BEFC;
 $darkblue: #207EB0;
-$darkgrey: #2E2E2E;
+$darkgrey: #E23F12;
 $darkestgrey: #191919;
 $contwidth: 1210px;
 $marga: 0 auto;
 
-h3{
-	
+.blue-text{
+	color:$blue;
+}
+.scroll-menu-fix{
+	height:70px;
 }
 .content{
 	width: $contwidth;
@@ -161,7 +174,7 @@ strong{
 	background-color:$darkgrey;
 }
 .grey:hover{ 
-	background-color: #474747;
+	background-color: #FC542D;
 }
 .blue-click{
 	background-color:$blue;
@@ -179,21 +192,22 @@ strong{
     background-color: rgba(32, 32, 32, 0.65);
     position: fixed; 
     cursor: default; 
+	
 }
 .popup{
     top: 50%;
 	margin-top:-315px;
-	margin-left:-290px;
+	margin-left:-250px;
     left: 50%;
     z-index: 200;  
-    width: 580px;
+    width: 500px;
 	height:600px;
 	display:none;
-    position: fixed;
+    position: absolute;
     padding: 15px;
     background: #fff;
 	text-align:center;
-	box-shadow:1px 1px 1px #888;
+	box-shadow:1px 1px 15px #000;
 	.close{
 		width:22px;
 		height:22px;
@@ -204,14 +218,14 @@ strong{
 		top:-8px;
 	}
 	h4{
-		font:20px 'noto_sansbold';
-		margin:50px 0 25px 0;
+		font:25px 'noto_sansbold';
+		margin:20px 0 25px 0;
 	}
 	span{
 		margin: 0 auto 20px auto;
 		display:block;
 		width:315px;
-		font-size:12px;
+		font-size:16px;
 	}
 	.err-mess{
 		height:20px;
@@ -227,6 +241,9 @@ strong{
 		border-radius:5px;
 		padding:5px;
 		margin:15px 0 25px 0;
+	}
+	input:focus{
+		border:1px solid #000;
 	}
 	input[type="button"]{
 		background-color:#E23F12;
@@ -318,7 +335,7 @@ header{
 			}
 		}
 		.button{
-			margin:95px 0 90px 0;
+			margin:95px 0 0px 0;
 		}
 		.button span{
 			text-transform: uppercase;
@@ -328,7 +345,7 @@ header{
 .about{
 	background-color:#fff;
 	h4{
-		margin: 90px 0 90px 0;
+		margin: 35px 0 35px 0;
 	}
 	.content>span{ 
 	    width:720px;
@@ -370,7 +387,7 @@ header{
     	}
 	}
 	.button{ 
-			  margin:0 auto 90px  auto;
+			  margin:0 auto 45px  auto;
 			  color:#fff;
 		  }
 }
@@ -382,11 +399,11 @@ header{
 	background-size:cover;
 	h4{
 		color:#fff;
-		margin:90px 0 140px 0;
+		margin:35px 0 50px 0;
 	}
 	.tech-blocks{ 
 	  overflow:hidden;
-	  margin:0 0 150px 0;
+	  margin:0 0 50px 0;
 	  .tech-block{
 		width:220px;
 		height:270px;
@@ -424,12 +441,13 @@ header{
 			  width:165px;
 			  height:50px;
 			  padding:15px;
-			  background-color:#1E1E1E;
+			  background-color:#47BEFC;
 			  text-align:left;
 			  margin: 150px 10px 0 auto;
 			  p{
 				  color:#fff;
-				  font:14px 'noto_sansbold';
+				  text-transform:uppercase;
+				  
 				  line-height:16px;
 			  }
 	  }
@@ -440,14 +458,14 @@ header{
 		  left:210px;
 		  top:190px;
 		  z-index:10;
-		  background-color:#1E1E1E;
+		  background-color:#47BEFC;
 	  }
 	}
 }
 
 .interest{
 	h4{ 
-		margin: 90px 0px 140px 0px;
+		margin: 35px 0px 50px 0px;
 	}
 	.interest-blocks{
 		width:954px;
@@ -481,13 +499,14 @@ header{
 	background-image:url('../images/prof-bg.png');
 	background-repeat:no-repeat;
 	background-size:cover;
+	background-position:center;
 	h4{
 		color:#fff;
-		margin:90px 0 130px 0;
+		margin:35px 0 50px 0;
 	} 
 	.calc{
 		overflow:hidden;
-		margin:0 0 140px 0;
+		margin:0 0 0px 0;
 		.left-calc, .center-calc, .right-calc{
 			float:left;
 		}
@@ -560,6 +579,7 @@ header{
 	background-color:#fff;
 	.reasons{
 		width:1185px;
+		height:550px;
 		margin:$marga;
 		overflow:hidden;
 		.reason{
@@ -579,7 +599,9 @@ header{
 				text-align:left;
 				margin-left:40px;
 				span{
-					display:inline-block;
+					display:block;
+					width:380px;
+					text-align:center;
 					float:left;
 					background-color:$blue;
 					color:#fff;
@@ -596,17 +618,17 @@ header{
 		}
 	}
 	h4{
-		margin:95px 0 110px 0;
+		margin:35px 0 40px 0;
 	}
 }
 .include{
 	h4{
-		margin:90px 0 100px 0;
+		margin:35px 0 50px 0;
 	}
 	.content{
 		.includes{
 			width:810px;
-			margin:0 auto 85px auto;
+			margin:0 auto 45px auto;
 			overflow:hidden;
 			.include{ 
 				width: 250px;
@@ -628,7 +650,7 @@ header{
 			}
 		}
       	.button{
-				margin:0 auto 110px auto;
+				margin:0 auto 0px auto;
 				span{
 					color:#fff;
 				}
@@ -639,7 +661,7 @@ header{
 	background-color:#2E2E2E;
 	h4{
 		color:#fff;
-		margin:90px 0 95px 0;
+		margin:35px 0 40px 0;
 	}
 	.content{
 		.two-reviews{
@@ -678,7 +700,7 @@ header{
 		}
   }
   .button{
-	  margin:0 auto 110px auto;
+	  margin:0 auto 50px auto;
 	  color:#fff;
   }
 }
@@ -706,12 +728,13 @@ header{
 	background-image:url('../images/choose-bg.png');
 	background-repeat:no-repeat;
 	background-size:cover;
+	background-position:Center;
 	.content{
 		span{
 			font:30px 'noto_sansbold';
 			color:#fff;
 			display:block;
-			margin:115px auto 50px auto;
+			margin:50px auto 50px auto;
 		}
 		p{
 			font-size:30px;
