@@ -9,7 +9,7 @@ class PDF_Diag extends PDF_Sector {
 
 	function PieChart($w, $h, $data, $format, $colors=null)
 	{
-		$this->SetFont('Courier', '', 10);
+		$this->SetFont('PT_Sans-Web-Regular', '', 10);
 		$this->SetLegends($data,$format);
 
 		$XPage = $this->GetX();
@@ -43,23 +43,23 @@ class PDF_Diag extends PDF_Sector {
 			$i++;
 		}
 
-		//Legends
-		$this->SetFont('Courier', '', 10);
-		$x1 = $XPage + 2 * $radius + 4 * $margin;
-		$x2 = $x1 + $hLegend + $margin;
-		$y1 = $YDiag - $radius + (2 * $radius - $this->NbVal*($hLegend + $margin)) / 2;
-		for($i=0; $i<$this->NbVal; $i++) {
-			$this->SetFillColor($colors[$i][0],$colors[$i][1],$colors[$i][2]);
-			$this->Rect($x1, $y1, $hLegend, $hLegend, 'DF');
-			$this->SetXY($x2,$y1);
-			$this->Cell(0,$hLegend,$this->legends[$i]);
-			$y1+=$hLegend + $margin;
-		}
+		// Legends
+		// $this->SetFont('PT_Sans-Web-Regular', '', 10);
+		// $x1 = $XPage + 2 * $radius + 4 * $margin;
+		// $x2 = $x1 + $hLegend + $margin;
+		// $y1 = $YDiag - $radius + (2 * $radius - $this->NbVal*($hLegend + $margin)) / 2;
+		// for($i=0; $i<$this->NbVal; $i++) {
+		// 	$this->SetFillColor($colors[$i][0],$colors[$i][1],$colors[$i][2]);
+		// 	$this->Rect($x1, $y1, $hLegend, $hLegend, 'DF');
+		// 	$this->SetXY($x2,$y1);
+		// 	$this->Cell(0,$hLegend,$this->legends[$i]);
+		// 	$y1+=$hLegend + $margin;
+		// }
 	}
 
 	function BarDiagram($w, $h, $data, $format, $color=null, $maxVal=0, $nbDiv=4)
 	{
-		$this->SetFont('Courier', '', 10);
+		$this->SetFont('PT_Sans-Web-Regular', '', 10);
 		$this->SetLegends($data,$format);
 
 		$XPage = $this->GetX();
@@ -86,7 +86,7 @@ class PDF_Diag extends PDF_Sector {
 		$this->SetLineWidth(0.2);
 		$this->Rect($XDiag, $YDiag, $lDiag, $hDiag);
 
-		$this->SetFont('Courier', '', 10);
+		$this->SetFont('PT_Sans-Web-Regular', '', 10);
 		$this->SetFillColor($color[0],$color[1],$color[2]);
 		$i=0;
 		foreach($data as $val) {
@@ -230,6 +230,21 @@ class PDF_Diag extends PDF_Sector {
   		$this->legends=array();
         $this->wLegend=0;
         $this->NbVal=count($data);
+        $this->sum = 0;
+
+        foreach($data as $l=>$val){
+
+        	$this->sum +=$val;
+
+	        }
+
+        foreach($data as $l=>$val)
+	        {
+	            $p=sprintf('%.2f', $val/$this->sum*100).'%';
+	            $legend=str_replace(array('%l', '%v', '%p'), array($l, $val, $p), $format);
+	            $this->legends[]=$legend;
+	            $this->wLegend=max($this->GetStringWidth($legend), $this->wLegend);
+	        }
 	}
 }
 ?>

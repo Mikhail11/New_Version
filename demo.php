@@ -10,6 +10,10 @@
 
 // require_once( "fpdf/fpdf.php" );
   require("diag/diag.php");
+  require 'includes/core/db_config.php';
+  require 'includes/core/DBWiFiInterface.php';
+
+  $database = new DBWiFiInterface($servername, $username, $password, $dbname,'','','','','');
 
 // ÃŠÃ®Ã­Ã´Ã¨Ã£Ã³Ã°Ã Ã¶Ã¨Ã¿
 
@@ -97,6 +101,11 @@ $logoYPos = 19.403;
 $logoWidth = 34.558;
 $logoHeight = 5.983;
 
+$LabelXPos = 60.754;
+$LabelYPos = 130.628;
+$LabelWidth = 5;
+$LabelHeight = 5;
+
 $labelsFontSize = 14;
 $rowLabels = array( "Ïí", "Âò", "Ñð", "×ò", "Ïò", "Ñá", "Âñ");
 $chartXPos = 20;
@@ -104,6 +113,7 @@ $chartYPos = 250;
 $chartWidth = 160;
 $chartHeight = 80;
 $chartLabel = "ÏÎÄÊËÞ×ÅÍÈß ÏÎ ÄÍßÌ ÍÅÄÅËÈ";
+$diagramLabel = "ÑÎÎÒÍÎØÅÍÈÅ ÏÎ ÑÎÖ. ÑÅÒßÌ";
 $chartYStep = 20000;
 
 
@@ -204,8 +214,35 @@ $pdf->Ln(8);
 $pdf->SetXY(119.306,63.501 );
 $pdf->ColumnChart(80, 40, $data, null, array(255,175,100));
 
+$pdf->SetFont('PT_Sans-Web-Bold', '', 12);
+$pdf->Text(15.069,119.628, $diagramLabel);
+$pdf->Ln(8);
+$socialNetworks = array('twitter'=>58,''=>42,'vk'=>29,'fb'=>10,'CMC'=>3);
+$pdf->SetXY(15.069,130.628);
+$col1=array( 145, 80, 154 );
+$col2=array(231,230,175);
+$col3=array(32,126,177);
+$col4=array(95,195,219);
+$col5=array(204,14,81);
+$pdf->PieChart(100, 35, $socialNetworks, '%v %p', array($col1, $col2, $col3,$col4,$col5));
 
-$pdf->Output( "report.pdf", "I" );
+foreach ($socialNetworks as $key => $value) {
+
+  $pdf->Image( 'images/'.'twitter'.'.png', $LabelXPos, $LabelYPos, $LabelWidth, $LabelHeight );
+  $pdf->SetFont( 'PT_Sans-Web-Regular', '', $labelsFontSize);
+  $pdf->SetTextColor(0,0,0);
+  $pdf->Text($LabelXPos+10,$LabelYPos+3.5,$value);
+  $pdf->SetTextColor(175,175,175);
+  $pdf->Text($LabelXPos+22,$LabelYPos+3.5,$value.'%');
+  $LabelYPos+=7;
+}
+  
+
+
+
+
+
+$pdf->Output( "respot.pdf", "I" );
 
 ?>
 
