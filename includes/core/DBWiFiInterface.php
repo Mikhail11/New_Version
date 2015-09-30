@@ -2363,6 +2363,10 @@
 		return $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 	}
 
+	public function getLoginCountByLoginOptionForMail(){
+		
+	}
+
 # ==== КОНЕЦ ФОРМИРОВАНИЕ ОТЧЕТА ДЛЯ ОТПРАВКИ ПО ПОЧТЕ ==== #
 # ========================================================= #	
 	}

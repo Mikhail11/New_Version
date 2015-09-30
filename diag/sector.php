@@ -3,7 +3,7 @@ require('fpdf.php');
 
 class PDF_Sector extends FPDF
 {
-	function Sector($xc, $yc, $r, $a, $b, $style='FD', $cw=true, $o=90)
+	function Sector($xc, $yc, $r, $a, $b, $style='F', $cw=true, $o=90)
 	{
 		$d0 = $a - $b;
 		if($cw){

@@ -21,9 +21,9 @@ $textColour = array( 0, 0, 0 );
 $headerColour = array( 100, 100, 100 );
 $blockColor = array(240, 237, 228);
 
-$allCount = '5849';
+$allCount = '55849';
 $allCountName1 ='Îבשוו';
-$allCountName2 ='קטסכמ';
+$allCountName2 ='ךמכטקוסעגמ';
 $allCountName3 ='ןמסועטעוכוי';
 $allCountColor = array(32,126,177);
 $allCountPosX = 15.069;
@@ -103,8 +103,33 @@ $logoHeight = 5.983;
 
 $LabelXPos = 60.754;
 $LabelYPos = 130.628;
-$LabelWidth = 5;
-$LabelHeight = 5;
+$LabelWidth = 4;
+$LabelHeight = 4;
+
+$LabelXPosVK = 60.754;
+$LabelYPosVK = 130.628;
+$LabelWidthVK = 3;
+$LabelHeightVK = 3.76;
+
+$LabelXPosFB = 60.754;
+$LabelYPosFB = 136.628;
+$LabelWidthFB = 2.56;
+$LabelHeightFB = 4.92;
+
+$LabelXPosOK = 60.754;
+$LabelYPosOK = 143.628;
+$LabelWidthOK = 3.38;
+$LabelHeightOK = 5.66;
+
+$LabelXPosMB = 60.754;
+$LabelYPosMB = 152.628;
+$LabelWidthMB = 5.07;
+$LabelHeightMB = 1.74;
+
+$LabelXPosTW = 60.754;
+$LabelYPosTW = 158.35;
+$LabelWidthTW = 4.28;
+$LabelHeightTW = 3.48;
 
 $labelsFontSize = 14;
 $rowLabels = array( "Ïם", "Âע", "Ñנ", "×ע", "Ïע", "Ñב", "Âס");
@@ -114,6 +139,7 @@ $chartWidth = 160;
 $chartHeight = 80;
 $chartLabel = "ÏÎÄÊËÞ×ÅÍÈ‗ ÏÎ ÄÍ‗Ì ÍÅÄÅËÈ";
 $diagramLabel = "ÑÎÎÒÍÎØÅÍÈÅ ÏÎ ÑÎÖ. ÑÅÒ‗Ì";
+$genderAgeDiagramsLabel = "ÑÎÎÒÍÎØÅÍÈÅ ÏÎËÎÂÎÇÐÀÑÒÍÎÉ ÃÐÓÏÏÛ";
 $chartYStep = 20000;
 
 
@@ -217,18 +243,23 @@ $pdf->ColumnChart(80, 40, $data, null, array(255,175,100));
 $pdf->SetFont('PT_Sans-Web-Bold', '', 12);
 $pdf->Text(15.069,119.628, $diagramLabel);
 $pdf->Ln(8);
-$socialNetworks = array('twitter'=>58,''=>42,'vk'=>29,'fb'=>10,'CMC'=>3);
+$socialNetworks = array('vk'=>58,'facebook'=>42,'odnoklassniki'=>29,'mobile'=>10,'twitter'=>3);
 $pdf->SetXY(15.069,130.628);
-$col1=array( 145, 80, 154 );
-$col2=array(231,230,175);
-$col3=array(32,126,177);
-$col4=array(95,195,219);
-$col5=array(204,14,81);
+$col1=array(32,126,177);
+$col2=array(95,195,219);
+$col3=array(231,230,175);
+$col4=array(204,14,81);
+$col5=array(145,80,154);
 $pdf->PieChart(100, 35, $socialNetworks, '%v %p', array($col1, $col2, $col3,$col4,$col5));
+
+$pdf->Image( 'images/vk.png', $LabelXPosVK, $LabelYPosVK, $LabelWidthVK, $LabelHeightVK );
+$pdf->Image( 'images/facebook.png', $LabelXPosFB, $LabelYPosFB, $LabelWidthFB, $LabelHeightFB );
+$pdf->Image( 'images/odnoklassniki.png', $LabelXPosOK, $LabelYPosOK, $LabelWidthOK, $LabelHeightOK );
+$pdf->Image( 'images/mobile.png', $LabelXPosMB, $LabelYPosMB, $LabelWidthMB, $LabelHeightMB );
+$pdf->Image( 'images/twitter.png', $LabelXPosTW, $LabelYPosTW, $LabelWidthTW, $LabelHeightTW );
 
 foreach ($socialNetworks as $key => $value) {
 
-  $pdf->Image( 'images/'.'twitter'.'.png', $LabelXPos, $LabelYPos, $LabelWidth, $LabelHeight );
   $pdf->SetFont( 'PT_Sans-Web-Regular', '', $labelsFontSize);
   $pdf->SetTextColor(0,0,0);
   $pdf->Text($LabelXPos+10,$LabelYPos+3.5,$value);
@@ -236,7 +267,75 @@ foreach ($socialNetworks as $key => $value) {
   $pdf->Text($LabelXPos+22,$LabelYPos+3.5,$value.'%');
   $LabelYPos+=7;
 }
-  
+
+$pdf->SetTextColor(0,0,0);
+$pdf->SetFont('PT_Sans-Web-Bold', '', 12);
+$pdf->Text(114.606,185.433, $genderAgeDiagramsLabel);
+$pdf->Ln(8);
+ 
+$men = array(32,126,177); 
+$women = array(204,14,81);
+$other = array($blockColor[0],$blockColor[1],$blockColor[2]);
+
+$age18 = array('women'=>22,'men'=>18,'other'=>200);
+$age18_27 = array('women'=>44,'men'=>36,'other'=>120);
+$age28_35 = array('women'=>18,'men'=>32,'other'=>150);
+$age36_55 = array('women'=>8,'men'=>12,'other'=>180);
+$age55 = array('women'=>2,'men'=>8,'other'=>190);
+
+$pdf->SetXY(104.606,190.433);
+$pdf->PieChart(48,25, $age18, '%v %p', array($women,$men,$other));
+$pdf->SetTextColor(0,0,0);
+$pdf->SetFont('PT_Sans-Web-Bold', '', 10);
+$pdf->Text(111.606,218.433, 'המ 18');
+$pdf->SetFont('PT_Sans-Web-Regular', '', 10);
+$pdf->Text(111.606,223.433, '20%');
+$pdf->SetFont('PT_Sans-Web-Regular', '', 10);
+$pdf->Text(111.606,227.433, '40 קוכ.');
+
+
+$pdf->SetXY(124.606,190.433);
+$pdf->PieChart(48,25, $age18_27, '%v %p', array($women,$men,$other));
+$pdf->SetTextColor(0,0,0);
+$pdf->SetFont('PT_Sans-Web-Bold', '', 10);
+$pdf->Text(131.606,218.433, '18-27');
+$pdf->SetFont('PT_Sans-Web-Regular', '', 10);
+$pdf->Text(131.606,223.433, '40%');
+$pdf->SetFont('PT_Sans-Web-Regular', '', 10);
+$pdf->Text(131.606,227.433, '80 קוכ.');
+
+
+$pdf->SetXY(144.606,190.433);
+$pdf->PieChart(48,25, $age28_35, '%v %p', array($women,$men,$other));
+$pdf->SetTextColor(0,0,0);
+$pdf->SetFont('PT_Sans-Web-Bold', '', 10);
+$pdf->Text(151.606,218.433, '28-35');
+$pdf->SetFont('PT_Sans-Web-Regular', '', 10);
+$pdf->Text(151.606,223.433, '25%');
+$pdf->SetFont('PT_Sans-Web-Regular', '', 10);
+$pdf->Text(151.606,227.433, '50 קוכ.');
+
+
+$pdf->SetXY(164.606,190.433);
+$pdf->PieChart(48,25, $age36_55, '%v %p', array($women,$men,$other));
+$pdf->SetTextColor(0,0,0);
+$pdf->SetFont('PT_Sans-Web-Bold', '', 10);
+$pdf->Text(171.606,218.433, '36-55');
+$pdf->SetFont('PT_Sans-Web-Regular', '', 10);
+$pdf->Text(171.606,223.433, '10%');
+$pdf->SetFont('PT_Sans-Web-Regular', '', 10);
+$pdf->Text(171.606,227.433, '20 קוכ.');
+
+
+$pdf->SetXY(184.606,190.433);
+$pdf->PieChart(48,25, $age55, '%v %p', array($women,$men,$other));
+$pdf->SetTextColor(0,0,0);
+$pdf->SetFont('PT_Sans-Web-Bold', '', 10);
+$pdf->Text(191.606,218.433, 'מע 55');
+$pdf->SetFont('PT_Sans-Web-Regular', '', 10);
+$pdf->Text(191.606,223.433, '5%');
+$pdf->SetFont('PT_Sans-Web-Regular', '', 10);
+$pdf->Text(191.606,227.433, '10 קוכ.');
 
 
 
