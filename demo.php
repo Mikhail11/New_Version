@@ -382,8 +382,7 @@
 
 
     $pdf->Output( "includes/reports/respot_".$idDBUser.".pdf", "F" );
-  }
-}
+
 
 ?>
 
