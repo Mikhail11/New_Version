@@ -2363,7 +2363,8 @@
 		return $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 	}
 
-	public function getLoginCountByLoginOptionForMail(){
+	public function GetClientsForMail(){
+
 		
 	}
 
