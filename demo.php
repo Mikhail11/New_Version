@@ -14,13 +14,10 @@
 
   $database = new DBWiFiInterface($servername, $username, $password, $dbname,'','','','','');
 
-// ГЉГ®Г­ГґГЁГЈГіГ°Г Г¶ГЁГї
-
     $textColour = array( 0, 0, 0 );
     $headerColour = array( 100, 100, 100 );
     $blockColor = array(240, 237, 228);
 
-    $allCount = $database ->getShortMonthReportForMail($idDBUser);
     $allCountName1 ='Общее';
     $allCountName2 ='количество';
     $allCountName3 ='посетителей';
@@ -28,8 +25,7 @@
     $allCountPosX = 15.069;
     $allCountPosY = 74.083; 
 
-    $unique = $database ->getUniqueShortMonthReportForMail($idDBUser);
-    $unCount = $unique ;
+
     $unCountName1 ='Количество';
     $unCountName2 ='уникальных';
     $unCountName3 ='посетителей';
@@ -37,7 +33,6 @@
     $unCountPosX = 60.6 ;
     $unCountPosY = 74.083;
 
-    $coverageCount = $database ->getFriendsForMail($idDBUser);
     $coverageCountName1 ='Охваченная';
     $coverageCountName2 ='аудитория';
     $coverageCountName3 ='(человек)';
@@ -49,7 +44,6 @@
     $coverageCellWidth = 37.042;
     $coverageCellHeight = 6.416;
 
-    $birthCount = $database ->BirthdaysInMonthForMail($idDBUser);
     $birthCountName1 ='Количество';
     $birthCountName2 ='поздравленных';
     $birthCountName3 ='именинников';
@@ -57,7 +51,6 @@
     $birthCountPosX = 15.069 ;
     $birthCountPosY = 200.433;
 
-    $birthAuthCount = $database ->getBirthdayWhichAuth($idDBUser);
     $birthAuthCountName1 ='Количество';
     $birthAuthCountName2 ='именинников';
     $birthAuthCountName3 ='пришедших';
@@ -139,10 +132,24 @@
     $postScriptum1 = "* - учитываются только посетители, подключившиеся";
     $postScriptum2 = "через Вконтакте, Facebook, Одноклассники";
 
+// ГЉГ®Г­ГґГЁГЈГіГ°Г Г¶ГЁГї
+$result = $database ->getClientsForMail();
 
+if ($result->num_rows > 0) {
+      while($row = $result->fetch_assoc()) {
 
+    $idDBUser = $row['ID_DB_USER'];
 
+    $allCount = $database ->getShortMonthReportForMail($idDBUser);
 
+    $unique = $database ->getUniqueShortMonthReportForMail($idDBUser);
+    $unCount = $unique ;
+
+    $coverageCount = $database ->getFriendsForMail($idDBUser);
+
+    $birthCount = $database ->BirthdaysInMonthForMail($idDBUser);
+
+    $birthAuthCount = $database ->getBirthdayWhichAuth($idDBUser);
 
 
     $pdf = new PDF_Diag('P', 'mm', 'A4' );
@@ -381,7 +388,9 @@
 
 
 
-    $pdf->Output( "includes/reports/respot_".$idDBUser.".pdf", "F" );
+    $pdf->Output( "includes/reports/respot_".time().'_'.$idDBUser.".pdf", "F" );
+  }
+}
 
 
 ?>

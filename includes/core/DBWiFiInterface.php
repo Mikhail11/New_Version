@@ -2363,9 +2363,12 @@
 		return $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 	}
 
-	public function GetClientsForMail(){
+	public function getClientsForMail(){
 
-		
+		$sql = 'SELECT ID_DB_USER FROM CM$DB_USER 
+				where IS_SUPERADMIN = \'F\'
+				and DATE(DATE_REPORT) = curdate()';
+		return $this -> getQueryResultWithErrorNoticing($sql);
 	}
 
 # ==== КОНЕЦ ФОРМИРОВАНИЕ ОТЧЕТА ДЛЯ ОТПРАВКИ ПО ПОЧТЕ ==== #
