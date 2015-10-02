@@ -2365,7 +2365,7 @@
 
 	public function getClientsForMail(){
 
-		$sql = 'SELECT ID_DB_USER, MONTHNAME(DATE_SUB(DATE_REPORT,INTERVAL 1 MONTH)) as MONTH, YEAR(DATE_REPORT,INTERVAL 1 MONTH)) FROM CM$DB_USER 
+		$sql = 'SELECT ID_DB_USER, MONTHNAME(DATE_SUB(DATE_REPORT,INTERVAL 1 MONTH)) as MONTH, YEAR(DATE_SUB(DATE_REPORT,INTERVAL 1 MONTH)) AS YEAR FROM CM$DB_USER 
 				where IS_SUPERADMIN = \'F\'
 				and DATE(DATE_REPORT) = curdate()';
 		return $this -> getQueryResultWithErrorNoticing($sql);
@@ -2377,7 +2377,9 @@
 
 		$this->sanitize($idDBUser);
 
-		$sql ="UPDATE CM$DB_USER SET DATE_REPORT = DATE_ADD(CURDATE(),INTERVAL 1 MONTH) WHERE ID_DB_USER = ".$idDBUser;
+		$sql = 'UPDATE CM$DB_USER C SET C.DATE_REPORT = DATE_ADD(CURDATE(),INTERVAL 1 MONTH) WHERE C.ID_DB_USER = '.$idDBUser;
+
+		echo $sql;
 
 		return $this -> getQueryResultWithErrorNoticing($sql);
 

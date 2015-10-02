@@ -405,15 +405,15 @@ if ($result->num_rows > 0) {
     $fileName = "respot_".time().'_'.$idDBUser.".pdf";
     $eMail = $database->getValueByShortName('EMAIL')['VALUE'];
 
-    $pdf->Output( $filePath.$fileName , "I" );
+    $pdf->Output( $filePath.$fileName , "F" );
 
-    // $mail->addAddress($eMail);
-    // $mail->Subject = "Respot";
-    // $mail->AddAttachment($filePath.$fileName, $fileName);
-    // $mail->Body    = "Благодарим вас за сотрудничество!";
-    // $mail->send();
+    $mail->addAddress($eMail);
+    $mail->Subject = "Respot";
+    $mail->AddAttachment($filePath.$fileName, $fileName);
+    $mail->Body    = "Благодарим вас за сотрудничество!";
+    $mail->send();
 
-    // $database->setNewReportDate($idDBUser);
+    $database->setNewReportDate($idDBUser);
   }
 }
 
