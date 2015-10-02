@@ -24,7 +24,7 @@
 				require_once('includes/core/mail_config.php');
 				
 				$mail->addAddress($responce['EMAIL']); 
-				$mail->Subject = "Сброс пароля — Respot";
+				$mail->Subject = "Respot";
 				$mail->Body    = "Для смены пароля перейдите по ссылке:\n$password_reset_link\n\nСообщение сгенерировано автоматически.";
 				
 				if(!$mail->send()) {

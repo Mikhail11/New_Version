@@ -11,6 +11,7 @@
   require("diag/diag.php");
   require 'includes/core/db_config.php';
   require 'includes/core/DBWiFiInterface.php';
+  require_once('includes/core/mail_config.php');
 
   $database = new DBWiFiInterface($servername, $username, $password, $dbname,'','','','','');
 
@@ -77,7 +78,6 @@
     $countsTextSize = 39;
 
     $reportName = "Åæåìåñÿ÷íûé îò÷åò";
-    $reportSurName = "ÀÂÃÓÑÒ 2015";
     $reportNameYPos = 31.275;
     $reportNameXPos = 15.069;
     $reportSurNameYPos = 36.275;
@@ -131,14 +131,29 @@
     $genderAgeDiagramsLabel = "ÑÎÎÒÍÎØÅÍÈÅ ÏÎËÎÂÎÇÐÀÑÒÍÎÉ ÃÐÓÏÏÛ*";
     $postScriptum1 = "* - ó÷èòûâàþòñÿ òîëüêî ïîñåòèòåëè, ïîäêëþ÷èâøèåñÿ";
     $postScriptum2 = "÷åðåç Âêîíòàêòå, Facebook, Îäíîêëàññíèêè";
+    $months = array('January'=>'ßÍÂÀÐÜ', 
+                    'February'=>'ÔÅÂÐÀËÜ', 
+                    'March'=>'ÌÀÐÒ', 
+                    'April'=>'ÀÏÐÅËÜ', 
+                    'May'=>'ÌÀÉ', 
+                    'June'=>'ÈÞÍÜ', 
+                    'July'=>'ÈÞËÜ', 
+                    'August'=>'ÀÂÃÓÑÒ', 
+                    'September'=>'ÑÅÍÒßÁÐÜ', 
+                    'October'=>'ÎÊÒßÁÐÜ', 
+                    'November'=>'ÍÎßÁÐÜ', 
+                    'December'=>'ÄÅÊÀÁÐÜ');
 
 // ÃŠÃ®Ã­Ã´Ã¨Ã£Ã³Ã°Ã Ã¶Ã¨Ã¿
 $result = $database ->getClientsForMail();
+ 
 
 if ($result->num_rows > 0) {
       while($row = $result->fetch_assoc()) {
 
     $idDBUser = $row['ID_DB_USER'];
+
+    $reportSurName = $months[$row['MONTH']].' '.$row['YEAR'];
 
     $allCount = $database ->getShortMonthReportForMail($idDBUser);
 
@@ -386,9 +401,19 @@ if ($result->num_rows > 0) {
     $pdf->Text(134.606,234.5, $postScriptum1);
     $pdf->Text(137.606,237.5, $postScriptum2);
 
+    $filePath = "includes/reports/"; 
+    $fileName = "respot_".time().'_'.$idDBUser.".pdf";
+    $eMail = $database->getValueByShortName('EMAIL')['VALUE'];
 
+    $pdf->Output( $filePath.$fileName , "I" );
 
-    $pdf->Output( "includes/reports/respot_".time().'_'.$idDBUser.".pdf", "F" );
+    // $mail->addAddress($eMail);
+    // $mail->Subject = "Respot";
+    // $mail->AddAttachment($filePath.$fileName, $fileName);
+    // $mail->Body    = "Áëàãîäàðèì âàñ çà ñîòðóäíè÷åñòâî!";
+    // $mail->send();
+
+    // $database->setNewReportDate($idDBUser);
   }
 }
 
