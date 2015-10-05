@@ -23,7 +23,7 @@
 	            
 				<li class="divider visible-xs-block"></li>
 			
-				<li class="hidden-xs hidden-sm"><a href="admin-users-combined-list.php"><i class="fa fa-fw fa-users"></i> Постоянные и недавние пользователи</a></li>
+				<li class="hidden-xs hidden-sm"><a href="admin-users-combined-list.php"><i class="fa fa-fw fa-users"></i> Списки пользователей</a></li>
 				<li class="visible-xs-block visible-sm-block"><a href="admin-users-combined-list.php?onlyloyals"><i class="fa fa-fw fa-heart"></i> Постоянные пользователи</a></li>
 				<li class="visible-xs-block visible-sm-block"><a href="admin-users-combined-list.php?onlyclients"><i class="fa fa-fw fa-users"></i> Недавние пользователи</a></li>
 			
@@ -31,7 +31,7 @@
 				<li class="visible-xs-block visible-sm-block"><a href="admin-birthdays-list.php?mobile"><i class="fa fa-fw fa-birthday-cake"></i> Дни рождения</a></li>
 			
 				<li class="dropdown">
-		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-ellipsis-h"></i> Ещё <span class="caret"></span></a>
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-wrench"></i> Инструменты <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="admin-planner.php"><i class="fa fa-clock-o" style="font-size:110%; margin-left:2px; margin-right:2px;"></i>  Планирование постов</a></li>
 						<li><a href="admin-autosender.php"><i class="fa fa-fw fa-calendar"></i> Автоматическая рассылка</a></li>

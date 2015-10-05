@@ -20,6 +20,7 @@
 					curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
 					$json = curl_exec($curl);
 					curl_close($curl);
+
 					}
 
 				}
