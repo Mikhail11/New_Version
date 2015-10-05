@@ -2228,7 +2228,7 @@
 			$out[$days[$i]] = 0;
 		}
 
-		$sql = 'select COUNT(A.ID_USER) AS COUNT FROM vw_sp$login_act A 
+		$sql = 'select COUNT(A.ID_USER) AS COUNT FROM VW_SP$LOGIN_ACT A 
 				where DATE(A.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH) 
 				AND A.ID_DB_USER = '.$idDBUser.'
 				group by weekday(A.LOGIN_DATE) 
@@ -2257,7 +2257,7 @@
 
 		}
 		
-		$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+		$sql =	'select count(DISTINCT ID_USER) AS COUNT from VW_SP$LOGIN_ACT v 
 				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  < 18
 				 AND v.ID_DB_USER = '.$idDBUser.'
@@ -2265,7 +2265,7 @@
 
 		$out[$periods[0]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 
-		$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+		$sql =	'select count(DISTINCT ID_USER) AS COUNT from VW_SP$LOGIN_ACT v 
 				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  < 18
 				 AND v.ID_DB_USER = '.$idDBUser.'
@@ -2273,7 +2273,7 @@
 
 		$out[$periods[1]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 
-		$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+		$sql =	'select count(DISTINCT ID_USER) AS COUNT from VW_SP$LOGIN_ACT v 
 				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 18
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 27
@@ -2282,7 +2282,7 @@
 
 		$out[$periods[2]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 
-		$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+		$sql =	'select count(DISTINCT ID_USER) AS COUNT from VW_SP$LOGIN_ACT v 
 				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 18
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 27
@@ -2291,7 +2291,7 @@
 
 		$out[$periods[3]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 
-				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from VW_SP$LOGIN_ACT v 
 				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 28
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 35
@@ -2300,7 +2300,7 @@
 
 		$out[$periods[4]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 
-				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from VW_SP$LOGIN_ACT v 
 				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 28
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 35
@@ -2309,7 +2309,7 @@
 
 		$out[$periods[5]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 
-				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from VW_SP$LOGIN_ACT v 
 				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 36
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 55
@@ -2318,7 +2318,7 @@
 
 		$out[$periods[6]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 
-				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from VW_SP$LOGIN_ACT v 
 				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  >= 36
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  <= 55
@@ -2327,7 +2327,7 @@
 
 		$out[$periods[7]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 
-				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from VW_SP$LOGIN_ACT v 
 				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  > 55
 				 AND v.ID_DB_USER = '.$idDBUser.'
@@ -2335,7 +2335,7 @@
 
 		$out[$periods[8]] = $this->getQueryFirstRowResultWithErrorNoticing($sql)['COUNT'];
 
-				$sql =	'select count(DISTINCT ID_USER) AS COUNT from vw_sp$login_act v 
+				$sql =	'select count(DISTINCT ID_USER) AS COUNT from VW_SP$LOGIN_ACT v 
 				 where DATE(v.LOGIN_DATE) > DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
 				 AND timestampdiff(YEAR,v.BIRTHDAY,curdate())  > 55
 				 AND v.ID_DB_USER = '.$idDBUser.'
@@ -2355,7 +2355,7 @@
 
 		$this->sanitize($idDBUser);
 
-		$sql = 'select count( DISTINCT v.NAME) AS COUNT from vw_sp$login_act v 
+		$sql = 'select count( DISTINCT v.NAME) AS COUNT from VW_SP$LOGIN_ACT v 
 				where  date_format(v.BIRTHDAY,\'%m-%d\') <= date_format(curdate(),\'%m-%d\')
 				and date_format(v.BIRTHDAY,\'%m-%d\') >= date_format(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),\'%m-%d\')
 				and v.ID_DB_USER = '.$idDBUser;
@@ -2378,8 +2378,6 @@
 		$this->sanitize($idDBUser);
 
 		$sql = 'UPDATE CM$DB_USER C SET C.DATE_REPORT = DATE_ADD(CURDATE(),INTERVAL 1 MONTH) WHERE C.ID_DB_USER = '.$idDBUser;
-
-		echo $sql;
 
 		return $this -> getQueryResultWithErrorNoticing($sql);
 
