@@ -1,5 +1,5 @@
 <footer class="footer">
-&copy; <a href="https://respot.ru"><img src="images/logo+++.png" width="4%" ></a> 
+	 <a href="privacy.php">   Политика конфиденциальности</a> &copy; <a href="https://respot.ru"><img src="images/logo+++.png" width="4%" ></a> 
 </footer>
 
 <?php

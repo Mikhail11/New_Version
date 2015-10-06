@@ -1411,6 +1411,7 @@
 					if ($_FILES[$key.'_file']['size'] == 0) {
 						$rows[$key]['field_doesnt_need_an_update'] = true;
 					}
+
 				} else if ($value['DATA_TYPE'] == 'checkbox') {
 					if (isset($_POST[$key])) {
 						$_POST[$key] = "T";
@@ -1422,6 +1423,26 @@
 					$post_is_fine = false;
 				}
 				
+
+					if($key== 'POST_LINK_VK'){
+
+						if($_POST[$key]== ''){
+
+							Notification::add("Добавьте ссылку на группу Вконтакте или на сайт организации!", 'danger');
+							return false;
+						}
+
+					}
+
+					if($key== 'POST_LINK_FB'){
+
+						if($_POST[$key]== ''){
+
+							Notification::add("Добавьте ссылку на группу Facebook или на сайт организации!", 'danger');
+							return false;
+						}
+
+					}
 			}
 			
 			if (!$post_is_fine) {

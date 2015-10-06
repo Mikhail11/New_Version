@@ -192,7 +192,7 @@
 				</div>
 			</div>
 		</div>
-		<?php include 'includes/base/footer.php'; ?>
+		<?php include 'includes/base/login_footer.php'; ?>
 		<?php include 'includes/base/jqueryAndBootstrapScripts.html'; ?>
 		<script src="includes/js/jquery.numeric.min.js"></script>
 		<script src="//vk.com/js/api/openapi.js"></script>
