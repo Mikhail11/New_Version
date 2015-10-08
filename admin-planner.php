@@ -125,7 +125,7 @@
 								data-post-image = "<?=$value['IMAGE']?>"
 								data-post-id = "<?=$value['ID_POSTS']?>"
 								data-info = "edit">
-								<div class="img-block">
+								<div class="img-block-plan">
 								    <img  src="<?=$value['IMAGE']?>">
 								</div>
 								<span class="clock"><?php echo $value['TIME']?></span>

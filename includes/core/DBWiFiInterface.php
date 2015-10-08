@@ -1463,7 +1463,7 @@
 						processFileToSQL($key, $sql,$this->id_db_user);
 						$sql = $sql.', ';
 					}
-					$sql = $sql.'VALUE="'.htmlspecialchars($_POST[$key]).'"';
+					$sql = $sql.'VALUE="'.htmlspecialchars(str_replace( "\r\n" ," ", $_POST[$key])).'"';
 				}
 				
 				$sql = $sql.' WHERE ID_DB_USER='.$this->id_db_user.' AND ID_DICTIONARY='.$value['ID_DICTIONARY'];				
