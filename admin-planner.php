@@ -116,7 +116,8 @@
 				if($i%3==0) {?>
 				</tr>
 					<?php }?>
-						<td class="on-top">
+						<td class="on-top" style="background:url('<?=$value['IMAGE']?>') no-repeat center top;">
+
 							<a href="#"  data-toggle="modal" data-target="#modalPostCreate" 
 								data-post-title = "<?=$value['TITLE']?>"
 								data-post-content = "<?=$value['TEXT']?>"
@@ -125,11 +126,10 @@
 								data-post-image = "<?=$value['IMAGE']?>"
 								data-post-id = "<?=$value['ID_POSTS']?>"
 								data-info = "edit">
-								<div class="img-block">
-								    <img  src="<?=$value['IMAGE']?>">
+								<div class="img-overlay">
+									<p><?php echo date('d.m',strtotime($value['DATA']))?></p>
+									<span class="clock"><?php echo $value['TITLE']?></span>
 								</div>
-								<span class="clock"><?php echo $value['TIME']?></span>
-								<p><?php echo $value['DATA']?></p>
 							</a>
 						</td>
 					<?php
