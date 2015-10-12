@@ -64,6 +64,9 @@ $('#saveButton').click(function(){
   var date = $('#input_date').val();
   var image = $('#imageData').attr('src');
   var postId = $('#input_hidden').val();
+
+  title = title.replace(/\r|\n/g, ' ');
+  content = content.replace(/\r|\n/g, ' ');
 		$.ajax({
 				type: "POST",
 				url: "admin-query.php",

@@ -11,12 +11,13 @@
 		
 		} else if($_POST['form-name'] == 'postPlannerForm'){
 
-			$title = $_POST['title'];
+			$title =  $_POST['title'];
 			$content = $_POST['content'];
 			$time = $_POST['time'];
 			$date = $_POST['date'];
 			$images = $_POST['image'];
 			$postId = $_POST['post'];
+
 
 			if($images == 'images/imageCap.png'){
 

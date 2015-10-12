@@ -1294,7 +1294,7 @@ body.admin-page.simple-page table.table-planner-row {
 
     border-collapse: separate; 
     width: 100%; 
-    border-spacing: 15px 11px;
+    border-spacing: 5px 5px;
    	table-layout: fixed;
    td {
     padding: 5px; 
@@ -2120,7 +2120,7 @@ ul.affix, ul.affix-top {
 	}
 }
 
-@media(max-width:640px){
+@media(max-width:340px) {
 
 	body.admin-page.simple-page div.img-block-plan {
 	    
@@ -2149,6 +2149,7 @@ ul.affix, ul.affix-top {
 
 		margin: 2px;
 	    font-size: 60%;
+	    display:none;
 	}
 
 	body.admin-page.simple-page table.table-planner-row p{
@@ -2167,4 +2168,42 @@ ul.affix, ul.affix-top {
 
 		vertical-align: middle;
 	}
+}
+
+@media(min-width:350px) and (max-width:580px){
+
+
+	body.admin-page.simple-page table.table-planner-row td.on-top {
+
+		vertical-align: middle;
+
+	}
+
+	body.admin-page.simple-page span.icon {
+
+		font-size: 300%;
+		text-align: center;
+	}
+
+	body.admin-page.simple-page table.table-planner-row  tr{
+
+		height: 170px;
+
+   }
+
+   body.admin-page.simple-page span.clock {
+
+
+		margin: 2px;
+	    font-size: 90%;
+	}
+
+	body.admin-page.simple-page table.table-planner-row p{
+
+		font-size: 250%;
+	    margin-bottom: 0px;
+	}
+
+
+
 }
