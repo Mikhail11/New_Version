@@ -118,6 +118,7 @@ a:hover, a:focus, a:active,
 .pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
 	color: #d0eeeb;
 	text-decoration: none;
+	outline:none;
 }
 
 .link:hover, .link:focus, .link:active {
@@ -1322,8 +1323,14 @@ body.admin-page.simple-page table.table-planner-row {
    td.on-top{
 
    	    vertical-align: top;
+   	    position: relative;
    }
 
+}
+
+body.admin-page.simple-page table.table-planner-row p{
+	margin-top: 5%;
+	font-size: 500%;
 }
 
 body.admin-page.simple-page div.img-block {
@@ -1331,6 +1338,17 @@ body.admin-page.simple-page div.img-block {
     overflow: hidden;
     text-align:center;
  
+}
+
+body.admin-page.simple-page div.img-overlay{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 	body.admin-page.simple-page div.img-block-plan {
@@ -1491,7 +1509,7 @@ body.admin-page.simple-page span.clock {
 
 
 		margin: 2px;
-		font-size: 400%;
+		font-size: 	100%;
 	}
 
 body.admin-page.simple-page table.month-stats-table tr>td:last-child {
@@ -2102,7 +2120,7 @@ ul.affix, ul.affix-top {
 	}
 }
 
-@media(max-width:320px){
+@media(max-width:640px){
 
 	body.admin-page.simple-page div.img-block-plan {
 	    
@@ -2130,12 +2148,13 @@ ul.affix, ul.affix-top {
 
 
 		margin: 2px;
-		font-size: 150%;
+	    font-size: 60%;
 	}
 
 	body.admin-page.simple-page table.table-planner-row p{
 
-		font-size: 80%;
+		font-size: 170%;
+	    margin-bottom: 0px;
 	}
 
 	body.admin-page.simple-page span.icon {
