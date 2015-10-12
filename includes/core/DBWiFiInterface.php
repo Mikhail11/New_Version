@@ -1972,6 +1972,7 @@
 					ON SCHEDULE AT STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\')
 					DO
 					call planer_creatorr('.$this->id_db_user.','.$postId.');';
+
 			$this->getQueryResultWithErrorNoticing($sql);
 		} else {
 			mysqli_autocommit($this->conn,FALSE);
@@ -1999,6 +2000,7 @@
 					DO
 					call planer_creatorr('.$this->id_db_user.','.$postId.');';
 			$this->getQueryResultWithErrorNoticing($sql);
+
 			mysqli_commit($this->conn);
 
 			mysqli_close($this->conn);
@@ -2014,6 +2016,8 @@
 		$sql = 'UPDATE SP$POSTS SET IS_ACTIVE = \'F\' WHERE ID_POSTS ='.$postId;
 		$this->getQueryResultWithErrorNoticing($sql);
 
+		$sql = 'DROP EVENT IF EXISTS `post_planner_'.$postId.'_'.$this->id_db_user.'`;';
+		$this->getQueryResultWithErrorNoticing($sql);
 
 	}
 

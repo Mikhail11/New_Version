@@ -14,7 +14,7 @@
 				<div class="col-md-3 col-md-push-9 hidden-sm hidden-xs">
 					<ul class="list-unstyled" role="complementary" data-spy="affix" data-offset-top="208" data-offset-bottom="200" id="affix-menu">
 						<li><a href="#section-1">Главная страница</a></li>
-						<li><a href="#section-2">Постоянные<br>и недавние пользователи</a></li>
+						<li><a href="#section-2">Cписки пользователей</a></li>
 						<li><a href="#section-3">Дни рождения</a></li>
 						<li><a href="#section-4">Настройки</a></li>
 					</ul>
@@ -39,7 +39,7 @@
 						<p>Кнопка «Подробнее», выводит полную информацию о&nbsp;данной таблице. При нажатии на&nbsp;имя пользователя можно перейти на&nbsp;его страницу в&nbsp;социальной сети либо совершить звонок по&nbsp;номеру телефона (средствами операционной системы или&nbsp;сторонних приложений). Кроме этого, в&nbsp;таблице <a href="admin-birthdays-list.php">«Дни рождения»</a> при&nbsp;наведении на&nbsp;данные выводится информация о&nbsp;том, сколько осталось дней до&nbsp;дня рождения пользователя. Если нажать на&nbsp;шапку таблицы, то&nbsp;появятся настройки таблицы.</p>
 						<?php helpImage($i++, 'Продолжение главной страницы'); ?>
 
-						<a name="section-2"><h2>Постоянные и&nbsp;недавние пользователи</h2></a>
+						<a name="section-2"><h2>Списки пользователей</h2></a>
 						<p>Пункт меню, выделенный красным цветом,— <a href="admin-users-combined-list.php">«Постоянные и&nbsp;недавние пользователи»</a> — переводит на&nbsp;страницу «Постоянные и&nbsp;недавние пользователи». Здесь отображаются полный список посещаемости и&nbsp;полный список постоянных пользователей заведения. В&nbsp;мобильной версии сайта эти две таблицы отображаются как разные пункты меню.</p>
 						<?php helpImage($i++, 'Пункт меню «Постоянные и&nbsp;недавние пользователи»'); ?>
 						<?php helpImage($i++, 'Страница «Постоянные и&nbsp;недавние пользователи»'); ?>
@@ -98,5 +98,32 @@
 	    });
 	}
 		</script>
+
+		<script type="text/javascript">
+(function (d, w, c) {
+(w[c] = w[c] || []).push(function() {
+try {
+w.yaCounter32081581 = new Ya.Metrika({
+id:32081581,
+clickmap:true,
+trackLinks:true,
+accurateTrackBounce:true
+});
+} catch(e) { }
+});
+
+var n = d.getElementsByTagName("script")[0],
+s = d.createElement("script"),
+f = function () { n.parentNode.insertBefore(s, n); };
+s.type = "text/javascript";
+s.async = true;
+s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+if (w.opera == "[object Opera]") {
+d.addEventListener("DOMContentLoaded", f, false);
+} else { f(); }
+})(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/32081581" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 	</body>
 </html>

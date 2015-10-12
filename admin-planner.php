@@ -98,7 +98,7 @@
 			<div class="page-wrapper">
 			<table class="table-planner-row">
 				<tr><td>
-					<a  data-toggle="modal" data-target="#modalPostCreate" 
+					<a href="#"  data-toggle="modal" data-target="#modalPostCreate" 
 						data-post-title = ""
 						data-post-content = ""
 						data-post-time = ""
@@ -117,7 +117,7 @@
 				</tr>
 					<?php }?>
 						<td class="on-top">
-							<a  data-toggle="modal" data-target="#modalPostCreate" 
+							<a href="#"  data-toggle="modal" data-target="#modalPostCreate" 
 								data-post-title = "<?=$value['TITLE']?>"
 								data-post-content = "<?=$value['TEXT']?>"
 								data-post-time = "<?=$value['TIME']?>"
@@ -125,7 +125,7 @@
 								data-post-image = "<?=$value['IMAGE']?>"
 								data-post-id = "<?=$value['ID_POSTS']?>"
 								data-info = "edit">
-								<div class="img-block-plan">
+								<div class="img-block">
 								    <img  src="<?=$value['IMAGE']?>">
 								</div>
 								<span class="clock"><?php echo $value['TIME']?></span>
