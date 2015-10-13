@@ -15,15 +15,16 @@
 	for($j = 0;$j<sizeof($chartColorsLegend);$j++){
 
 		$colorArray[$chartColorsLegend[$j]['ID_COLOR']] = $chartColorsLegend[$j]['COLOR'];
+
 	}
 
 	$colors = array();
 
-	for($j = 0;$j<sizeof($chartColorsLegend);$j++){
+	for($j = 0;$j<sizeof($colorArray);$j++){
 
 		$colors[$j] = $colorArray[$chartLegendValues[$j]['ID_LOGIN_OPTION']];
-	}
 
+	}
 
 	if (sizeof($chartLegendValues) > 0) {
 	
@@ -76,7 +77,7 @@
 			backgroundColor: { fill:'transparent' },
 			fontName: 'Fontatigo, "Helvetica Nueue", Helvetica, Arial, "Lucida Grande", sans-serif',
 			fontSize: 14,
-			colors: <?=CommonFunctions::arrayToString($colors);?>,
+			colors: <?=CommonFunctions::arrayToString($colorArray);?>,
 			chartArea: {left:0,top:0,width:'100%',height:'<?=$charthHeight?>'},
 			tooltip: {isHtml: true},
 			hAxis: {

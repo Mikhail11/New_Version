@@ -11,7 +11,7 @@
 	//Ссылки на изображения для постов
 	$photoVK = $baseUrl.$post['POST_IMG']['VALUE'];
 	$photoOK = "http://kazanwifi.ru/".$post['POST_IMG']['VALUE'];
-
+	$linkINST = $post['POST_LINK_INST']['VALUE'];
 	//Ссылки на страницы клиентов
 	$linkVK = $post['POST_LINK_VK']['VALUE'];
 
@@ -87,10 +87,11 @@
 		$friendsCount = $response->{'data'}->{'counts'}->{'followed_by'};
 		$ref = $response->{'data'}->{'username'};
 
-		$database->addInstagramUser($fullName,$ref,$friendsCount);
+
+		$database->addInstagramUser($fullName,$ref,$friendsCount,$gender);
 
 
-		$url = 'https://api.instagram.com/v1/users/1946531798/relationship?access_token='.$access_token;
+		$url = 'https://api.instagram.com/v1/users/'.$linkINST.'/relationship?access_token='.$access_token;
 
   		if( $curl = curl_init() ) {
 		curl_setopt($curl, CURLOPT_URL, $url);
@@ -108,8 +109,8 @@
 
 			} else {
 
-				echo 'false';
-			}
+				echo 'true';
+			} 
 		} 
 	}else if(isset($_GET['form-name'])&&$_GET['form-name']=='OkAuth'){
 

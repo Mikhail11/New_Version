@@ -1035,7 +1035,7 @@
 				WHERE A.DATE BETWEEN DATE_SUB(CURDATE(), INTERVAL '.$num_days.' DAY) AND CURDATE() 
 			) D
 			ORDER BY D.DATE DESC) U';
-// 			Notification::add($sql);
+			// Notification::add($sql);
 						
 			return $this->toArray($this->getQueryResultWithErrorNoticing($sql));
 		}
@@ -1278,7 +1278,12 @@
 			mysqli_close($this->conn);
 		}
 
-		function addInstagramUser($fullName,$ref,$friendsCount){
+		function addInstagramUser($fullName,$ref,$friendsCount,$gender){
+
+			$this->sanitize($fullName);
+			$this->sanitize($ref);
+			$this->sanitize($friendsCount);
+			$this->sanitize($gender);
 
 			$sql = 'select ID_DICTIONARY from CM$DICTIONARY where SHORT_NAME="instagram"';
 			$logOption = $this->getQueryFirstRowResultWithErrorNoticing($sql)['ID_DICTIONARY'];
@@ -1287,11 +1292,12 @@
             $result = $this->getQueryFirstRowResultWithErrorNoticing($sql, $ref, true /*не выдавать ошибку, если нет результатов в запросе*/);
              if($result == null) {
              	$sql = 'insert into CM$USER 
-            	         (ID_LOGIN_OPTION,NAME,LINK,NUM_FRIENDS,ID_DB_USER_MODIFIED)  values('
+            	         (ID_LOGIN_OPTION,NAME,LINK,NUM_FRIENDS,GENDER,ID_DB_USER_MODIFIED)  values('
             		     .$logOption.',"'
                          .$fullName.'","https://instagram.com/'
                          .$ref.'", '
-                         .$friendsCount.','
+                         .$friendsCount.',"'
+                         .$gender.'",'
                          .$this->id_db_user.')';
             	
             	$this->getQueryResultWithErrorNoticing($sql);
@@ -1439,6 +1445,16 @@
 						if($_POST[$key]== ''){
 
 							Notification::add("Добавьте ссылку на группу Facebook или на сайт организации!", 'danger');
+							return false;
+						}
+
+					}
+
+					if($key== 'POST_LINK_INST'){
+
+						if($_POST[$key]== ''){
+
+							Notification::add("ID заведения в Instagram!", 'danger');
 							return false;
 						}
 
