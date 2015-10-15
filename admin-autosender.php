@@ -1,6 +1,6 @@
 <?php
 	include 'includes/base/admin.php';
-	$protector->protectPageForbidSuperadmin();
+	// $protector->protectPageForbidSuperadmin();
 	
 	$dictionary_branches = ['AUTO_POST','AUTO_SMS'];
 

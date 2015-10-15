@@ -1,6 +1,6 @@
 <?php
 	include 'includes/base/admin.php';
-	$protector->protectPageForbidSuperadmin();
+	// $protector->protectPageForbidSuperadmin();
 	
 	$dictionary_branches = ['POST', 'GENERAL_FIELDS', 'ADMIN_DISPLAY_SETTINGS', 'LOGIN_OPTIONS', 'PASSWORD'];
 
