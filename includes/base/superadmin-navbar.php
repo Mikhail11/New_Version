@@ -31,6 +31,17 @@
 		        </li>
 		        <?php } ?>
 		        
+		        <?php if ($database->meetsAccessLevel('PRIV_MANAGER')) { ?>
+		        <li class="dropdown">
+		        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-fw fa-briefcase"></i> Инструменты <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+
+						<li><a href="wiki/" target="_blank"><i class="fa fa-fw fa-book"></i> Вики</a></li>
+						<li><a href="https://trello.com/b/21S8biIL/re-spot" target="_blank"><i class="fa fa-fw fa-trello"></i> Trello</a></li>
+								
+					</ul>
+		        </li>
+		        <?php } ?>
 	            
 				<li class="divider visible-xs-block"></li>
 

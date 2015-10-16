@@ -7,7 +7,7 @@
 <html lang="ru">
 	<head>
 		<?php include 'includes/base/headBootstrapAndBasics.php'; ?>
-		<title>Главная — Панель администрирования Respot</title>
+		<title>Главная — Панель администрирования Re[Spot]</title>
 	</head>
 	<body class="admin-page simple-page"><div class="background-cover"></div>
 
@@ -24,15 +24,15 @@
 						</a>
 					</div>
 					
-
-<!-- 					<?php if ($database->meetsAccessLevel('ROOT')) { ?>
+<!--
+					<?php if ($database->meetsAccessLevel('ROOT')) { ?>
 					<div class="col-md-3">
 						<a href="superadmin-admins.php">
 							<h1 class="dashboard-tile"><i class="fa fa-2x fa-users"></i><br><br>Админы <?=$db_users_count[1];?></h1>
 						</a>
 					</div>
-					<?php } ?> -->
-
+					<?php } ?>
+-->
 				</div>
 			</div>
 			<?php include 'includes/base/footer.php'; ?>
