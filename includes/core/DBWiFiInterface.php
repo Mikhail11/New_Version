@@ -1574,7 +1574,7 @@
 
 				if(!$this->meetsAccessLevel('ROOT')){
 
-				$sql = $sql.'AND D.ID_DB_USER_MODIFIED ='.$this->id_db_user_editor;
+				$sql = $sql.'AND D.ID_DB_USER_CREATOR ='.$this->id_db_user_editor;
 
 				}
 
@@ -1609,7 +1609,7 @@
 
 			if(!$this->meetsAccessLevel('ROOT')){
 
-				$sql = $sql.'AND ID_DB_USER_MODIFIED = '.$this->id_db_user_editor.' ';
+				$sql = $sql.'AND ID_DB_USER_CREATOR = '.$this->id_db_user_editor.' ';
 			}
 			$sql = $sql.
 			'union select count(ID_DB_USER) as COUNT from CM$DB_USER where IS_SUPERADMIN=\'T\'';
@@ -1721,12 +1721,13 @@
 
 			$sql='INSERT INTO CM$DB_USER 
 			(IS_SUPERADMIN, ROUTER_LOGIN, 
-			ROUTER_PASSWORD, LOGIN, PASSWORD, ID_DB_USER_MODIFIED) 
+			ROUTER_PASSWORD, LOGIN, PASSWORD,ID_DB_USER_MODIFIED, ID_DB_USER_CREATOR) 
 			VALUES (
 				"F","'.$routerLogin.'","'
 				.$router_password.'","'
 				.$login.'","'
 				.$password.'","'
+				.$this->id_db_user_editor.'","'
 				.$this->id_db_user_editor.'")';
 			$this->getQueryResultWithErrorNoticing($sql);
 
@@ -1974,21 +1975,31 @@
 
 		if($postId>0) {
 
+			mysqli_autocommit($this->conn,FALSE);
+
 			$sql = 'SELECT ID_IMG , ID_TEXT FROM SP$POSTS WHERE ID_POSTS = '.$postId;
 			$result = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true);
-			$imageId = $result['ID_IMG'];
 			$textId = $result['ID_TEXT'];
 
 			$sql = 'UPDATE SP$POST_TEXT SET VALUE ="'.$content.'" WHERE ID_TEXT ='.$textId;
 			$this->getQueryResultWithErrorNoticing($sql);
 
-			$sql = 'UPDATE SP$POST_IMAGES SET VALUE ="'.$images.'" WHERE ID_IMAGES ='.$imageId;
+			// $sql = 'UPDATE SP$POST_IMAGES SET VALUE ="'.$images.'" WHERE ID_IMAGES ='.$imageId;
+			// $this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'INSERT INTO SP$POST_IMAGES (VALUE,ID_DB_USER) VALUES ("'.$images.'","'.$this->id_db_user.'")';
 			$this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' order by ID_IMAGES desc limit 0, 1';
+			$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
 
 			$sql = 'UPDATE SP$POST_TEXT SET TITLE ="'.$title.'" WHERE ID_TEXT ='.$textId;
 			$this->getQueryResultWithErrorNoticing($sql);
 
 			$sql = 'UPDATE SP$POSTS SET POST_DATE = STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\') WHERE ID_POSTS ='.$postId;
+			$this->getQueryResultWithErrorNoticing($sql);
+
+			$sql = 'UPDATE SP$POSTS SET ID_IMG = '.$imageId.' WHERE ID_POSTS ='.$postId;
 			$this->getQueryResultWithErrorNoticing($sql);
 
 			$sql = 'DROP EVENT IF EXISTS `post_planner_'.$postId.'_'.$this->id_db_user.'`;';
@@ -2000,6 +2011,11 @@
 					call planer_creatorr('.$this->id_db_user.','.$postId.');';
 
 			$this->getQueryResultWithErrorNoticing($sql);
+			
+			mysqli_commit($this->conn);
+
+			mysqli_close($this->conn);
+
 		} else {
 			mysqli_autocommit($this->conn,FALSE);
 

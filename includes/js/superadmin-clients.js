@@ -386,7 +386,7 @@ $("#btnPrint").click(function () {
     printWindow.document.write('<tr><td>E-mail</td><td>'+email+'</td></tr>');
     printWindow.document.write('<tr><td>Адрес заведения</td><td>'+adress+'</td></tr>');
     printWindow.document.write('<tr><td>Контактный телефон</td><td>'+phone+'</td></tr>');
-    printWindow.document.write('<tr><td>Менеджер</td><td>'+fio+'</td></tr>');
+    printWindow.document.write('<tr><td>Менеджер</td><td>'+manager +'</td></tr>');
     printWindow.document.write('<tr><td>Контактный телефон менеджера</td><td>'+mphone+'</td></tr>');
     printWindow.document.write('<tr><td>Логин</td><td>'+loginClient+'</td></tr>');
     printWindow.document.write('<tr><td>Пароль</td><td>'+passwordClient+'</td></tr>');
