@@ -16,7 +16,8 @@ $('#modalPostCreate').on('show.bs.modal', function (event) {
   modal.find('.input_time').val(time);
   modal.find('.input_date').val(date);
   modal.find('.input_hidden').val(postId);
-  modal.find('img').attr('src',image);
+  // modal.find('img').attr('src',image);
+  $('#imageData').attr('src',image);
 
 
 
@@ -30,6 +31,11 @@ $('#modalPostCreate').on('show.bs.modal', function (event) {
 			  $('#trashButton').hide();
 			  $('#buttonGallery').show();
 		 	  $('#buttonUpload').show();
+  		 	  $('#rg-gallery').attr('style', "display:none;");
+  		 	  if($('#imageData').attr('style')!=''){
+
+  		 	  	$('#imageData').attr('style','');
+  		 	  }
 
   	 	} else if(button.data('info')=='edit') {
 
@@ -41,6 +47,12 @@ $('#modalPostCreate').on('show.bs.modal', function (event) {
 		 	$('#trashButton').show();
 		 	$('#buttonGallery').hide();
 		 	$('#buttonUpload').hide();
+	 	    $('#rg-gallery').attr('style', "display:none;");
+
+		 	  if($('#imageData').attr('style')!=''){
+
+  		 	  	$('#imageData').attr('style','');
+  		 	  }
   	 	}
 
   	 	});
@@ -123,6 +135,8 @@ $('#trashButton').click(function(){
 				//Add uploaded file to list
 				response = $.parseJSON(response);
 				if(response.response==="success"){
+	  		 	    $('#rg-gallery').attr('style', "display:none;");
+				    $('#imageData').attr('style','');
 					$('#imageData').attr('src',response.file);
 				} else{
 					addNotification('Файл не загружен ' + file,'danger');
@@ -131,6 +145,20 @@ $('#trashButton').click(function(){
 		});
 		
 	});
+
+$('#buttonGallery').click(function(){
+
+	$('#rg-gallery').attr('style','');
+    $('#imageData').attr('style', "display:none;");
+});
+
+function agreeWithImage(){
+
+	var image = $('#imagePreview').attr('src');
+    $('#rg-gallery').attr('style', "display:none;");
+    $('#imageData').attr('style','');
+	$('#imageData').attr('src',image);
+};
 
 function update_textarea_word_count(txt, word_count) {
 	var maxLen = 140;

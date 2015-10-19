@@ -2011,7 +2011,7 @@
 					call planer_creatorr('.$this->id_db_user.','.$postId.');';
 
 			$this->getQueryResultWithErrorNoticing($sql);
-			
+
 			mysqli_commit($this->conn);
 
 			mysqli_close($this->conn);
@@ -2061,6 +2061,12 @@
 		$sql = 'DROP EVENT IF EXISTS `post_planner_'.$postId.'_'.$this->id_db_user.'`;';
 		$this->getQueryResultWithErrorNoticing($sql);
 
+	}
+
+	public function getImagesForGallery(){
+
+		$sql = 'SELECT VALUE AS IMAGE FROM SP$POST_IMAGES WHERE ID_DB_USER = '.$this->id_db_user;
+		return $this->getQueryResultWithErrorNoticing($sql);
 	}
 
  

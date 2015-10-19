@@ -109,8 +109,9 @@ $(function() {
 				
 				var $viewfull	= $('<a href="#" class="rg-view-full"></a>'),
 					$viewthumbs	= $('<a href="#" class="rg-view-thumbs rg-view-selected"></a>');
+					$viewclose =  $('<a href="#" ></a>');
 				
-				$rgGallery.prepend( $('<div class="rg-view"/>').append( $viewfull ).append( $viewthumbs ) );
+				$rgGallery.prepend( $('<div class="rg-view"/>').append( $viewfull ).append( $viewthumbs ));
 				
 				$viewfull.on('click.rgGallery', function( event ) {
 						if( mode === 'carousel' )
@@ -216,7 +217,7 @@ $(function() {
 				
 				$('<img/>').load( function() {
 					
-					$rgGallery.find('div.rg-image').empty().append('<img src="' + largesrc + '"/>');
+					$rgGallery.find('div.rg-image').empty().append('<a href=\'#\' onClick = "agreeWithImage()" ><img src="' + largesrc + '" id = \'imagePreview\'/></a>');
 					
 					if( title )
 						$rgGallery.find('div.rg-caption').show().children('p').empty().text( title );
