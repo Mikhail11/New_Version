@@ -1,6 +1,15 @@
 
 $('[data-toggle="tooltip"]').tooltip({'html': true});
 
+ 	  	var $input_time = $('.input_time').pickatime();
+		var $input_date = $('.input_date').pickadate();
+
+	var picker_time = $input_time.pickatime('picker');
+	var picker_date = $input_date.pickadate('picker');
+
+	  picker_date.stop();
+	  picker_time.stop();
+
 $('#modalPostCreate').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var title = button.data('postTitle');
@@ -37,6 +46,9 @@ $('#modalPostCreate').on('show.bs.modal', function (event) {
   		 	  	$('#imageData').attr('style','');
   		 	  }
 
+		 	  picker_date.start();
+  		 	  picker_time.start();
+
   	 	} else if(button.data('info')=='edit') {
 
   	 		modal.find('.textarea_title').attr('readonly','readonly');
@@ -66,6 +78,8 @@ $('#editButton').click(function(){
 	  $('#editButton').hide();
 	  $('#buttonGallery').show();
 	  $('#buttonUpload').show();
+ 	  picker_date.start();
+ 	  picker_time.start();
 });
 
 $('#saveButton').click(function(){
@@ -186,3 +200,9 @@ function update_title_word_count(txt, word_count) {
 	}
 	$(word_count).html(maxLen - len);
 }
+$('#modalPostCreate').on('hide.bs.modal', function (event) {
+
+	  picker_date.stop();
+	  picker_time.stop();
+});
+

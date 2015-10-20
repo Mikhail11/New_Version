@@ -185,6 +185,11 @@
 		<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
 		<script type="text/javascript" src="js/jquery.elastislide.js"></script>
 		<script type="text/javascript" src="js/gallery.js"></script>
+		<script type="text/javascript" src="includes/js/legacy.js"></script>
+		<script type="text/javascript" src="includes/js/picker.js"></script>
+		<script type="text/javascript" src="includes/js/picker.date.js"></script>
+		<script type="text/javascript" src="includes/js/picker.time.js"></script>
+		<script src="includes/js/ru_RU.js"></script>
 		<script type="text/javascript" src="includes/js/admin-planner.js"></script>
 		<script><?=$additionalScripts;?></script>
 	</body>

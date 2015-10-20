@@ -1998,7 +1998,6 @@
 
 			$sql = 'UPDATE SP$POSTS SET POST_DATE = STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\') WHERE ID_POSTS ='.$postId;
 			$this->getQueryResultWithErrorNoticing($sql);
-
 			$sql = 'UPDATE SP$POSTS SET ID_IMG = '.$imageId.' WHERE ID_POSTS ='.$postId;
 			$this->getQueryResultWithErrorNoticing($sql);
 
@@ -2009,6 +2008,7 @@
 					ON SCHEDULE AT STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\')
 					DO
 					call planer_creatorr('.$this->id_db_user.','.$postId.');';
+
 
 			$this->getQueryResultWithErrorNoticing($sql);
 

@@ -20,6 +20,14 @@
 <link rel="stylesheet" type="text/css" href="includes/css/demo.css" />
 <link rel="stylesheet" type="text/css" href="includes/css/style.css" />
 <link rel="stylesheet" type="text/css" href="includes/css/elastislide.css" />
+
+<!-- Calendar Style -->
+<link rel="stylesheet" type="text/css" href="includes/css/classic.css" />
+<link rel="stylesheet" type="text/css" href="includes/css/classic.date.css" />
+<link rel="stylesheet" type="text/css" href="includes/css/classic.time.css" />
+<link rel="stylesheet" type="text/css" href="includes/css/rtl.css" />
+
+
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
