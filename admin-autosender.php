@@ -197,6 +197,11 @@
 		<?php include 'includes/base/jqueryAndBootstrapScripts.html'; ?>
 		<script type="text/javascript" src="includes/js/jquery.numeric.min.js"></script>
 		<script type="text/javascript" src="includes/js/jquery.alphanum.js"></script>
+		<script type="text/javascript" src="includes/js/legacy.js"></script>
+		<script type="text/javascript" src="includes/js/picker.js"></script>
+		<script type="text/javascript" src="includes/js/picker.date.js"></script>
+		<script type="text/javascript" src="includes/js/picker.time.js"></script>
+		<script src="includes/js/ru_RU.js"></script>
 		<script type="text/javascript" src="includes/js/admin-autosender.js"></script>
 		<script>$(document).ready(function() {<?=$additionalScripts;?>});</script>
 		<?php if (isset($addFileScript) && $addFileScript) { ?>

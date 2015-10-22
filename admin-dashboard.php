@@ -30,7 +30,9 @@
 					
 					<!-- Main Stats Table -->
 					<?php include 'includes/modules/mainStatsTable.php'; ?>
-										
+
+															<!-- Payment System -->
+					<?php include 'includes/modules/smsPaySystem.php'; ?>		
 				</div>
 				
 				<div class="col-md-9 col-sm-12 col-md-pull-3">
@@ -39,6 +41,7 @@
 					<?php include 'includes/modules/mainStatsChart.php'; ?>
 					
 				</div>
+
 
 			</div>
 			<div class="row">

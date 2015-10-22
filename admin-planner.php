@@ -54,7 +54,6 @@
 																</div>
 																<div class="es-carousel">
 																	<ul>
-
 																	<?php foreach ($gallery as $key => $value) { ?>
 
 																		<li><a href="#"><img src="<?=$value['IMAGE']?>" data-large="<?=$value['IMAGE']?>"  /></a></li>

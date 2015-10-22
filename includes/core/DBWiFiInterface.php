@@ -1964,20 +1964,21 @@
 
 	}
 
-	public function updatePostVars($title,$content,$time,$date,$images,$postId){
+	public function updatePostVars($title,$content,$time,$date,$images,$postId,$gallery){
 
 		$this->sanitize($title);
 		$this->sanitize($content);
 		$this->sanitize($time);
 		$this->sanitize($date);
 		$this->sanitize($postId);
-
+		$this->sanitize($images);
+		$this->sanitize($gallery);
 
 		if($postId>0) {
 
 			mysqli_autocommit($this->conn,FALSE);
 
-			$sql = 'SELECT ID_IMG , ID_TEXT FROM SP$POSTS WHERE ID_POSTS = '.$postId;
+			$sql = 'SELECT ID_TEXT FROM SP$POSTS WHERE ID_POSTS = '.$postId;
 			$result = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true);
 			$textId = $result['ID_TEXT'];
 
@@ -1987,11 +1988,20 @@
 			// $sql = 'UPDATE SP$POST_IMAGES SET VALUE ="'.$images.'" WHERE ID_IMAGES ='.$imageId;
 			// $this->getQueryResultWithErrorNoticing($sql);
 
-			$sql = 'INSERT INTO SP$POST_IMAGES (VALUE,ID_DB_USER) VALUES ("'.$images.'","'.$this->id_db_user.'")';
-			$this->getQueryResultWithErrorNoticing($sql);
+			if ($gallery = 'true') {
 
-			$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' order by ID_IMAGES desc limit 0, 1';
-			$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
+				$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' AND VALUE = "'.$images.'" order by ID_IMAGES desc limit 0, 1';
+				$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
+
+			} else if ($gallery = 'false') {
+
+					$sql = 'INSERT INTO SP$POST_IMAGES (VALUE,ID_DB_USER) VALUES ("'.$images.'","'.$this->id_db_user.'")';
+					$this->getQueryResultWithErrorNoticing($sql);
+
+					$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' order by ID_IMAGES desc limit 0, 1';
+					$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
+
+			}
 
 			$sql = 'UPDATE SP$POST_TEXT SET TITLE ="'.$title.'" WHERE ID_TEXT ='.$textId;
 			$this->getQueryResultWithErrorNoticing($sql);
@@ -2022,14 +2032,29 @@
 			$sql = 'INSERT INTO SP$POST_TEXT (VALUE,ID_DB_USER,TITLE) VALUES ("'.$content.'","'.$this->id_db_user.'","'.$title.'")';
 			$this->getQueryResultWithErrorNoticing($sql);
 
-			$sql = 'INSERT INTO SP$POST_IMAGES (VALUE,ID_DB_USER) VALUES ("'.$images.'","'.$this->id_db_user.'")';
-			$this->getQueryResultWithErrorNoticing($sql);
+				if ($gallery = 'true') {
+
+					$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' AND VALUE = "'.$images.'" order by ID_IMAGES desc limit 0, 1';
+					$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
+
+				} else if ($gallery = 'false') {
+
+						$sql = 'INSERT INTO SP$POST_IMAGES (VALUE,ID_DB_USER) VALUES ("'.$images.'","'.$this->id_db_user.'")';
+						$this->getQueryResultWithErrorNoticing($sql);
+						
+						$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' order by ID_IMAGES desc limit 0, 1';
+						$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
+
+				}
+
+			// $sql = 'INSERT INTO SP$POST_IMAGES (VALUE,ID_DB_USER) VALUES ("'.$images.'","'.$this->id_db_user.'")';
+			// $this->getQueryResultWithErrorNoticing($sql);
 
 			$sql = 'SELECT ID_TEXT FROM SP$POST_TEXT where ID_DB_USER ='.$this->id_db_user.' order by ID_TEXT desc limit 0, 1';
 			$textId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_TEXT'];
 
-			$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' order by ID_IMAGES desc limit 0, 1';
-			$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
+			// $sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' order by ID_IMAGES desc limit 0, 1';
+			// $imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
 
 			$sql = 'INSERT INTO SP$POSTS (ID_IMG,ID_TEXT,POST_DATE,ID_DB_USER) VALUES ('.$imageId.','.$textId.', STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\'),'.$this->id_db_user.')';
 			$this->getQueryResultWithErrorNoticing($sql); 

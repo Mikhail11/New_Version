@@ -76,8 +76,7 @@ $(document).ready(function() {
 	        }
 	    });
 	}
-	
-	
+$('#AUTO_MESSAGE_SMS_DATE').pickadate();
 /* *
    * Ограничение вводимых данных
  */

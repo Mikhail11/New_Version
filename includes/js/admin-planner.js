@@ -1,15 +1,16 @@
 
 $('[data-toggle="tooltip"]').tooltip({'html': true});
 
- 	  	var $input_time = $('.input_time').pickatime();
-		var $input_date = $('.input_date').pickadate();
+  	var $input_time = $('.input_time').pickatime();
+	var $input_date = $('.input_date').pickadate();
 
 	var picker_time = $input_time.pickatime('picker');
 	var picker_date = $input_date.pickadate('picker');
 
 	  picker_date.stop();
 	  picker_time.stop();
-
+  	var galleryUsing = 'false';
+	  
 $('#modalPostCreate').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget) // Button that triggered the modal
   var title = button.data('postTitle');
@@ -103,9 +104,11 @@ $('#saveButton').click(function(){
 					'time': time,
 					'date':date,
 					'post':postId,
-					'image':image 
+					'image':image,
+					'gallery':galleryUsing 
 					},
 			success: function(msg){
+				galleryUsing ='false';
 				location.href = 'admin-planner.php';
 			},
 			error: function (request, status, error) { failNotification(); }
@@ -125,6 +128,7 @@ $('#trashButton').click(function(){
 					'postId':postId
 					},
 			success: function(msg){
+					galleryUsing ='false';
 					location.href = 'admin-planner.php';
 
 			},
@@ -152,6 +156,7 @@ $('#trashButton').click(function(){
 	  		 	    $('#rg-gallery').attr('style', "display:none;");
 				    $('#imageData').attr('style','');
 					$('#imageData').attr('src',response.file);
+					galleryUsing ='false';
 				} else{
 					addNotification('Файл не загружен ' + file,'danger');
 				}
@@ -172,6 +177,7 @@ function agreeWithImage(){
     $('#rg-gallery').attr('style', "display:none;");
     $('#imageData').attr('style','');
 	$('#imageData').attr('src',image);
+	galleryUsing ='true';
 };
 
 function update_textarea_word_count(txt, word_count) {
@@ -204,5 +210,6 @@ $('#modalPostCreate').on('hide.bs.modal', function (event) {
 
 	  picker_date.stop();
 	  picker_time.stop();
+	  galleryUsing ='false';
 });
 
