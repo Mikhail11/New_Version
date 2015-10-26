@@ -76,7 +76,10 @@ $(document).ready(function() {
 		
 	});
 */
-	
+
+$(allSubmitButtons).click(function(){
+	 return false;
+})
 	
 /* *
    * Password submit

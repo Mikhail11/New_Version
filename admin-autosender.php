@@ -4,6 +4,8 @@
 	
 	$dictionary_branches = ['AUTO_POST','AUTO_SMS'];
 
+	$smsCount = $database->getValueByShortName('SMS_PAYMENTS_COUNT')['VALUE'];
+
 	$processSettingsUpdateResponce = null;
 	$additionalScripts = "";
 		
@@ -26,6 +28,8 @@
 			<?php include 'includes/base/navbar.php'; ?>
 			
 			<h1 class="huge-cover"><i class="fa fa-calendar"></i> Автоматическая рассылка</h1>
+
+				<input type="hidden" name="form-name" value="<?=$smsCount;?>">
 
 			<div class="row">
 				<div class="col-md-12" role="main">
