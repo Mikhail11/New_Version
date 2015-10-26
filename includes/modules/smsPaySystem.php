@@ -3,5 +3,5 @@
 	Остаток СМС
 </h1>
 	<div class="sms-payment">		
-			200
+			<?php echo $database->getValueByShortName('SMS_PAYMENTS_COUNT')['VALUE']; ?>
 	</div>

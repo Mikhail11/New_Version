@@ -32,19 +32,33 @@
 		 	if ($tokens->num_rows > 0) {
 				while($row = $tokens->fetch_assoc()) {
 					$phones = $database ->getMobileUsers($row['ID_USER']);
+					$database -> id_db_user = $row['ID_USER'];
+					$count = $database->getValueByShortName('SMS_PAYMENTS_COUNT')['VALUE'];
 						if($phones->num_rows > 0){
 							while($rows = $phones->fetch_assoc()) {
+
+								if ($count == 0) {
+
+									$database->setValueByShortName('mobile','F');
+
+									break;
+								}
+
 								$phone = $rows['NAME'];
 								$text = $row['MESSAGE'];
 								$url = "http://sms.ru/sms/send?api_id=699b26d8-aa69-53d4-1dfe-d5105fbe37e5&to=".$phone."&text=".$text;
+
 						  		if( $curl = curl_init() ) {
-								curl_setopt($curl, CURLOPT_URL, "http://sms.ru/sms/send?api_id=699b26d8-aa69-53d4-1dfe-d5105fbe37e5&to=$phone&text=$text");
-								curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
-								$out = curl_exec($curl);
-								curl_close($curl);
+									curl_setopt($curl, CURLOPT_URL, "http://sms.ru/sms/send?api_id=699b26d8-aa69-53d4-1dfe-d5105fbe37e5&to=$phone&text=$text");
+									curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
+									$out = curl_exec($curl);
+									curl_close($curl);
+								}
+
+								$count = $count - 1;
 							}
 
-							}
+							$database->setValueByShortName('SMS_PAYMENTS_COUNT',$count);
 						}
 				}
 			}

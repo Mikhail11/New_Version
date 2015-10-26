@@ -18,7 +18,6 @@
 	if(isset($_POST['form-name'])) {
 	 if($_POST['form-name'] =='addUser') {
 
-	
 		$firstName =$_POST['fname'];
 		$lastName = $_POST['lname'];
 		$ref = $_POST['ref'];
@@ -274,6 +273,13 @@
 			curl_setopt($curl, CURLOPT_URL, "http://sms.ru/sms/send?api_id=699b26d8-aa69-53d4-1dfe-d5105fbe37e5&to=$phone&text=$text");
 			curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
 			$out = curl_exec($curl);
+
+				if (strpos($out,'100') == '0' && $out != '' && $out != null) {
+			
+						$database->smsCountSub();
+
+				}
+
 			echo $out;
 			curl_close($curl);
 		}

@@ -548,6 +548,25 @@
 			$result = $this->getQueryResultWithErrorNoticing($sql);
 			return $this->keyRowsByColumn($result);
 		}
+
+
+		///	Добавить значение в SP$VAR по SHORT_NAME
+		/**
+		 *	@author Михаил Полюбай
+		 *	
+		 *	@param string $short_name		SHORT_NAME
+ 		 *	@param string $value			VALUE
+		 *	@retval array					Массив из одной строки таблицы SP$VAR
+		 */
+		public function setValueByShortName($short_name, $value) {
+
+			$this->sanitize($short_name);
+			$this->sanitize($value);
+			$sql = 'UPDATE SP$VAR V SET V.VALUE = "'.$value
+					.' " WHERE V.ID_DICTIONARY IN (SELECT D.ID_DICTIONARY FROM CM$DICTIONARY D WHERE SHORT_NAME="'.$short_name
+					.'") AND V.ID_DB_USER='.$this->getMixedDBUserID();
+			$this->getQueryResultWithErrorNoticing($sql);
+		}
 		
 # ==== КОНЕЦ ПОЛУЧЕНИЕ ДАННЫХ ИЗ СЛОВАРЯ ==== #
 # ============================================================= #
@@ -1858,7 +1877,33 @@
 			return "Новый пароль установлен!";
 			
 		}
-				
+			
+
+
+		public function smsCountAdd($count){
+
+			$this ->sanitize($count);
+
+			$count = $this->getValueByShortName('SMS_PAYMENTS_COUNT')['VALUE'] + $count;
+
+		    $this->setValueByShortName('SMS_PAYMENTS_COUNT',$count);
+
+		}
+
+		public function smsCountSub($count = 1)	{
+
+
+			$counts = $this->getValueByShortName('SMS_PAYMENTS_COUNT')['VALUE'];
+
+			$count = $counts - $count;
+
+			if ($count == '0' ) {
+
+				$this->setValueByShortName('mobile','F');
+			}
+
+			$this->setValueByShortName('SMS_PAYMENTS_COUNT',$count);
+		}	
 # ==== КОНЕЦ Функции, изменяющие данные в БД ==== #
 # =================================================================== #
 
