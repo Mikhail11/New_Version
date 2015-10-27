@@ -38,6 +38,47 @@ function update_text_word_count(txt, word_count) {
 
 $(document).ready(function() {
 
+ 	function smsLoginChecked(){
+
+	 	var dateSMS = $('#AUTO_MESSAGE_SMS_DATE').val();
+	 	var smsCount = $('#smsCount').val();
+
+	 	if (dateSMS != ''  && smsCount == 0) {
+
+	 		addNotification('Пополните баланс для включения СМС рассылки!', 'danger');
+	 		$('#AUTO_MESSAGE_SMS_DATE').val('');
+	 		return false;
+
+	 	} else {
+
+	 		return true;
+	 	}
+
+
+
+	}
+
+	var SubmitButtons = $("button[type=\"submit\"]");
+
+	$(SubmitButtons).click(function(e) {
+
+	 	if (smsLoginChecked()) {
+
+
+				$(this).html("Сохраняется... <i class=\"fa fa-spinner fa-pulse\"></i>");
+				var a = $(this);
+				setTimeout(function() {
+					$(a).attr('disabled', 'disabled');
+				}, 100);
+
+
+		 	} else {
+
+		 		return false;
+			}
+	});
+
+
 /* *
    * Numeric
  */

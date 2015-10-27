@@ -29,7 +29,7 @@
 			
 			<h1 class="huge-cover"><i class="fa fa-calendar"></i> Автоматическая рассылка</h1>
 
-				<input type="hidden" name="form-name" value="<?=$smsCount;?>">
+				<input type="hidden" name="form-name" id = "smsCount" value="<?=$smsCount;?>">
 
 			<div class="row">
 				<div class="col-md-12" role="main">
