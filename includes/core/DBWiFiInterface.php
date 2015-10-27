@@ -1448,45 +1448,6 @@
 					Notification::add("POST value for '$key' is not set.", 'danger');
 					$post_is_fine = false;
 				}
-
-					if($key== 'vk'){
-
-							$linkVK = $_POST[$key];
-
-						}
-
-										
-					if($key== 'facebook'){
-
-							$linkFB = $_POST[$key];
-
-						}	
-
-
-					if($key== 'POST_LINK_INST'){
-
-						if($_POST[$key]== ''){
-
-							$linkIN = "F";
-
-						}
-
-					}	
-
-					if($key =='POST_LINK_VK' && $linkVK == 'T' && $_POST[$key] ==''){
-						Notification::add("Добавьте ссылку на группу Вконтакте или на сайт организации!", 'danger');
-						return false;
-					}
-
-					if($key =='POST_LINK_FB' && $linkFB == 'T'&& $_POST[$key] ==''){
-						Notification::add("Добавьте ссылку на группу Facebook или на сайт организации!", 'danger');
-						return false;
-					}
-
-					if($key =='instagram' && $linkIN == "F"&& $_POST[$key] =='T'){
-						Notification::add("Добавьте ID заведения в Instagram!", 'danger');
-						return false;
-					}
 				
 			}
 			

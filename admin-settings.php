@@ -32,7 +32,7 @@
 			
 			<h1 class="huge-cover"><i class="fa fa-cogs"></i> Настройки</h1>
 
-				<input type="hidden" name="form-name" value="<?=$smsCount;?>">
+				<input type="hidden" name="form-name" id = "smsCount" value="<?=$smsCount;?>">
 
 			<div class="row">
 				<div class="col-md-3 col-md-push-9 hidden-sm hidden-xs">

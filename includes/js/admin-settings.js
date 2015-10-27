@@ -32,12 +32,154 @@ $(document).ready(function() {
 		$("i.fa[class^=\"text\"]").remove();
 	}, 8000);
 
+
+/* *
+   * Functions for checked all Login Options	
+ */
+
+ 	function smsLoginChecked(){
+
+	 	var chekboxSMS = $('#mobile').prop("checked");
+	 	var smsCount = $('#smsCount').val();
+
+	 	if (chekboxSMS == true  && smsCount == 0) {
+
+	 		addNotification('Пополните баланс для включения опции входа через СМС!', 'danger');
+	 		$('#mobile').removeAttr('checked');
+	 		return false;
+
+	 	} else {
+
+	 		return true;
+	 	}
+
+
+	
+ 	}
+
+ 	function VKLoginChecked(){
+	 	
+	 	var chekboxVK = $('#vk').prop("checked");
+	 	var VKLink = $('#POST_LINK_VK').val();
+
+	 	if (chekboxVK == true  && VKLink == '' ) {
+
+	 		addNotification("Добавьте ссылку на сайт организации или на группу Вконтакте!", 'danger');
+	 		$('#vk').removeAttr('checked');
+	 		$('#POST_LINK_VK').attr('style', 'border-color:red;');
+	 		return false;
+
+	 	} else {
+
+	 		return true;
+	 	}
+
+
+ 	}
+
+ 	function FBLoginChecked(){
+	 	
+	 	var chekboxVK = $('#vk').prop("checked");
+	 	var VKLink = $('#POST_LINK_VK').val();
+
+	 	if (chekboxVK == true  && VKLink == '' ) {
+
+	 		addNotification("Добавьте ссылку на сайт организации или на группу Вконтакте!", 'danger');
+	 		$('#vk').removeAttr('checked');
+	 		$('#POST_LINK_VK').attr('style', 'border-color:red;');
+	 		return false;
+
+	 	} else {
+
+	 		return true;
+	 	}
+
+
+ 	}
+
+ 	function FBLoginChecked(){
+	 	
+	 	var chekboxFB = $('#facebook').prop("checked");
+	 	var FBLink = $('#POST_LINK_FB').val();
+
+	 	if (chekboxFB == true  && FBLink == '' ) {
+
+	 		addNotification("Добавьте ссылку на сайт организации или на группу Facebook!", 'danger');
+	 		$('#facebook').removeAttr('checked');
+	 		$('#POST_LINK_FB').attr('style', 'border-color:red;');
+	 		return false;
+
+	 	} else {
+
+	 		return true;
+	 	}
+
+
+ 	}
+
+  	function OKLoginChecked(){
+	 	
+	 	var chekboxOK = $('#odnoklassniki').prop("checked");
+	 	var OKLink = $('#POST_LINK_VK').val();
+
+	 	if (chekboxOK == true  && OKLink == '' ) {
+
+	 		addNotification("Добавьте ссылку на сайт организации или на группу Вконтакте!", 'danger');
+	 		$('#odnoklassniki').removeAttr('checked');
+	 		$('#POST_LINK_VK').attr('style', 'border-color:red;');
+	 		return false;
+
+	 	} else {
+
+	 		return true;
+	 	}
+
+
+ 	}
+
+ 	function INLoginCheck(){
+
+	 	var chekboxIN = $('#instagram').prop("checked");
+	 	var INLink = $('#POST_LINK_INST').val();
+
+	 	if (chekboxIN == true  && INLink == '' ) {
+
+	 		addNotification("Добавьте ID заведения в Instagram!", 'danger');
+	 		$('#instagram').removeAttr('checked');
+	 		$('#POST_LINK_INST').attr('style', 'border-color:red;');
+	 		return false;
+
+	 	} else {
+
+	 		return true;
+	 	}
+ 	}
+
+/* *
+   * Onfocus remove all attributes
+ */
+
+ $('#POST_LINK_VK').focus(function(){
+
+ 	$('#POST_LINK_VK').removeAttr('style');
+ });
+
+ $('#POST_LINK_FB').focus(function(){
+
+ 	$('#POST_LINK_FB').removeAttr('style');
+ });
+
+ $('#POST_LINK_INST').focus(function(){
+
+ 	$('#POST_LINK_INST').removeAttr('style');
+ })
+
 /* *
    * All submit buttons restrictions and view changes
  */
 	
 	var allSubmitButtons = $("button[type=\"submit\"]");
-	
+
 	$(allSubmitButtons).click(function(e) {
 		
 		var fileExtensionError = false;
@@ -54,16 +196,25 @@ $(document).ready(function() {
 			addNotification('Загружаемый файл должен быть изображением (.png, .jpg, .jpeg, .gif)!', 'danger');
 			e.preventDefault();
 		} else {
-			
-			$(this).html("Сохраняется... <i class=\"fa fa-spinner fa-pulse\"></i>");
-			var a = $(this);
-			setTimeout(function() {
-				$(a).attr('disabled', 'disabled');
-			}, 100);
-				
+
+	 	if (smsLoginChecked() && VKLoginChecked() && FBLoginChecked() && OKLoginChecked() && INLoginCheck()) {
+
+
+				$(this).html("Сохраняется... <i class=\"fa fa-spinner fa-pulse\"></i>");
+				var a = $(this);
+				setTimeout(function() {
+					$(a).attr('disabled', 'disabled');
+				}, 100);
+
+
+		 	} else {
+
+		 		return false;
+			}
 		}
 	});
-	
+
+
 /*
 	$("#admin-settings-form").bind(function(){
 		
@@ -76,10 +227,6 @@ $(document).ready(function() {
 		
 	});
 */
-
-$(allSubmitButtons).click(function(){
-	 return false;
-})
 	
 /* *
    * Password submit
