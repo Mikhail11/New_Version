@@ -8,6 +8,10 @@
 
 $(document).ready(function(){ 
 
+ $('#disagree').click(function(){
+
+ 	 $('.popover').popover('hide');
+ });
 
 
 });
