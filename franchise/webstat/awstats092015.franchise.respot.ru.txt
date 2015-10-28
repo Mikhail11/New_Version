@@ -8,33 +8,33 @@ AWSTATS DATA FILE 7.1 (build 1.983)
 # update).
 BEGIN_MAP 27
 POS_GENERAL 1999                
-POS_TIME 2675                
-POS_VISITOR 6561                
-POS_DAY 7213                
-POS_DOMAIN 3291                
-POS_LOGIN 3523                
-POS_ROBOT 3678                
-POS_WORMS 3843                
-POS_EMAILSENDER 3974                
-POS_EMAILRECEIVER 4117                
-POS_SESSION 7351                
-POS_SIDER 7523                
-POS_FILETYPES 4252                
-POS_DOWNLOADS 4522                
-POS_OS 4599                
-POS_BROWSER 4751                
-POS_SCREENSIZE 5040                
-POS_UNKNOWNREFERER 5114                
-POS_UNKNOWNREFERERBROWSER 5279                
-POS_ORIGIN 5361                
-POS_SEREFERRALS 5502                
-POS_PAGEREFS 5646                
-POS_SEARCHWORDS 5852                
-POS_KEYWORDS 6004                
-POS_MISC 2338                
-POS_ERRORS 6063                
-POS_CLUSTER 3379                
-POS_SIDER_404 6160                
+POS_TIME 2669                
+POS_VISITOR 6777                
+POS_DAY 7588                
+POS_DOMAIN 3300                
+POS_LOGIN 3532                
+POS_ROBOT 3687                
+POS_WORMS 3853                
+POS_EMAILSENDER 3984                
+POS_EMAILRECEIVER 4127                
+POS_SESSION 7878                
+POS_SIDER 8074                
+POS_FILETYPES 4262                
+POS_DOWNLOADS 4553                
+POS_OS 4630                
+POS_BROWSER 4785                
+POS_SCREENSIZE 5202                
+POS_UNKNOWNREFERER 5276                
+POS_UNKNOWNREFERERBROWSER 5441                
+POS_ORIGIN 5523                
+POS_SEREFERRALS 5664                
+POS_PAGEREFS 5808                
+POS_SEARCHWORDS 6014                
+POS_KEYWORDS 6166                
+POS_MISC 2332                
+POS_ERRORS 6225                
+POS_CLUSTER 3388                
+POS_SIDER_404 6323                
 END_MAP
 
 # LastLine    = Date of last record processed - Last record line number in last log - Last record offset in last log - Last record signature value
@@ -46,14 +46,14 @@ END_MAP
 # MonthHostsKnown   = Number of hosts known
 # MonthHostsUnKnown = Number of hosts unknown
 BEGIN_GENERAL 8
-LastLine 20150924114927 39 8730 56195110801
+LastLine 20151001093445 1 0 18425989765
 FirstTime 20150922103703
-LastTime 20150924114924
-LastUpdate 20150924115701 39 0 39 0 0
-TotalVisits 16                  
-TotalUnique 12                  
+LastTime 20150930160754
+LastUpdate 20151001095701 1 0 0 0 0
+TotalVisits 33                  
+TotalUnique 17                  
 MonthHostsKnown 0                   
-MonthHostsUnknown 13                  
+MonthHostsUnknown 18                  
 END_GENERAL
 
 # Misc ID - Pages - Hits - Bandwidth
@@ -63,7 +63,7 @@ JavaEnabled 0 0 0
 JavascriptDisabled 0 0 0
 PDFSupport 0 0 0
 WindowsMediaPlayerSupport 0 0 0
-AddToFavourites 0 50 0
+AddToFavourites 0 68 0
 RealPlayerSupport 0 0 0
 TotalMisc 0 0 0
 DirectorSupport 0 0 0
@@ -81,27 +81,27 @@ BEGIN_TIME 24
 6 0 0 0 0 0 0
 7 0 0 0 0 0 0
 8 0 0 0 0 0 0
-9 6 63 2107787 0 1 1150
-10 30 369 7488395 1 15 11943
-11 90 1226 13906344 0 18 16590
-12 53 641 3008125 1 10 25612
-13 47 666 3168167 0 9 5288
-14 43 554 18569015 0 11 7588
-15 12 182 2376293 0 6 6078
-16 9 116 2292476 0 2 656
-17 11 160 4234652 0 4 4600
+9 53 620 17652093 2 10 23808
+10 36 447 9618078 3 20 49896
+11 90 1226 13906344 6 64 2141759
+12 70 879 7395414 1 15 30540
+13 50 705 4838697 0 10 5616
+14 46 561 18615527 0 11 7588
+15 12 182 2376293 0 8 6734
+16 20 255 6510055 1 8 23996
+17 14 194 5997511 0 4 4600
 18 3 40 2045461 0 2 1478
 19 1 3 17704 0 1 328
 20 3 39 2045010 0 1 328
 21 0 0 0 0 0 0
-22 0 0 0 0 0 0
+22 0 0 0 1 2 18740
 23 0 0 0 0 0 0
 END_TIME
 
 # Domain - Pages - Hits - Bandwidth
 # The 10 first Pages must be first (order not required for others)
 BEGIN_DOMAIN 1
-ip 308 4059 56386300
+ip 398 5151 86145058
 END_DOMAIN
 
 # Cluster ID - Pages - Hits - Bandwidth
@@ -116,7 +116,7 @@ END_LOGIN
 # Robot ID - Hits - Bandwidth - Last visit - Hits on robots.txt
 # The 10 first Hits must be first (order not required for others)
 BEGIN_ROBOT 1
-favicon 1 17858 20150922121909 0
+favicon 9 158837 20150930165506 0
 END_ROBOT
 
 # Worm ID - Hits - Bandwidth - Last visit
@@ -135,18 +135,19 @@ BEGIN_EMAILRECEIVER 0
 END_EMAILRECEIVER
 
 # Files type - Hits - Bandwidth - Bandwidth without compression - Bandwidth after compression
-BEGIN_FILETYPES 11
-css 246 417470 0 0
-png 3013 31579912 0 0
+BEGIN_FILETYPES 12
+eot 10 643696 0 0
+css 305 667449 0 0
+png 3843 54920223 0 0
 ttf 2 174804 0 0
 pdf 5 11283253 0 0
 xlsx 4 98744 0 0
-woff 8 362000 0 0
-woff2 152 5099600 0 0
-php 6 2007 0 0
-map 9 95875 0 0
-html 127 2189939 0 0
-js 487 5082696 0 0
+woff 10 452500 0 0
+woff2 196 6575800 0 0
+map 10 106757 0 0
+php 7 2300 0 0
+html 159 2753876 0 0
+js 600 8465656 0 0
 END_FILETYPES
 
 # Downloads - Hits - Bandwidth
@@ -157,24 +158,31 @@ END_DOWNLOADS
 # OS ID - Hits
 BEGIN_OS ID - Hits - Pages 6
 macosx 77 6
-linuxandroid 117 9
-winnt 1334 102
+linuxandroid 156 12
+winnt 1616 125
 Unknown 78 6
-winvista 42 5
-win7 2464 180
+winvista 164 18
+win7 3113 231
 END_OS
 
 # Browser ID - Hits - Pages
-BEGIN_BROWSER 11
-chrome44.0.2403.125 81 4
+BEGIN_BROWSER 18
 safari7.0 77 6
-chrome45.0.2454.94 39 3
+chrome44.0.2403.125 81 4
+msie6.0 42 5
+msie8.0 40 3
+chrome45.0.2454.94 78 6
+chrome45.0.2454.85 39 3
 firefox33.0 78 6
-chrome45.0.2454.99 122 10
-chrome45.0.2454.93 3555 264
-netscape5.0 1 1
-chrome43.0.2357.124 42 5
+chrome45.0.2454.99 658 52
+chrome45.0.2454.101 236 19
+netscape5.0 2 2
+chrome45.0.2454.93 3634 270
 android 39 3
+chrome43.0.2357.124 42 5
+chrome42.0.2311.135 40 3
+msie7.0 38 3
+msie10.0 2 2
 chrome45.0.2454.84 39 3
 chrome43.0.2357.130 39 3
 END_BROWSER
@@ -194,11 +202,11 @@ END_UNKNOWNREFERERBROWSER
 
 # Origin - Pages - Hits 
 BEGIN_ORIGIN 6
-From0 123 123
+From0 155 159
 From1 0 0
 From2 0 0
-From3 13 13
-From4 172 3976
+From3 14 14
+From4 229 5031
 From5 0 0
 END_ORIGIN
 
@@ -210,7 +218,7 @@ END_SEREFERRALS
 # The 10 first Pages must be first (order not required for others)
 BEGIN_PAGEREFS 2
 http://vk.com/away.php 12 12
-http://m.vk.com/away.php 1 1
+http://m.vk.com/away.php 2 2
 END_PAGEREFS
 
 # Search keyphrases - Number of search
@@ -226,59 +234,77 @@ END_KEYWORDS
 # Errors - Hits - Bandwidth
 BEGIN_ERRORS 2
 206 1 937
-404 25 8200
+404 36 11786
 END_ERRORS
 
 # URL with 404 errors - Hits - Last URL referer
-BEGIN_SIDER_404 1
-/css/images/ui-bg_glass_65_ffffff_1x400.png 25 http://franchise.respot.ru/css/jquery-ui.css
+BEGIN_SIDER_404 2
+/css/images/ui-bg_glass_65_ffffff_1x400.png 35 http://franchise.respot.ru/css/jquery-ui.css
+//skin/xp/firebug.html 1 http://franchise.respot.ru/
 END_SIDER_404
 
 # Host - Pages - Hits - Bandwidth - Last visit date - [Start date of last visit] - [Last page of last visit]
 # [Start date of last visit] and [Last page of last visit] are saved only if session is not finished
 # The 10 first Hits must be first (order not required for others)
-BEGIN_VISITOR 13
-89.184.4.38 275 3717 39571975 20150923150837
+BEGIN_VISITOR 18
+89.184.4.38 338 4458 57104725 20150930160754
+87.117.189.233 10 138 6153025 20150924123308
 178.213.240.40 9 116 2292476 20150923161251
+87.117.189.225 6 73 3807852 20150927173937
+87.117.189.224 4 60 2062691 20150924165324
 87.117.189.232 4 43 2063165 20150923192659
-85.140.1.26 3 39 2045010 20150922170123
-87.117.189.233 3 39 2045107 20150924114924 20150924114923 /fonts/notosans-bold-webfont.woff2
 85.26.232.168 3 39 2152528 20150922134820
 94.180.182.242 3 39 2045010 20150922203630
-85.140.0.144 3 39 2068410 20150922174025
-66.249.81.235 2 14 896246 20150923152159
+85.140.0.107 3 39 92305 20150924165134
+87.117.190.67 3 40 2045347 20150926093700
+104.45.18.178 2 2 35294 20150929162926
+141.101.104.186 1 1 937 20150922103703
 66.249.81.232 1 13 150197 20150923152158
 66.249.81.238 0 12 1037535 
-104.45.18.178 1 1 17704 20150923141223
-141.101.104.186 1 1 937 20150922103703
+85.140.1.26 3 39 2045010 20150922170123
+66.249.81.235 2 14 896246 20150923152159
+85.140.0.144 3 39 2068410 20150922174025
+178.205.20.24 3 39 92305 20150924124107
 END_VISITOR
 
 # Date - Pages - Hits - Bandwidth - Visits
-BEGIN_DAY 3
+BEGIN_DAY 9
 20150922 135 1723 39441043 8
 20150923 170 2297 19773279 7
-20150924 3 39 2045107 1
+20150924 20 276 8400326 4
+20150925 31 346 11164142 3
+20150926 3 40 2045347 1
+20150927 6 73 3807852 2
+20150928 16 198 2398722 3
+20150929 8 81 1773103 3
+20150930 9 117 2214373 2
 END_DAY
 
 # Session range - Number of visits
-BEGIN_SESSION 4
+BEGIN_SESSION 6
 1h+ 2
-0s-30s 8
-2mn-5mn 3
-30mn-1h 2
+5mn-15mn 1
+2mn-5mn 6
+15mn-30mn 2
+0s-30s 18
+30mn-1h 4
 END_SESSION
 
 # URL - Pages - Bandwidth - Entry - Exit
 # The 10 first Pages must be first (order not required for others)
-BEGIN_SIDER 10
-/ 127 2189939 15 5
-/fonts/notosans-bold-webfont.woff2 76 2527456 0 6
-/fonts/notosans-regular-webfont.woff2 76 2572144 1 1
-/css/style.css.map 9 95875 0 0
-/handlers/sendmess.php 6 2007 0 0
-/fonts/notosans-regular-webfont.woff 4 182288 0 1
+BEGIN_SIDER 14
+/ 159 2753876 31 9
+/fonts/notosans-bold-webfont.woff2 98 3259088 0 18
+/fonts/notosans-regular-webfont.woff2 98 3316712 1 1
+/css/style.css.map 10 106757 1 1
+/handlers/sendmess.php 7 2300 0 1
+/fonts/notosans-regular-webfont.woff 5 227860 0 1
+/fonts/notosans-bold-webfont.woff 5 224640 0 1
 /files/calc.xlsx 4 98744 0 0
-/fonts/notosans-bold-webfont.woff 4 179712 0 1
+/fonts/notosans-regular-webfont.eot 4 155204 0 0
+/fonts/notosans-bold-webfont.eot 4 152424 0 0
+/fonts/notosans-bolditalic-webfont.eot 1 290666 0 0
 /fonts/notosans-bold-webfont.ttf 1 87772 0 1
+/fonts/notosans-italic-webfont.eot 1 45402 0 0
 /fonts/notosans-regular-webfont.ttf 1 87032 0 0
 END_SIDER

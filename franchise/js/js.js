@@ -34,7 +34,7 @@ $(document).ready(function(){
 		
 		$( "#slider2" ).slider({
   value : 2855,
-  min : 2000,
+  min : 3000,
   max : 5000,
   step : 1000,
   create: function( event, ui ) {
@@ -70,6 +70,9 @@ $(document).ready(function(){
 	   $('.overlay').fadeIn('fast');
 	   $('.popup').fadeIn('fast');
 	   $('.wrap').addClass('blur');
+	   ga('send','event','button_i_need_franch_befor','befor');
+	   yaCounter33075288.reachGoal('button_i_need_franch_befor');
+	   return true;
    }
    function hidePop(){
 	   $('.overlay').fadeOut('fast');
@@ -88,9 +91,7 @@ $(document).ready(function(){
 	   var mess = $('.popup .err-mess');
 	   var name = $('.popup #name').val(); 
 	   var phone = $('.popup #phone').val();
-	   var email = $('.popup #email').val();
-	   var city = $('.popup #city').val();
-	   if(name == '' || phone == '' || email == '' || city == ''){
+	   if(name == '' || phone == ''){
 		   mess.text('Заполните все обязательные поля!');
 	   }
 	   else{
@@ -99,9 +100,7 @@ $(document).ready(function(){
 			   url: 'handlers/sendmess.php',
 			   data:{
 				   name:name,
-				   phone:phone,
-				   email:email,
-				   city:city
+				   phone:phone
 			   },
 			   success: function(data, xhr, status){
 				   mess.text('Ваше сообщение отправлено!');

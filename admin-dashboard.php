@@ -31,7 +31,7 @@
 					<!-- Main Stats Table -->
 					<?php include 'includes/modules/mainStatsTable.php'; ?>
 
-															<!-- Payment System -->
+					<!-- Payment System -->
 					<?php include 'includes/modules/smsPaySystem.php'; ?>		
 				</div>
 				
@@ -85,6 +85,6 @@
 		<script type="text/javascript" src="includes/js/jquery-scrolltofixed-minmaxheightadded-min.js"></script>
 		<script type="text/javascript" src="includes/js/mainStatsChart.js"></script>
 		<script type="text/javascript" src="includes/js/birthdays-settings.js"></script>
-		
+		<script type="text/javascript" src="includes/js/smsPaySystem.js"></script>
 	</body>
 </html>
