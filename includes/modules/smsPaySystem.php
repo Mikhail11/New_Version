@@ -18,8 +18,8 @@
 		 	<option selected>600</option>
 		 </select> <b>CMC</b>
 		 <div class="pay-button-block">
-			<button class = "agree" id = "agree"><i class="fa fa-check"></i></button>
-			<button class = "disagree" id = "disagree"><i class="fa fa-times"></i></button>
+			<a class="agree" id = "agree"><i class="text-success fa fa-check-circle"></i></a>
+			<a class="disagree" id = "disagree"><i class="text-danger fa fa-times-circle"></i></a>
 		</div>
 		</div>
 	</div>

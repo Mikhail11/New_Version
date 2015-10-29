@@ -40,6 +40,7 @@
 								if ($count == 0) {
 
 									$database->setValueByShortName('mobile','F');
+									$database->setValueByShortName('AUTO_MESSAGE_SMS_DATE','');
 
 									break;
 								}
