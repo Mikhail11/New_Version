@@ -172,7 +172,7 @@ $(document).ready(function() {
  $('#POST_LINK_INST').focus(function(){
 
  	$('#POST_LINK_INST').removeAttr('style');
- })
+ });
 
 /* *
    * All submit buttons restrictions and view changes

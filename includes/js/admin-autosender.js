@@ -58,11 +58,77 @@ $(document).ready(function() {
 
 	}
 
+ 	function VKSendsChecked(){
+
+	 	var dateVK = $('#AUTO_POST_VK_DATE').val();
+	 	var VKToken = $('#AUTO_MESSAGE_VK_TOKEN').val();
+	 	var VKText = $('#AUTO_POST_VK_MESSAGE').val(); 
+	 	var f1 = true;
+	 	var f2 = true;
+	 	var f3 = true;
+	 	var check;
+
+	 	if( dateVK == '' ) {
+
+	 		f1 = false;
+	 	}
+
+	 	if( VKToken == '' ) {
+
+	 		f2 = false;
+	 	}
+
+	 	if( VKText == '' ) {
+
+	 		f3 = false;
+	 	}
+
+
+	 	if(!f1 || (f1&&f2&&f3)){
+
+	 		check = 'T';
+
+	 	} else {
+
+	 		check = 'F';
+	 	}
+
+	 	if ( check == 'T') {
+
+	 		return true;
+
+	 	} else {
+
+	 		addNotification('Заполните все необходимые поля для включения рассылки!', 'danger');
+	 		$('#AUTO_POST_VK_DATE').val('');
+	 		if(VKToken == ''){
+	 		$('#AUTO_MESSAGE_VK_TOKEN').attr('style', 'border-color:red;');}
+	 		if(VKText == ''){
+	 		$('#AUTO_POST_VK_MESSAGE').attr('style', 'border-color:red;');}
+
+	 		return false;
+	 	}
+
+
+
+	}
+
+
+ $('#AUTO_MESSAGE_VK_TOKEN').focus(function(){
+
+ 	$('#AUTO_MESSAGE_VK_TOKEN').removeAttr('style');
+ });
+
+ $('#AUTO_POST_VK_MESSAGE').focus(function(){
+
+ 	$('#AUTO_POST_VK_MESSAGE').removeAttr('style');
+ });
+
 	var SubmitButtons = $("button[type=\"submit\"]");
 
 	$(SubmitButtons).click(function(e) {
 
-	 	if (smsLoginChecked()) {
+	 	if (smsLoginChecked() && VKSendsChecked()) {
 
 
 				$(this).html("Сохраняется... <i class=\"fa fa-spinner fa-pulse\"></i>");
@@ -118,6 +184,7 @@ $(document).ready(function() {
 	    });
 	}
 $('#AUTO_MESSAGE_SMS_DATE').pickadate();
+$('#AUTO_POST_VK_DATE').pickadate();
 /* *
    * Ограничение вводимых данных
  */

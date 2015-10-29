@@ -1896,6 +1896,33 @@
 		return $this->getQueryResultWithErrorNoticing($sql);
 	}
 
+	public function getVKPostTime(){
+
+		$sql = 'select B.ID_DB_USER as ID_USER
+		from SP$VAR B
+		where  B.ID_DICTIONARY = (SELECT ID_DICTIONARY FROM CM$DICTIONARY WHERE SHORT_NAME = "AUTO_POST_VK_DATE") 
+		and B.VALUE = curdate()';
+
+		return $this->getQueryResultWithErrorNoticing($sql);
+
+	}
+
+	public function getVKUsers($idDBUser, $permanentUsers){
+
+		$this->sanitize($idDBUser);
+		$this->sanitize($permanentUsers);
+
+		$sql = 'SELECT V.LINK FROM VW_SP$USER_LOGIN_COUNT V where ID_DB_USER = '.$idDBUser
+				.' and LOGIN_OPTION_SHORT_NAME = "vk"';
+		if($permanentUsers == 'T') {
+
+			$sql = $sql.' limit 20';
+		}
+
+		return $this->getQueryResultWithErrorNoticing($sql);
+
+	}
+
 	public function getMobileParametersForSend(){
 
 		$sql = 'select V.VALUE as MESSAGE,B.ID_DB_USER as ID_USER

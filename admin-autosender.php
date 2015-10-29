@@ -2,7 +2,7 @@
 	include 'includes/base/admin.php';
 	$protector->protectPageForbidSuperadmin();
 	
-	$dictionary_branches = ['AUTO_POST','AUTO_SMS'];
+	$dictionary_branches = ['AUTO_POST','AUTO_SMS','AUTO_POST_VK'];
 
 	$smsCount = $database->getValueByShortName('SMS_PAYMENTS_COUNT')['VALUE'];
 
@@ -153,6 +153,9 @@
 												<?php		
 												} else if ($value['DATA_TYPE'] != 'file') { // ЕСЛИ СТАНДАРТНОЕ
 													
+												if ($value['DATA_TYPE'] == 'checkbox') { // ЕСЛИ CHECKBOX
+														echo '<div class="checkbox">';
+													}
 												?>
 													<input
 														type="<?=$value['DATA_TYPE'];?>"
@@ -164,8 +167,10 @@
 																$value['VALUE'] == 'T' ? 'checked' : ''
 															)
 															: ('value="'.$value['VALUE'].'"')
-														);?>><?php
-												
+														);?>
+														<?=$value['DATA_TYPE'] == 'date'? 
+														'style = "width:15%;"': '' ;?>
+														><?php
 														
 													if ($value['DATA_TYPE'] == 'checkbox') { // ЕСЛИ CHECKBOX
 														echo '<label></label></div>';

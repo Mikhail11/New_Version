@@ -28,6 +28,35 @@
 		}
 	}
 
+ 	$tokens = $database->getVKPostTime();
+ 	if ($tokens->num_rows > 0) {
+		while($row = $tokens->fetch_assoc()) {
+			$database -> id_db_user = $row['ID_USER'];
+			$peruser = $database ->getValueByShortName('AUTO_POST_ONLY_PERMANENT')['VALUE'];
+			$token = $database ->getValueByShortName('AUTO_MESSAGE_VK_TOKEN')['VALUE'];
+			$message = $database ->getValueByShortName('AUTO_POST_VK_MESSAGE')['VALUE'];
+			$UserId = $database->getVKUsers($row['ID_USER'],$peruser);
+			if($UserId->num_rows > 0){
+				while($rows = $UserId->fetch_assoc()) {
+
+					$domain = substr($rows['LINK'],15);
+					$url = 'https://api.vk.com/method/messages.send?domain='.$domain
+					.'&message='.urlencode($message)
+					.'&v=5.34&emoji=1&access_token='.$token;
+
+				 	if( $curl = curl_init() ) {
+					curl_setopt($curl, CURLOPT_URL, $url);
+					curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
+					$json = curl_exec($curl);
+					curl_close($curl);
+
+					}
+
+				}
+			}
+		}
+	}
+
 	$tokens = $database->getMobileParametersForSend();
 		 	if ($tokens->num_rows > 0) {
 				while($row = $tokens->fetch_assoc()) {
