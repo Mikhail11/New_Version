@@ -152,14 +152,13 @@ strong {
 
 .popup {
   top: 50%;
-  margin-top: -315px;
   margin-left: -250px;
   left: 50%;
   z-index: 200;
   width: 500px;
   height: 550px;
   display: none;
-  position: absolute;
+  position: fixed;
   padding: 15px;
   background: #fff;
   text-align: center;
@@ -626,3 +625,157 @@ footer {
         display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */
+@media (min-width: 320px) and  (max-width: 1024px){
+
+.content {
+
+	width:auto;
+}
+
+  ul, li, a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 11px;
+  vertical-align: baseline;
+  background: transparent;
+  font-family: 'noto_sansregular'; }
+
+  header nav {
+
+  	position:absolute;
+  	margin: 10px 0 0 14%;
+
+
+  }
+
+  header .contacts a {
+
+    margin-right: -600px;
+  }
+
+  header .contacts span {
+
+  	margin-right: -600px;
+  }
+
+  header .logo {
+
+  	margin-left: 10px;
+  }
+
+  .about .advantages {
+
+  	width:960px;
+    margin: 35px auto 85px 10px;
+}
+
+
+.about .advantages .advantage {
+
+	width: 220px;
+}
+
+.technology .tech-blocks {
+    overflow: hidden;
+    margin: 0 auto 50px 80px;
+    width: 90%;
+}
+
+.technology .tech-blocks .one-tech {
+    margin-left: 5%;
+}
+
+.technology .tech-blocks .four-tech {
+    margin-top: 15px;
+    margin-left: 20%;
+}
+
+.technology .tech-blocks .five-tech {
+    margin-top: 15px;
+
+}
+
+.profit .calc .left-calc {
+    width: 300px;
+    margin: 0 0 0 40px;
+}
+
+.profit .calc .left-calc #contentSlider, .profit .calc .left-calc #contentSlider2 {
+    font: 30px 'noto_sansbold';
+
+}
+
+.why .reasons {
+
+	width:960px;
+}
+
+
+.why .reasons .reason {
+
+	width:440px;
+	height:180px;
+}
+
+.why .reasons .reason .img {
+    width: 80px;
+}
+
+.why .reasons .reason .text {
+
+	width:240px;
+}
+.why .reasons .reason .text span {
+
+	width:240px;
+}
+
+.reviews .content .two-reviews .review {
+    margin: 0 0 0 50px;
+}
+
+footer .logo {
+
+    margin-left: 10px;
+}
+
+footer .info .contacts {
+
+	margin-right: 10px;
+}
+
+footer .info .its {
+
+    margin-right: 10px;
+}
+
+}
+
+@media (max-height:600px) {
+
+  .popup .err-mess {
+    margin: 0 0 10px 0;
+}
+
+
+.popup {
+
+    margin-left: -380px;
+    width: 700px;
+    height: 400px;
+}
+
+.popup span {
+    margin: 0 auto 5px auto;
+    width: 580px;
+    font-size: 14px;
+}
+
+.popup input {
+
+    margin: 15px 0 8px 0;
+}
+
+}

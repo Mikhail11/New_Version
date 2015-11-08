@@ -1,17 +1,17 @@
 	
-	$("#smsPay").popover({ 
-		html: true, 
-		content: 
-	$('#smsPayPopover').html() 
-		});
+$("#smsPay").popover({ 
+	html: true, 
+	content: 
+		$('#smsPayPopover').html() 
+});
 
 
-$(document).ready(function(){ 
+$(document).on('click','#agree',function(){ 
+		$('#payform').submit();
+});
 
- $('#disagree').click(function(){
-
- 	 $('.popover').popover('hide');
- });
-
-
+$(document).on('change','#list',function(){
+		$('#formcomment').val('Покупка пакета на: '+$(this).val()+' смс');
+		$('#shorDest').val('Покупка пакета на:'+$(this).val()+' смс');
+		$('#sum').val($(this).val()*1.1);
 });

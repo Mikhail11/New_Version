@@ -63,9 +63,11 @@ $(document).ready(function(){
               $menu.removeClass("menu-fixed")
          }
    });
+
+
    function showPop(){
-	   var scroll = $(window).scrollTop();
-	   scroll = scroll + 330;
+	   var scroll = $(window).height();
+	   scroll = (scroll/12);
 	   $('.popup').css('top', scroll+'px');
 	   $('.overlay').fadeIn('fast');
 	   $('.popup').fadeIn('fast');
