@@ -146,23 +146,23 @@ strong {
   left: 0;
   z-index: 110;
   display: none;
-  background-color: rgba(32, 32, 32, 0.65);
+  background-color: rgba(255, 255, 255, 0.85);
   position: fixed;
   cursor: default; }
 
-.popup {
-  top: 50%;
-  margin-left: -250px;
-  left: 50%;
-  z-index: 200;
-  width: 500px;
-  height: 550px;
-  display: none;
-  position: fixed;
-  padding: 15px;
-  background: #fff;
-  text-align: center;
-  box-shadow: 1px 1px 15px #000; }
+.popup{
+    top: 50%;
+    margin-left: -350px;
+    left: 50%;
+    z-index: 200;
+    width: 700px;
+    height: 550px;
+    display: none;
+    position: fixed;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0);
+    text-align: left;
+}
   .popup .close {
     width: 22px;
     height: 22px;
@@ -177,7 +177,7 @@ strong {
   .popup span {
     margin: 0 auto 20px auto;
     display: block;
-    width: 380px;
+    width: 100%;
     font-size: 16px; }
   .popup .err-mess {
     height: 20px;
@@ -186,13 +186,16 @@ strong {
   .popup label {
     font-size: 16px; }
   .popup input {
-    width: 270px;
-    border: 1px solid #7A7A7A;
+    width: 98%;
+    border: 1px solid #aaa;
+    /*border-bottom:3px solid #191919;*/
     border-radius: 5px;
     padding: 5px;
-    margin: 15px 0 25px 0; }
+    margin: 15px 0 25px 0; 
+    background: rgba(255,255,255,0.7);}
   .popup input:focus {
-    border: 1px solid #000; }
+    border: 1px solid #ff0000; 
+    }
   .popup input[type="button"] {
     background-color: #E23F12;
     color: #fff;
@@ -200,7 +203,8 @@ strong {
     border: none;
     font: 16px 'noto_sansbold';
     text-transform: uppercase;
-    cursor: pointer; }
+    cursor: pointer;
+    width: 100% }
 
 header {
   color: #FFF;
@@ -769,7 +773,7 @@ footer .info .its {
 
 .popup span {
     margin: 0 auto 5px auto;
-    width: 580px;
+    width: 100%;
     font-size: 14px;
 }
 

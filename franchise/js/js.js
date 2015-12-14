@@ -93,6 +93,7 @@ $(document).ready(function(){
 	   var mess = $('.popup .err-mess');
 	   var name = $('.popup #name').val(); 
 	   var phone = $('.popup #phone').val();
+	   var city = $('.popup #city').val();
 	   if(name == '' || phone == ''){
 		   mess.text('Заполните все обязательные поля!');
 	   }
@@ -102,7 +103,8 @@ $(document).ready(function(){
 			   url: 'handlers/sendmess.php',
 			   data:{
 				   name:name,
-				   phone:phone
+				   phone:phone,
+				   city:city
 			   },
 			   success: function(data, xhr, status){
 				   mess.text('Ваше сообщение отправлено!');

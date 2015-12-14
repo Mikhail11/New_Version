@@ -4,12 +4,14 @@
   if(!empty($_POST['name']) AND !empty($_POST['phone'])){
 	  $name = $_POST['name'];
 	  $phone = $_POST['phone'];
+	  $city = $_POST['city'];
 	  
 	  $to = 'info@respot.ru';
 	  $subject = 'Заявка с сайта Respot';
 	  $message = '
 	         <p>Имя: '.$name.'</p>
 			 <p>Телефон: '.$phone.'</p>
+			 <p>Город: '.$city.'</p>
 	  ';
 	  
 	  

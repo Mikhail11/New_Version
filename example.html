@@ -1,12 +1,21 @@
 <html>
 <head>
-<title>Р—Р°РіСЂСѓР·РєР° С„Р°Р№Р»РѕРІ РЅР° СЃРµСЂРІРµСЂ</title>
+<title>Загрузка файлов на сервер</title>
 </head>
 <body>
-<h2><p><b> Р¤РѕСЂРјР° РґР»СЏ Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»РѕРІ </b></p></h2>
-<form action="upload.php" method="post" enctype="multipart/form-data">
-<input type="file" name="filename"><br> 
-<input type="submit" value="Р—Р°РіСЂСѓР·РёС‚СЊ"><br>
-</form>
-</body>
+<script> 
+function show(){document.getElementById('hide').style.display='block'} 
+
+function frameUrl(){
+
+	var a = window.frames.ef.location.href;
+	var str = a.substring(0,15);
+	alert(str);
+
+}
+</script> 
+<a href="javascript:void show()">Показать фрейм и загрузить в него страницу</a><br> 
+<a href="javascript:void frameUrl()">показать текущий адрес iframe’а</a> 
+<br> 
+<div style="display: none" id="hide"><iframe name="ef" width="30%" height="20%" src="https://oauth.vk.com/authorize?client_id=4957207&redirect_uri=https://oauth.vk.com/blank.html&display=page&scope=69636&response_type=token"></iframe></div></body>
 </html>

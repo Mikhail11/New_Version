@@ -1,28 +1,40 @@
-<?php
+﻿<?php
+	require 'includes/core/db_config.php';
+	require 'includes/core/DBWiFiInterface.php';
 
+ 	$database = new DBWiFiInterface($servername, $username, $password, $dbname,'','','','','');
+
+	
 $test = '1'; //Тестирование системы: 0 - выключено, 1 - включено 
 
-$notification_secret = "JPlYkENkKJsug6y4UgrBgNWH"; 
-
-
-$notification_type = $_POST["notification_type"];  
-$operation_id = $_POST["operation_id"]; 
-$amount = $_POST["amount"]; 
-$currency = $_POST["currency"]; 
-$datetime = $_POST["datetime"]; 
-$sender = $_POST["sender"]; 
-$codepro = $_POST["codepro"]; 
-$label = $_POST["label"]; 
-$sha1_hash = $_POST["sha1_hash"]; 
+$notification_secret = "4Fr1VEXDTSrSQIs4sY+SImin"; 
+$notification_type = $_REQUEST["notification_type"];  
+$operation_id = $_REQUEST["operation_id"]; 
+$amount = $_REQUEST["amount"]; 
+$currency = $_REQUEST["currency"]; 
+$datetime = $_REQUEST["datetime"]; 
+$sender = $_REQUEST["sender"]; 
+$codepro = $_REQUEST["codepro"]; 
+$label = $_REQUEST["label"]; 
+$sha1_hash = $_REQUEST["sha1_hash"]; 
 
 $hash = $notification_type . '&' . $operation_id . '&' . $amount . '&' . $currency . '&' . $datetime . '&' . $sender . '&' . $codepro . '&' . $notification_secret . '&' . $label; //формируем хеш 
 $sha1 = hash("sha1",$hash); //кодируем в SHA1 
 
 //Ниже - проверка на валидность 
 if ( $sha1 == $sha1_hash ) { 
+
+	$smsCount = substr($label,0,3);
+	$idDbUser = substr($label,4);
+
+ 	$database -> id_db_user = $idDbUser;
+	$database->smsCountAdd($smsCount);
+
 	header("HTTP/1.0 200 OK"); 
-	$amount = $amount/1.1;
-	$database->smsCountAdd($amount);
+	// $fl = pay ($amount,$label);
+	// if($fl){
+	// 	$database->smsCountAdd($label);	
+	// }
 
 } else { 
 	header("HTTP/1.0 100 ERROR");  

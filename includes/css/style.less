@@ -1229,15 +1229,15 @@ body.admin-page-login {
 
 .popover {
 	padding: 0;
-	background: rgba(0,0,0,0.6);
+	background: rgba(0,0,0,0.9);
 	border:none;
 
 	& .popover-title{
-		background: rgba(0,0,0,0.6);
+		background: rgba(0,0,0,0.9);
 		border-bottom: none;
 	}
 	& .arrow::after {
-		color: rgba(0,0,0,0.6);
+		color: rgba(0,0,0,0.9);
 		// border-right-color: rgba(0,0,0,0.6) !important;
 	}
 	& .arrow {
@@ -1248,11 +1248,12 @@ body.admin-page-login {
 
 		border-radius: 5px;
 		color:#fff;
-		border:1px solid rgba(0,0,0,0.6);
+		border:1px solid rgba(0,0,0,0.9);
 		font-size: 120%;
 		font-family: inherit;
 		outline: none;
-		background-color: rgba(0,0,0,0.6);
+		background-color: rgba(0,0,0,0.9);
+		margin-left: 10px;
 
 	}
 
@@ -1266,7 +1267,7 @@ body.admin-page-login {
 		font-size: 200%;
     	margin-right: 20px;
 		outline: none;
-		margin-left: 10px;
+		margin-left: 30px;
 	}
 
 	& a.disagree {
@@ -1280,11 +1281,23 @@ body.admin-page-login {
 
 		padding: 2px 8px;
 	}
+
+	& input[type=radio] {
+
+		width:10px;
+		float:left;
+	}
+
+	& p {
+
+	    width: 130px;
+	}
+
 }
 
 .popover.bottom>.arrow:after {
 
-	border-bottom-color: rgba(0,0,0,0.6);
+	border-bottom-color: rgba(0,0,0,0.9);
 }
 
 

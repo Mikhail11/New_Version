@@ -1,0 +1,2 @@
+RewriteEngine on
+Redirect 302 /login http://192.168.88.1/wifi.html

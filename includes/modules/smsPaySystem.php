@@ -5,6 +5,7 @@
 	<div class="sms-payment">
 			<a href = "#" data-toggle="popover" data-placement="bottom" data-trigger="click" id = "smsPay" >
 			<?php echo $database->getValueByShortName('SMS_PAYMENTS_COUNT')['VALUE']; ?>
+			<input type="hidden" name="id-db-user" id = "idDbUser" value = "<?=$database->id_db_user;?>">
 			</a>
 	</div>
 
@@ -24,9 +25,10 @@
 			<input type="hidden" name="short-dest" id = "shorDest">
 			<input type="hidden" name="quickpay-form" value = "small">
 			<input type="hidden" name="sum" id="sum"> 
+			<input type="hidden" name="label" id="label" value = "">
 			<input type="hidden" name="targets" id = "targets" value = "Оплата пакета смс">
-			<input type="radio" name="paymentType" value="PC">Яндекс.Деньгами</input> 
-			<input type="radio" name="paymentType" value="AC">Банковской картой</input> 
+			<input type="radio" name="paymentType" value="PC"><p>Яндекс.Деньги</p>
+			<input type="radio" name="paymentType" value="AC"><p>Банковская карта</p>
 		</form>
 		 <div class="pay-button-block">
 			<a class="agree" id = "agree"><i class="text-success fa fa-check-circle"></i></a>

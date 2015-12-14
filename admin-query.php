@@ -31,7 +31,7 @@
 
 			$postId = $_POST['postId'];
 			$database->postPlannerDelete($postId);
-		}
+		} 
 	
 	}
 

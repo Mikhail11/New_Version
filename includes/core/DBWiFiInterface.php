@@ -1853,7 +1853,7 @@
 
 		public function smsCountSub($count = 1)	{
 
-
+			
 			$counts = $this->getValueByShortName('SMS_PAYMENTS_COUNT')['VALUE'];
 
 			$count = $counts - $count;
@@ -2092,13 +2092,16 @@
 			$sql = 'INSERT INTO SP$POSTS (ID_IMG,ID_TEXT,POST_DATE,ID_DB_USER) VALUES ('.$imageId.','.$textId.', STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\'),'.$this->id_db_user.')';
 			$this->getQueryResultWithErrorNoticing($sql); 
 
-			$sql = 'SELECT ID_POSTS , DATE FROM SP$POSTS where ID_DB_USER ='.$this->id_db_user.' order by ID_IMAGES desc limit 0, 1';
-			$postId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_POSTS'];
+			$sql = 'SELECT ID_POSTS FROM SP$POSTS where ID_DB_USER ='.$this->id_db_user.' order by ID_POSTS desc limit 0, 1';
+			$postId = $this->getQueryFirstRowResultWithErrorNoticing($sql)['ID_POSTS'];
 
 			$sql = 'CREATE EVENT `post_planner_'.$postId.'_'.$this->id_db_user.'` 
 					ON SCHEDULE AT STR_TO_DATE("'.$time.' '.$date.'",\'%H:%i %Y-%m-%d\')
 					DO
 					call planer_creatorr('.$this->id_db_user.','.$postId.');';
+
+			echo $postId;		
+
 			$this->getQueryResultWithErrorNoticing($sql);
 
 			mysqli_commit($this->conn);
@@ -2513,6 +2516,29 @@
 	}
 
 # ==== КОНЕЦ ФОРМИРОВАНИЕ ОТЧЕТА ДЛЯ ОТПРАВКИ ПО ПОЧТЕ ==== #
-# ========================================================= #	
+# ========================================================= #
+
+# ========================================================= #
+// !ВК клиенты
+# ========================================================= #		
+
+public function vkClientsHunter($ref,$firstName,$lastName){
+
+	$this->sanitize($ref);
+	$this->sanitize($firstName);
+	$this->sanitize($lastName);
+	$sql = 'insert into CM$FRANCHISE_CLIENTS (LINK, NAME) values("'.$ref.'", "'.$firstName.' '.$lastName.'")';
+	$this ->getQueryResultWithErrorNoticing($sql);
+}
+
+public function vkCLientsSelect(){
+
+	$sql = 'SELECT LINK, NAME, INPUT_DATE from CM$FRANCHISE_CLIENTS  order by INPUT_DATE DESC limit 100';
+	$result = $this ->getQueryResultWithErrorNoticing($sql);
+	return $result;
+}
+# ==== ВК клиенты ==== #
+# ========================================================= #
+
 	}
 ?>
