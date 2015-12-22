@@ -42,7 +42,7 @@
 								<div class="form-group">
 									<div class = "col-sm-12">
 										<div class="img-block" >
-											<img src="" id='imageData' >
+											<img src="" id='imageData' data-info = " ">
 
 													<div id="rg-gallery" class="rg-gallery"  >
 														<div class="rg-thumbs">

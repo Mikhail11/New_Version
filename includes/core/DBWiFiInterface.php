@@ -2021,12 +2021,12 @@
 			// $sql = 'UPDATE SP$POST_IMAGES SET VALUE ="'.$images.'" WHERE ID_IMAGES ='.$imageId;
 			// $this->getQueryResultWithErrorNoticing($sql);
 
-			if ($gallery = 'true') {
+			if ($gallery == 'true') {
 
 				$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' AND VALUE = "'.$images.'" order by ID_IMAGES desc limit 0, 1';
 				$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
 
-			} else if ($gallery = 'false') {
+			} else if ($gallery == 'false') {
 
 					$sql = 'INSERT INTO SP$POST_IMAGES (VALUE,ID_DB_USER) VALUES ("'.$images.'","'.$this->id_db_user.'")';
 					$this->getQueryResultWithErrorNoticing($sql);
@@ -2065,19 +2065,16 @@
 			$sql = 'INSERT INTO SP$POST_TEXT (VALUE,ID_DB_USER,TITLE) VALUES ("'.$content.'","'.$this->id_db_user.'","'.$title.'")';
 			$this->getQueryResultWithErrorNoticing($sql);
 
-				if ($gallery = 'true') {
+				if ($gallery == 'true') {
 
 					$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' AND VALUE = "'.$images.'" order by ID_IMAGES desc limit 0, 1';
 					$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
-
-				} else if ($gallery = 'false') {
+				} else if ($gallery == 'false') {
 
 						$sql = 'INSERT INTO SP$POST_IMAGES (VALUE,ID_DB_USER) VALUES ("'.$images.'","'.$this->id_db_user.'")';
-						$this->getQueryResultWithErrorNoticing($sql);
-						
+						$this->getQueryResultWithErrorNoticing($sql);						
 						$sql = 'SELECT ID_IMAGES FROM SP$POST_IMAGES where ID_DB_USER ='.$this->id_db_user.' order by ID_IMAGES desc limit 0, 1';
 						$imageId = $this->getQueryFirstRowResultWithErrorNoticing($sql, null, true)['ID_IMAGES'];
-
 				}
 
 			// $sql = 'INSERT INTO SP$POST_IMAGES (VALUE,ID_DB_USER) VALUES ("'.$images.'","'.$this->id_db_user.'")';

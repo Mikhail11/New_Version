@@ -18,6 +18,9 @@
 			$images = $_POST['image'];
 			$postId = $_POST['post'];
 			$gallery = $_POST['gallery'];
+			$path = $_POST['path'];
+
+			copy($path, $images);
 
 			if($images == 'images/imageCap.png'){
 

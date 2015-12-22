@@ -89,7 +89,8 @@ $('#saveButton').click(function(){
   var content = $('#textarea_content').val();
   var time = $('#input_time').val();
   var date = $('#input_date').val();
-  var image = $('#imageData').attr('src');
+  var image = $('#imageData').data('info');
+  var path = $('#imageData').attr('src');
   var postId = $('#input_hidden').val();
 
   title = title.replace(/\r|\n/g, ' ');
@@ -105,6 +106,7 @@ $('#saveButton').click(function(){
 					'date':date,
 					'post':postId,
 					'image':image,
+					'path':path,
 					'gallery':galleryUsing 
 					},
 			success: function(msg){
@@ -155,6 +157,7 @@ $('#trashButton').click(function(){
 				if(response.response==="success"){
 	  		 	    $('#rg-gallery').attr('style', "display:none;");
 				    $('#imageData').attr('style','');
+				    $('#imageData').attr('data-info', response.newfile);
 					$('#imageData').attr('src',response.file);
 					galleryUsing ='false';
 				} else{
