@@ -68,7 +68,7 @@ $(document).ready(function(){
    function showPop(){
 	   var scroll = $(window).height();
 	   scroll = (scroll/12);
-	   $('.popup').css('top', scroll+'px');
+	   // $('.popup').css('top', scroll+'px');
 	   $('.overlay').fadeIn('fast');
 	   $('.popup').fadeIn('fast');
 	   $('.wrap').addClass('blur');

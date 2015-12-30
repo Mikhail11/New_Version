@@ -151,7 +151,7 @@ strong {
   cursor: default; }
 
 .popup{
-    top: 50%;
+    top: 15%;
     margin-left: -350px;
     left: 50%;
     z-index: 200;
@@ -766,6 +766,7 @@ footer .info .its {
 
 .popup {
 
+    top: 5%;
     margin-left: -380px;
     width: 700px;
     height: 400px;
